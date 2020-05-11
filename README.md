@@ -1,2 +1,4 @@
 # python-visualization-scripts
-Scripts for visualization in Python
+
+Scripts in Python for visualizing plots / images etc.
+
