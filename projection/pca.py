@@ -11,10 +11,7 @@ class PCAProjection(Projection):
     def __init__(self, num_components: int = 2):
         """Constructor
 
-        Arguments:
-        ----------
-        num_components:
-
+        :param num_components: target number of dimensions for the PCA projection
         """
         self.num_components = num_components
 

@@ -14,10 +14,7 @@ class PlotFeaturesProjection(VisualizeFeaturesScheme):
     def __init__(self, projection: Projection):
         """Constructor
 
-        Arguments:
-        ----------
-        projection
-            how the projection is performed
+        :param projection how the projection is performed
         """
         self._projection = projection
 

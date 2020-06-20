@@ -10,13 +10,7 @@ class Projection(ABC):
     def project(self, df: pd.DataFrame) -> pd.DataFrame:
         """Performs projection, while preserving a data-frame with identical row names
 
-        Arguments:
-        ----------
-        df:
-            data_frame containing only numerical features (as columns) and with labelled row.names
-
-        Returns:
-        --------
-        a data_frame with identical order and row.names
+        :param df: data_frame containing only numerical features (as columns) and with labelled row.names
+        :return: a data_frame with identical order and row.names
         """
         pass

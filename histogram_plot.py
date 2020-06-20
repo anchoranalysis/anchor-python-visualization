@@ -29,16 +29,12 @@ def _arg_parse() -> argparse.ArgumentParser:
 
 
 def _show_hist(keys: pd.Series, counts: pd.Series, num_bins: int) -> None:
-    """Shows a histogram-plot with a logarithmic scale.
+    """
+    Shows a histogram-plot with a logarithmic scale.
 
-    Parameters
-    -------------
-    keys:
-        a series referring to the keys of the histogram; each key has a corresponding count
-    counts:
-        a series referring to corresponding counts for each key of the histogram, identical in size and order to keys
-    num_bins:
-        the number of bins to use in the histogram
+    :param keys a series referring to the keys of the histogram; each key has a corresponding count
+    :param counts a series referring to corresponding counts for each key of the histogram, identical in size and order to keys
+    :param num_bins the number of bins to use in the histogram
     """
     ax = sns.distplot(
         list(keys),
@@ -56,5 +52,3 @@ def _show_hist(keys: pd.Series, counts: pd.Series, num_bins: int) -> None:
 
 if __name__ == "__main__":
     main()
-
-
