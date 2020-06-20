@@ -5,12 +5,13 @@ import seaborn as sns
 
 """A script for plotting a histogram from a CSV file that has "intensity" and "count" in two columns.
 
-Plots a histogram based upon columns in a CV file.
+Plots a histogram based upon columns in a CSV file.
 
 Author
 -------
 Owen Feehan
 """
+
 
 def _arg_parse() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description='Display a histogram from a CSV.')
