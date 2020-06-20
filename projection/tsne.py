@@ -1,3 +1,4 @@
+"""T-SNE projection"""
 from .projection import Projection
 from .pca import PCAProjection
 from ._derive_utilities import derive_projected_df

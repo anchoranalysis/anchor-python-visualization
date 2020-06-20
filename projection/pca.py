@@ -1,3 +1,4 @@
+"""PCA projection"""
 from .projection import Projection
 import pandas as pd
 from ._derive_utilities import derive_projected_df

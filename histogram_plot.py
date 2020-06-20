@@ -1,8 +1,3 @@
-import argparse
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 """A script for plotting a histogram from a CSV file that has "intensity" and "count" in two columns.
 
 Plots a histogram based upon columns in a CSV file.
@@ -11,6 +6,10 @@ Author
 -------
 Owen Feehan
 """
+import argparse
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def _arg_parse() -> argparse.ArgumentParser:

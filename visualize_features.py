@@ -42,7 +42,7 @@ def main():
 
     features: LabelledFeatures = load_features(args)
 
-    visualize_scheme = PlotProjection2D(TSNEProjection())
+    visualize_scheme = PlotFeaturesProjection(TSNEProjection())
     visualize_scheme.visualize_data_frame(features)
 
 

@@ -1,4 +1,5 @@
-from .visualizeScheme import VisualizeScheme
+"""A scheme for visualizing features involving a projection into an embedding and plotting"""
+from .visualize_features_scheme import VisualizeFeaturesScheme
 from projection import Projection
 
 from typing import Optional
@@ -7,7 +8,7 @@ import plotly.express as px
 from _labelled_features import LabelledFeatures
 
 
-class PlotProjection2D(VisualizeScheme):
+class PlotFeaturesProjection(VisualizeFeaturesScheme):
     """Projects the feature space onto two dimensions and plots"""
     def __init__(self, projection: Projection):
         """Constructor

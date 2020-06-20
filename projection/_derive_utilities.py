@@ -1,3 +1,4 @@
+"""Utilities functions common to multiple projection methods"""
 import numpy as np
 import pandas as pd
 
