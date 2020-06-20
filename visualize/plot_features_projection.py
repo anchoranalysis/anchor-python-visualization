@@ -4,7 +4,7 @@ from typing import Optional
 import pandas as pd
 import plotly.express as px
 
-from _labelled_features import LabelledFeatures
+from features import LabelledFeatures
 from projection import Projection
 from .visualize_features_scheme import VisualizeFeaturesScheme
 

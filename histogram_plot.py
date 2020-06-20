@@ -13,15 +13,24 @@ import pandas as pd
 import seaborn as sns
 
 
+def main():
+    """Entry point. Expects a path to the CSV file as an argument to the script"""
+    args = _arg_parse()
+
+    csv = pd.read_csv( args.file_path_to_csv )
+
+    _show_hist(csv['intensity'], csv['count'], 100 )
+
+
 def _arg_parse() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description='Display a histogram from a CSV.')
     parser.add_argument('file_path_to_csv', type=str, help='file-path to a csv file')
     return parser.parse_args()
 
 
-def _show_hist( keys: pd.Series, counts: pd.Series, num_bins: int ) -> None:
+def _show_hist(keys: pd.Series, counts: pd.Series, num_bins: int) -> None:
     """Shows a histogram-plot with a logarithmic scale.
-    
+
     Parameters
     -------------
     keys:
@@ -36,22 +45,13 @@ def _show_hist( keys: pd.Series, counts: pd.Series, num_bins: int ) -> None:
         hist_kws={"weights": list(counts)},
         norm_hist=False,
         kde=False,
-        bins = num_bins
+        bins=num_bins
     )
     ax.set_yscale("log")
 
     plt.xlabel("Intensity")
     plt.ylabel("Count")
     plt.show()
-
-
-def main():
-    """Entry point. Expects a path to the CSV file as an argument to the script"""
-    args = _arg_parse()
-
-    csv = pd.read_csv( args.file_path_to_csv )
-
-    _show_hist(csv['intensity'], csv['count'], 100 )
 
 
 if __name__ == "__main__":

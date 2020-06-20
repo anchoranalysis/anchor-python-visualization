@@ -1,29 +1,12 @@
-"""Routines for loading features from CSV and adding identifiers and labels"""
+"""Loading and labelling features"""
 import argparse
-from typing import Optional
-
 import numpy as np
 import pandas as pd
+from features import LabelledFeatures
+
 
 # Name for index column
 COL_NAME_INDEX = 'identifier'
-
-
-class LabelledFeatures:
-    """Maintains separate data-frames for features and labels, but with the same number and order of rows"""
-
-    def __init__(self, df_features: pd.DataFrame, labels: Optional[pd.Series]):
-        """Constructor
-
-        Arguments:
-        ---------
-        df_features:
-            data-frame containing only feature-values (all numeric), and with each row assigned an identifier
-        labels:
-            optional series with labels for each item in df_features (the series must have the same size and order)
-        """
-        self.df_features = df_features
-        self.labels = labels
 
 
 def load_features(args: argparse.ArgumentParser) -> LabelledFeatures:

@@ -24,15 +24,9 @@ Owen Feehan
 """
 import argparse
 
-from _labelled_features import LabelledFeatures, load_features
+from features import *
 from projection import *
 from visualize import *
-
-
-def _arg_parse() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description='Visualize a CSV file with different features.')
-    parser.add_argument('file_path_to_csv', type=str, help='file-path to a csv file')
-    return parser.parse_args()
 
 
 def main():
@@ -43,6 +37,12 @@ def main():
 
     visualize_scheme = PlotFeaturesProjection(TSNEProjection())
     visualize_scheme.visualize_data_frame(features)
+
+
+def _arg_parse() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description='Visualize a CSV file with different features.')
+    parser.add_argument('file_path_to_csv', type=str, help='file-path to a csv file')
+    return parser.parse_args()
 
 
 if __name__ == "__main__":

@@ -6,7 +6,9 @@ from ._derive_utilities import derive_projected_df
 from .pca import PCAProjection
 from .projection import Projection
 
+
 MAX_NUM_FEATURES_TSNE = 50
+
 
 class TSNEProjection(Projection):
     """Projects to two-dimensions using T-SNE (preceded by a PCA if num(features) > MAX_NUM_FEATURES_TSNE)
@@ -16,7 +18,8 @@ class TSNEProjection(Projection):
 
     def project(self, df: pd.DataFrame) -> pd.DataFrame:
 
-        # If there are lots of features, then use PCA first before T-SNE as per recommendation in documentation
+        # If there are many features, then use PCA first before T-SNE as per recommendation in documentation
+        # https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html
         if len(df.columns)>MAX_NUM_FEATURES_TSNE:
             pca = PCAProjection(2)
             df = pca.project(df)
