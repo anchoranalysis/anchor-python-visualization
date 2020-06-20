@@ -1,11 +1,12 @@
 """A scheme for visualizing features involving a projection into an embedding and plotting"""
-from .visualize_features_scheme import VisualizeFeaturesScheme
-from projection import Projection
-
 from typing import Optional
+
 import pandas as pd
 import plotly.express as px
+
 from _labelled_features import LabelledFeatures
+from projection import Projection
+from .visualize_features_scheme import VisualizeFeaturesScheme
 
 
 class PlotFeaturesProjection(VisualizeFeaturesScheme):

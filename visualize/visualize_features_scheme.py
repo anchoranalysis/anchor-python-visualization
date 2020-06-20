@@ -1,5 +1,6 @@
 """Abstract base class for a scheme for visualizing features"""
 from abc import ABC
+
 from _labelled_features import LabelledFeatures
 
 

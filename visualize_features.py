@@ -23,11 +23,10 @@ Author
 Owen Feehan
 """
 import argparse
-import pandas as pd
 
+from _labelled_features import LabelledFeatures, load_features
 from projection import *
 from visualize import *
-from _labelled_features import LabelledFeatures, load_features
 
 
 def _arg_parse() -> argparse.ArgumentParser:

@@ -1,8 +1,9 @@
 """PCA projection"""
-from .projection import Projection
 import pandas as pd
-from ._derive_utilities import derive_projected_df
 from sklearn.decomposition import PCA
+
+from ._derive_utilities import derive_projected_df
+from .projection import Projection
 
 
 class PCAProjection(Projection):

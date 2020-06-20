@@ -1,6 +1,6 @@
 """Abstract base class for projection method"""
 from abc import ABC
-from typing import Optional
+
 import pandas as pd
 
 

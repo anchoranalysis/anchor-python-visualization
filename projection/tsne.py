@@ -1,9 +1,10 @@
 """T-SNE projection"""
-from .projection import Projection
-from .pca import PCAProjection
-from ._derive_utilities import derive_projected_df
 import pandas as pd
 from sklearn.manifold import TSNE
+
+from ._derive_utilities import derive_projected_df
+from .pca import PCAProjection
+from .projection import Projection
 
 MAX_NUM_FEATURES_TSNE = 50
 

@@ -1,9 +1,9 @@
 """Routines for loading features from CSV and adding identifiers and labels"""
+import argparse
 from typing import Optional
 
-import pandas as pd
-import argparse
 import numpy as np
+import pandas as pd
 
 # Name for index column
 COL_NAME_INDEX = 'identifier'
