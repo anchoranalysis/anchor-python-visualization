@@ -23,6 +23,7 @@ Author
 Owen Feehan
 """
 import argparse
+from typing import Optional
 
 from features import *
 from projection import *
@@ -35,14 +36,34 @@ def main():
 
     features: LabelledFeatures = load_features(args)
 
-    visualize_scheme = PlotFeaturesProjection(TSNEProjection())
+    projection: Projection = _projection_factory(args.projection)
+
+    visualize_scheme = PlotFeaturesProjection(projection)
     visualize_scheme.visualize_data_frame(features)
 
 
 def _arg_parse() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description='Visualize a CSV file with different features.')
     parser.add_argument('file_path_to_csv', type=str, help='file-path to a csv file')
+    parser.add_argument(
+        "-p",
+        "--projection",
+        help="method to use for projecting features to smaller dimensionality. Defaults to t-sne.",
+        choices=["t-sne", "pca"],
+        default="t-sne"
+    )
     return parser.parse_args()
+
+
+def _projection_factory(method_identifier: Optional[str]):
+    if method_identifier == "t-sne" or method_identifier is None:
+        return TSNEProjection()
+    elif method_identifier == "pca":
+        return PCAProjection()
+    else:
+        raise Exception(
+            "Unknown identifier for projection: {}".format(method_identifier)
+        )
 
 
 if __name__ == "__main__":
