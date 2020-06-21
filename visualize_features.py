@@ -46,19 +46,18 @@ def _arg_parse() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description='Visualize a CSV file with different features.')
     parser.add_argument('file_path_to_csv', type=str, help='file-path to a csv file')
     parser.add_argument(
-        "-p",
         "--projection",
         help="method to use for projecting features to smaller dimensionality. Defaults to t-sne.",
-        choices=["t-sne", "pca"],
-        default="t-sne"
+        choices=["t-SNE", "PCA"],
+        default="t-SNE"
     )
     return parser.parse_args()
 
 
 def _projection_factory(method_identifier: Optional[str]):
-    if method_identifier == "t-sne" or method_identifier is None:
+    if method_identifier == "t-SNE" or id is None:
         return TSNEProjection()
-    elif method_identifier == "pca":
+    elif method_identifier == "PCA":
         return PCAProjection()
     else:
         raise Exception(
