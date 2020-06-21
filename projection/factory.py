@@ -1,9 +1,10 @@
 from typing import Optional
-from .tsne import TSNEProjection
-from .pca import PCAProjection
+from ._tsne import TSNEProjection
+from ._pca import PCAProjection
 
 
-PROJECTION_FACTORY_IDENTIFIERS = ["t-SNE", "PCA"]
+PROJECTION_FACTORY_DEFAULT_IDENTIFIER = "t-SNE"
+PROJECTION_FACTORY_IDENTIFIERS = [PROJECTION_FACTORY_DEFAULT_IDENTIFIER, "PCA"]
 
 
 def create_projection_method(method_identifier: Optional[str]):

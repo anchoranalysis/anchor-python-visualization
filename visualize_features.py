@@ -36,9 +36,11 @@ def main():
 
     features: LabelledFeatures = load_features(args)
 
-    projection_method: Projection = create_projection_method(args.projection)
-
-    visualize_scheme = PlotFeaturesProjection(projection_method)
+    visualize_scheme = create_visualize_features_method(
+        args.method,
+        create_projection_method(args.projection),
+        args.output_path
+    )
     visualize_scheme.visualize_data_frame(features)
 
 
@@ -46,10 +48,24 @@ def _arg_parse() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description='Visualize a CSV file with different features.')
     parser.add_argument('file_path_to_csv', type=str, help='file-path to a csv file')
     parser.add_argument(
+        "-m",
+        "--method",
+        help="method to use for visualization. Defaults to '{}'"
+        .format(VISUALIZE_FEATURES_DEFAULT_IDENTIFIER),
+        choices=VISUALIZE_FEATURES_FACTORY_IDENTIFIERS,
+        default=VISUALIZE_FEATURES_DEFAULT_IDENTIFIER
+    )
+    parser.add_argument(
         "--projection",
-        help="method to use for projecting features to smaller dimensionality. Defaults to t-sne.",
-        choices=["t-SNE", "PCA"],
-        default="t-SNE"
+        help="method to use for projecting features to smaller dimensionality. Defaults to '{}'"
+        .format(PROJECTION_FACTORY_DEFAULT_IDENTIFIER),
+        choices=PROJECTION_FACTORY_IDENTIFIERS,
+        default=PROJECTION_FACTORY_DEFAULT_IDENTIFIER
+    )
+    parser.add_argument(
+        "-o",
+        "--output_path",
+        help="path to write any output to for a particular visualization method"
     )
     return parser.parse_args()
 

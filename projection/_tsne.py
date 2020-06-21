@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.manifold import TSNE
 
 from ._derive_utilities import derive_projected_df
-from .pca import PCAProjection
+from ._pca import PCAProjection
 from .projection import Projection
 
 
