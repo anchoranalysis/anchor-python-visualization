@@ -36,9 +36,9 @@ def main():
 
     features: LabelledFeatures = load_features(args)
 
-    projection: Projection = _projection_factory(args.projection)
+    projection_method: Projection = create_projection_method(args.projection)
 
-    visualize_scheme = PlotFeaturesProjection(projection)
+    visualize_scheme = PlotFeaturesProjection(projection_method)
     visualize_scheme.visualize_data_frame(features)
 
 
@@ -52,17 +52,6 @@ def _arg_parse() -> argparse.ArgumentParser:
         default="t-SNE"
     )
     return parser.parse_args()
-
-
-def _projection_factory(method_identifier: Optional[str]):
-    if method_identifier == "t-SNE" or id is None:
-        return TSNEProjection()
-    elif method_identifier == "PCA":
-        return PCAProjection()
-    else:
-        raise Exception(
-            "Unknown identifier for projection: {}".format(method_identifier)
-        )
 
 
 if __name__ == "__main__":
