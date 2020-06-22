@@ -6,6 +6,7 @@ from .visualize_features_scheme import VisualizeFeaturesScheme
 import os
 import tensorflow as tf
 import pandas as pd
+import csv
 from tensorboard.plugins import projector
 
 
@@ -53,7 +54,7 @@ def _create_projector_config(path: str) -> projector.ProjectorConfig:
     """Creates a projector-config as needed to show the embedding in Tensorboard"""
     config = projector.ProjectorConfig()
     embedding = config.embeddings.add()
-    embedding.tensor_name = "feature_embedding"
+    embedding.tensor_name = "embedding/.ATTRIBUTES/VARIABLE_VALUE"
     embedding.metadata_path = path
     return config
 
@@ -67,9 +68,7 @@ def _save_embedding_as_checkpoint(embedding: pd.DataFrame, path: str) -> None:
 
 def _write_labels(labels: pd.Series, path: str) -> None:
     """Writes each label on a separate line to a file"""
-    with open(path, "w") as f:
-        for label in labels:
-            f.write("{}\n".format(label))
+    labels.to_csv(path, sep="\t", header=["Label"], index=True, index_label="Identifier")
 
 
 def _create_dir_or_throw(path: Optional[str]) -> str:
