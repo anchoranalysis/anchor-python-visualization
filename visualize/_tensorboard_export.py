@@ -58,7 +58,7 @@ class TensorBoardExport(VisualizeFeaturesScheme):
         path_features = self._resolved_path(FILENAME_FEATURES)
 
         _write_labels(features.labels, path_metadata)
-        
+
         _save_embedding_as_checkpoint(
             self._maybe_project(features.df_features),
             path_features

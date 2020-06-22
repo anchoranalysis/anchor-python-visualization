@@ -23,7 +23,7 @@ def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_spr
     for i in range(len(image_paths)):
         path = image_paths[i]
 
-        print("Creating sprite {} of {} for {}".format(i+1, len(image_paths), path))
+        print("Add image {} of {} to sprite from {}".format(i+1, len(image_paths), path))
         images.append(
             _read_and_scale(path, image_size_in_sprite)
         )
