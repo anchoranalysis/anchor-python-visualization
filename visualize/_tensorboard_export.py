@@ -20,7 +20,12 @@ class TensorBoardExport(VisualizeFeaturesScheme):
     https://medium.com/looka-engineering/how-to-visualize-feature-vectors-with-sprites-and-tensorflows-tensorboard-3950ca1fb2c7
     """
 
-    def __init__(self, projection: Projection, output_path: str):
+    def __init__(self, projection: Optional[Projection], output_path: str):
+        """Constructor
+
+        :param projection: optional projection to reduce dimensionality before export
+        :param output_path: where to write the "log-dir" for tensorboard
+        """
         self._projection = projection
         self._output_path = _create_dir_or_throw(output_path)
 
@@ -28,18 +33,25 @@ class TensorBoardExport(VisualizeFeaturesScheme):
 
         print("Exporting tensorboard logs to: {}".format(self._output_path))
 
-        embedding = self._projection.project(features.df_features)
-
         path_metadata = self._resolved_path('metadata.tsv')
         path_checkpoint = self._resolved_path('features.ckpt')
 
         _write_labels(features.labels, path_metadata)
-        _save_embedding_as_checkpoint(embedding, path_checkpoint)
+        _save_embedding_as_checkpoint(
+            self._maybe_project(features.df_features),
+            path_checkpoint
+        )
 
         projector.visualize_embeddings(
             self._output_path,
             _create_projector_config(path_metadata)
         )
+
+    def _maybe_project(self, df: pd.DataFrame) -> pd.DataFrame:
+        if self._projection is not None:
+            return self._projection.project(df)
+        else:
+            return df
 
     def _resolved_path(self, path_relative_to_log_dir: str) -> str:
         """Resolves a path to the log-dir

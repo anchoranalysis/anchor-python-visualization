@@ -16,6 +16,9 @@ class PlotFeaturesProjection(VisualizeFeaturesScheme):
 
         :param projection how the projection is performed
         """
+        if projection is None:
+            raise Exception("A projection is required for {}".format(self.__class__.__name__))
+
         self._projection = projection
 
     def visualize_data_frame(self, features: LabelledFeatures) -> None:
