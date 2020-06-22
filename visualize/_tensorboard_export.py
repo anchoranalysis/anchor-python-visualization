@@ -10,12 +10,15 @@ from projection import Projection
 from ._image_sprite import create_sprite_at
 from .visualize_features_scheme import VisualizeFeaturesScheme
 
-# Size of each image in the sprite
+# Size of each image in the sprite. let's always keep each element to be an integer divisor of MAX_NUMBER_SAMPLES.
 IMAGE_SIZE_IN_SPRITE = (64, 64)
 
 FILENAME_METADATA = 'metadata.tsv'
 FILENAME_FEATURES = 'features.ckpt'
 FILENAME_IMAGE_SPRITE = 'sprite.png'
+
+# Max sprite size is apparently 8192 x 8192 pixels, so this is the maximum number of images that can be supported
+MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE = (8192//IMAGE_SIZE_IN_SPRITE[0]) * (8192//IMAGE_SIZE_IN_SPRITE[1])
 
 
 class TensorBoardExport(VisualizeFeaturesScheme):
@@ -24,6 +27,10 @@ class TensorBoardExport(VisualizeFeaturesScheme):
     If an image-path is associated with each item, a large tiled image (a sprite) is created with small scaled
     (thumnnail-like) versions of each image. TensorBoard can read this image to show the thumbnails alongside
     data-points.
+
+    If the features have more rows than MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE then a random-sample (without replacement)
+    is taken to reduce the number the features to MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE. Note this introduces
+    non-deterministic behaviour.
 
     Thanks to the TensorBoard tutorial
     https://www.tensorflow.org/tensorboard/tensorboard_projector_plugin
@@ -45,10 +52,13 @@ class TensorBoardExport(VisualizeFeaturesScheme):
 
         print("Exporting tensorboard logs to: {}".format(self._output_path))
 
+        features = _sample_if_needed(features)
+
         path_metadata = self._resolved_path(FILENAME_METADATA)
         path_features = self._resolved_path(FILENAME_FEATURES)
 
         _write_labels(features.labels, path_metadata)
+        
         _save_embedding_as_checkpoint(
             self._maybe_project(features.df_features),
             path_features
@@ -82,6 +92,23 @@ class TensorBoardExport(VisualizeFeaturesScheme):
         :return an absolute path
         """
         return os.path.join(self._output_path, path_relative_to_log_dir)
+
+
+def _sample_if_needed(features: LabelledFeatures) -> LabelledFeatures:
+    """Randomly samples if needed to ensure num_rows(features) <=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE"""
+    if features.image_paths is None:
+        # Number of rows irrelevant as no sprite will be created, so exit early unchanged
+        return features
+
+    num_rows = features.num_items()
+    if num_rows > MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE:
+        print(
+            "Sampling {} rows from a total of {} rows in the feature-table as this is the maximum allowed in the image-sprite"
+                .format(MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE, num_rows)
+        )
+        return features.sample_without_replacement(MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE)
+    else:
+        return features
 
 
 def _create_projector_config(path_metadata: str, path_sprite: Optional[str]) -> projector.ProjectorConfig:

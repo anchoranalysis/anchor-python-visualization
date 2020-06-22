@@ -2,6 +2,7 @@
 from typing import Optional
 
 import pandas as pd
+import random
 
 
 class LabelledFeatures:
@@ -17,3 +18,28 @@ class LabelledFeatures:
         self.df_features = df_features
         self.labels = labels
         self.image_paths = image_paths
+
+    def num_items(self) -> int:
+        """Returns the number of items (i.e. rows) in the data-frames/series"""
+        return len(self.df_features.index)
+
+    def sample_without_replacement(self, n: int) -> 'LabelledFeatures':
+        """Samples without replacement (taking identical rows from each member data-frame/series)
+
+        @param n: number of items to sample
+        @param replace: allow or disallow sampling of the same row more than once.
+        @:raise Exception if threre are fewer rows available than n
+        """
+        num_rows = self.num_items()
+        if n > num_rows:
+            raise Exception("Cannot sample {} rows from a data-frame with only {} rows", n, num_rows)
+        elif n==num_rows:
+            # Nothing to do
+            return
+        else:
+            indices = random.sample(range(num_rows), n)
+            return LabelledFeatures(
+                self.df_features.iloc[indices,:],
+                self.labels.iloc[indices],
+                self.image_paths.iloc[indices]
+            )
