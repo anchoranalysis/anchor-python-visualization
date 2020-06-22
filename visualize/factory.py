@@ -1,4 +1,5 @@
 from typing import Optional
+
 from projection import Projection
 from ._plot_features_projection import PlotFeaturesProjection
 from ._tensorboard_export import TensorBoardExport

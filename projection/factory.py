@@ -1,8 +1,8 @@
 from typing import Optional
-from ._tsne import TSNEProjection
-from ._pca import PCAProjection
-from .projection import Projection
 
+from ._pca import PCAProjection
+from ._tsne import TSNEProjection
+from .projection import Projection
 
 PROJECTION_FACTORY_DEFAULT_IDENTIFIER = "t-SNE"
 PROJECTION_FACTORY_IDENTIFIERS = [PROJECTION_FACTORY_DEFAULT_IDENTIFIER, "PCA", "none"]

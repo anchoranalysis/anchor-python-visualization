@@ -6,7 +6,6 @@ from ._derive_utilities import derive_projected_df
 from ._pca import PCAProjection
 from .projection import Projection
 
-
 MAX_NUM_FEATURES_TSNE = 50
 
 

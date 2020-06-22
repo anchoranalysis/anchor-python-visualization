@@ -46,7 +46,7 @@ def main():
     visualize_scheme = create_visualize_features_method(
         args.method,
         create_projection_method(args.projection),
-        args.output_path
+        args.output_path,
     )
     visualize_scheme.visualize_data_frame(features)
 
@@ -74,6 +74,11 @@ def _arg_parse() -> argparse.ArgumentParser:
         "-o",
         "--output_path",
         help="path to write any output to for a particular visualization method"
+    )
+    parser.add_argument(
+        "-d",
+        "--image_dir",
+        help="Treat identifier as a path to an image (relative to this dir)"
     )
     return parser.parse_args()
 
