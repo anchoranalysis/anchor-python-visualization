@@ -15,15 +15,8 @@ Visusalization methods
 Structure of the CSV File
 -------------------------
 1. The CSV file should have features as columns, and data-items as rows - and include headers.
-2. The first column is considered to be the name (or other unique identifier like a path) and not a feature.
-
-Grouping of name column
------------------------
-The name can be divided into groups by any forward-slashes (irrespective of operating system)
-
-e.g. a name in the CSV "Europe/Ireland/Dublin"  would form 3 groups of ("Europe","Ireland","Dublin")
-
-This is particular convenient when the name is a path e.g. to an image, to group by (nested) directories.
+2. The numeric columns are treated as feature-values, and the non-numeric columns as labels (handled different depending
+on command-line arguments).
 
 Author
 ------
