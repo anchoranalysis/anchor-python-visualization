@@ -1,8 +1,8 @@
 """Routines for loading features from CSV and adding identifiers and labels"""
+import random
 from typing import Optional
 
 import pandas as pd
-import random
 
 
 class LabelledFeatures:

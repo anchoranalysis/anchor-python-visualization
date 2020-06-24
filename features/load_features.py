@@ -11,15 +11,19 @@ from features import LabelledFeatures
 # Name for index column
 COL_NAME_INDEX = 'identifier'
 
+# Optional placeholder used in image_dir argument
+PLACEHOLDER_FOR_SUBSTITUTION = '<IMAGE>'
+
 
 def load_features(args: argparse.ArgumentParser) -> LabelledFeatures:
     """Loads the features from a CSV file, determines identifiers and labels - all according to the arguments"""
 
     # Read all columns, text and number
-    df = pd.read_csv(args.file_path_to_csv, index_col=None, header=0)
+    df = pd.read_csv(args.file_path_to_csv, index_col=None, header=0, encoding=args.encoding)
 
     # Find the numeric and string columns
-    df_numeric_cols, df_string_cols = df.select_dtypes(include=np.number), df.select_dtypes(include=['object'])
+    df_numeric_cols = df.select_dtypes(include=np.number)
+    df_string_cols = df.select_dtypes(include=['object'])
 
     # Extract or create identifiers for the data-frame
     identifiers = _select_or_create_identifiers(df_string_cols)
@@ -46,8 +50,28 @@ def _maybe_image_paths(image_dir: Optional[str], df: pd.DataFrame) -> pd.Series:
         return None
 
     return df.index.to_series().map(
-        lambda path: os.path.join(image_dir, path)
+        lambda path: _join_or_substitute(image_dir, path)
     )
+
+
+def _join_or_substitute(image_dir: str, path: str) -> str:
+    """
+    Either joins path to image_dir or substitutes path into image_dir (if it contains PLACEHOLDER_FOR_SUBSTITUTION)
+
+    Both paths are normed so that directory-seperators match the execution environment.
+
+    :param image_dir: either the root directory where images exist OR a full path with a placeholder PLACEHOLDER_FOR_SUBSTITUTION which can be substituted
+    :param path: the relative-path to an image
+    :return: either the relative-path joined to image_dir or the relative-path substituted into image_dir in place of PLACEHOLDER_FOR_SUBSTITUTION
+    """
+    if PLACEHOLDER_FOR_SUBSTITUTION in image_dir:
+        return os.path.normpath(image_dir).replace(
+            PLACEHOLDER_FOR_SUBSTITUTION,
+            os.path.normpath(path),
+            1
+        )
+    else:
+        return os.path.join(image_dir, path)
 
 
 def _select_or_create_identifiers(df_string_cols) -> pd.Series:

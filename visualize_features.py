@@ -78,7 +78,14 @@ def _arg_parse() -> argparse.ArgumentParser:
     parser.add_argument(
         "-d",
         "--image_dir",
-        help="Treat identifier as a path to an image (relative to this dir)"
+        help="Treat identifier as a path to an image (relative to this dir, or treat {} if it exists as a placeholder to substitute)"
+        .format(PLACEHOLDER_FOR_SUBSTITUTION)
+    )
+    parser.add_argument(
+        "-e",
+        "--encoding",
+        default=None,
+        help="encoding to use when reading the CSV file (see https://docs.python.org/3/library/codecs.html#standard-encodings for choices)"
     )
     return parser.parse_args()
 

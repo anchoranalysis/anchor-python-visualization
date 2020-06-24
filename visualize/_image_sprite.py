@@ -36,9 +36,29 @@ def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_spr
 
 def _read_and_scale(path: str, scale_to_size: Tuple[int]) -> np.array:
     """Reads an image at a path and scales to a particular size"""
-    return cv2.resize(
-        cv2.imread(path),
-        scale_to_size
+    try:
+        return cv2.resize(
+            _read_with_unicode_path(path),
+            scale_to_size
+        )
+    except (cv2.error, OSError) as err:
+        print("An error occurred reading-and-scaling, replacing with an empty thumbnail: {}".format(path))
+        print(err)
+        return np.zeros((scale_to_size[0],scale_to_size[1],3), np.uint8)
+
+
+def _read_with_unicode_path(path: str) -> str:
+    """
+    OpenCV has a problem reading paths which have non-trivial encoding (e.g. unicode). This is a workaround.
+
+    See https://stackoverflow.com/questions/43185605/how-do-i-read-an-image-from-a-path-with-unicode-characters/43185606
+
+    @param path to be opened
+    @return an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.
+    """
+    return cv2.imdecode(
+        np.fromfile(path, dtype=np.uint8),
+        cv2.IMREAD_UNCHANGED
     )
 
 
@@ -65,7 +85,7 @@ def _calc_num_images_in_an_axis(data: np.array) -> int:
 def _pad_as_needed(data: np.array, n: int) -> np.array:
     """Adds additional empty images (0 pixels) to ensure there is correct number to complete the square sprite image"""
 
-    # Numner of voxels to pad (respectively before and after) in each dimension
+    # Number of voxels to pad (respectively before and after) in each dimension
     padding = (
         (0, n ** 2 - data.shape[0]),
         (0, 0),
