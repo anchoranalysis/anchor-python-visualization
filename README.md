@@ -1,4 +1,4 @@
-# python-visualization-scripts
+# anchor-python-visualization
 
 Scripts in Python for visualizing plots / images etc.
 
