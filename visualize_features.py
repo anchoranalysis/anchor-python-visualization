@@ -4,8 +4,8 @@ It first projects the features into an embedding, and then visualizes the embedd
 
 Projection methods
 ------------------
- * T-SNE (default)
- * PCA,
+ * t-SNE (default)   https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
+ * PCA               https://en.wikipedia.org/wiki/Principal_component_analysis
 
 Visusalization methods
 ----------------------
