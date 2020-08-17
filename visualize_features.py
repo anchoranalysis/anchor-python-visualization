@@ -69,10 +69,16 @@ def _arg_parse() -> argparse.ArgumentParser:
         help="path to write any output to for a particular visualization method"
     )
     parser.add_argument(
-        "-d",
-        "--image_dir",
-        help="Treat identifier as a path to an image (relative to this dir, or treat {} if it exists as a placeholder to substitute)"
+        "-dp",
+        "--image_dir_path",
+        help="Identify a directory with thumbnails using the identifier of each image to complete it. If {}  present, instead the identifier is substituted into the path."
         .format(PLACEHOLDER_FOR_SUBSTITUTION)
+    )
+    parser.add_argument(
+        "-ds",
+        "--image_dir_sequence",
+        help="Identify a directory with thumbnails using an incrementing six digit integer (000000, 000001, 000002 etc.) to substitute for {} in the the path."
+            .format(PLACEHOLDER_FOR_SUBSTITUTION)
     )
     parser.add_argument(
         "-e",
@@ -89,13 +95,13 @@ def _add_method_via_choices(
     long_name: str,
     choices: List[str],
     default_choice: str,
-    help_msg: str
+    help_message: str
 ) -> None:
     """Adds a multiple-choice method to the parser"""
     parser.add_argument(
         short_name,
         long_name,
-        help="Method to use for {}. Defaults to '{}'".format(help_msg,default_choice),
+        help="Method to use for {}. Defaults to '{}'".format(help_message, default_choice),
         choices=choices,
         default=default_choice
     )
