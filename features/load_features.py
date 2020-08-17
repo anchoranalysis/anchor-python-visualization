@@ -28,7 +28,7 @@ def load_features(args: argparse.ArgumentParser) -> LabelledFeatures:
     # Extract or create identifiers for the data-frame
     identifiers = _select_or_create_identifiers(df_string_cols)
 
-    df_with_identifiers = _add_row_names(df_numeric_cols, identifiers)
+    df_with_identifiers = _add_row_names(df_numeric_cols.copy(), identifiers)
 
     # Take the first string col as the row names (index)
     return LabelledFeatures(
