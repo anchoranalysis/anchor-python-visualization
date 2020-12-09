@@ -101,7 +101,7 @@ def _pad_as_needed(data: np.array, n: int) -> np.array:
 
 
 def _convert_grayscale_to_bgr_if_needed(data: np.array) -> np.array:
-    """If data is grayscale then convert it into BGF"""
+    """If data is grayscale then convert it into BGR"""
     if len(data.shape) == 3:
         return np.tile(data[..., np.newaxis], (1, 1, 1, 3))
     else:
