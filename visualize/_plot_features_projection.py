@@ -23,7 +23,7 @@ class PlotFeaturesProjection(VisualizeFeaturesScheme):
 
     def visualize_data_frame(self, features: LabelledFeatures) -> None:
 
-        df_projected = self._projection.project(features.df_features)
+        df_projected = self._projection.project(features.features)
 
         _plot_first_two_dims_projection(df_projected, features.labels)
 
