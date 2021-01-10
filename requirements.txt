@@ -1,4 +1,4 @@
-pandas>=1.01
+pandas>=1.1
 tensorflow>=2.1.0
 plotly>=4.5.4
 opencv-contrib-python>=4.4.0.42
