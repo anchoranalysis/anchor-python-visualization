@@ -25,9 +25,10 @@ Owen Feehan
 import argparse
 from typing import List
 
-from features import *
-from projection import *
-from visualize import *
+from features import load_features, LabelledFeatures
+from projection import create_projection_method, PROJECTION_FACTORY_IDENTIFIERS, PROJECTION_FACTORY_DEFAULT_IDENTIFIER
+from visualize import (create_visualize_features_method, VISUALIZE_FEATURES_FACTORY_IDENTIFIERS,
+                       VISUALIZE_FEATURES_DEFAULT_IDENTIFIER)
 
 
 def main():
