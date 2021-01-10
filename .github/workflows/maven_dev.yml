@@ -1,0 +1,32 @@
+# 
+# This workflow will build and test a Java project with Maven.
+#
+# It is only triggered on dev branch.
+#
+# The Maven and SonarCloud working directories are cached for future reuse, as downloading all packages from scratch takes significant time.
+#
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+#
+
+name: Python CI for Development branch
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  
+      
