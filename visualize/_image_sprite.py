@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_sprite: Tuple[int]) -> None:
+def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_sprite: Tuple[int, int]) -> None:
     """Creates an image-sprite in the format expected by TensorBoard
 
     This image sprite is a tiled (like a checkboard) version of small identically-sized images (patches) in the order:
@@ -34,7 +34,7 @@ def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_spr
     )
 
 
-def _read_and_scale(path: str, scale_to_size: Tuple[int]) -> np.array:
+def _read_and_scale(path: str, scale_to_size: Tuple[int, int]) -> np.array:
     """Reads an image at a path and scales to a particular size"""
     try:
         return cv2.resize(
@@ -44,7 +44,7 @@ def _read_and_scale(path: str, scale_to_size: Tuple[int]) -> np.array:
     except (cv2.error, OSError) as err:
         print("An error occurred reading-and-scaling, replacing with an empty thumbnail: {}".format(path))
         print(err)
-        return np.zeros((scale_to_size[0],scale_to_size[1],3), np.uint8)
+        return np.zeros((scale_to_size[0], scale_to_size[1], 3), np.uint8)
 
 
 def _read_with_unicode_path(path: str) -> str:

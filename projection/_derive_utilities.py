@@ -12,9 +12,9 @@ def derive_projected_df(df_orig: pd.DataFrame, projection: np.array, feature_pre
     :param feature_prefix: a prefix to use in feature names to become feature_prefix0, feature_prefix1 etc.
     :return: returns a data-frame with identical row order and sze to df_orig but with features from projection
     """
-    num_cols = np.size(projection,1)
+    num_cols = np.size(projection, 1)
     return pd.DataFrame(
         projection,
-        columns=['%s%i' % (feature_prefix,i) for i in range(num_cols)],
+        columns=['%s%i' % (feature_prefix, i) for i in range(num_cols)],
         index=df_orig.index
     )

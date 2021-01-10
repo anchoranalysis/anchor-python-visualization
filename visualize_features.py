@@ -25,7 +25,7 @@ Owen Feehan
 import argparse
 from typing import List
 
-from features import load_features, LabelledFeatures
+from features import load_features, LabelledFeatures, PLACEHOLDER_FOR_SUBSTITUTION
 from projection import create_projection_method, PROJECTION_FACTORY_IDENTIFIERS, PROJECTION_FACTORY_DEFAULT_IDENTIFIER
 from visualize import (create_visualize_features_method, VISUALIZE_FEATURES_FACTORY_IDENTIFIERS,
                        VISUALIZE_FEATURES_DEFAULT_IDENTIFIER)
@@ -45,7 +45,7 @@ def main():
     visualize_scheme.visualize_data_frame(features)
 
 
-def _arg_parse() -> argparse.ArgumentParser:
+def _arg_parse() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Visualize a CSV file with different features.')
     parser.add_argument('file_path_to_csv', type=str, help='file-path to a csv file')
     _add_method_via_choices(
@@ -72,20 +72,23 @@ def _arg_parse() -> argparse.ArgumentParser:
     parser.add_argument(
         "-dp",
         "--image_dir_path",
-        help="Identify a directory with thumbnails using the identifier of each image to complete it. If {}  present, instead the identifier is substituted into the path."
+        help="Identify a directory with thumbnails using the identifier of each image to complete it."
+             " If {}  present, instead the identifier is substituted into the path."
         .format(PLACEHOLDER_FOR_SUBSTITUTION)
     )
     parser.add_argument(
         "-ds",
         "--image_dir_sequence",
-        help="Identify a directory with thumbnails using an incrementing six digit integer (000000, 000001, 000002 etc.) to substitute for {} in the the path."
-            .format(PLACEHOLDER_FOR_SUBSTITUTION)
+        help="Identify a directory with thumbnails using an incrementing six digit integer"
+             " (000000, 000001, 000002 etc.) to substitute for {} in the the path."
+             .format(PLACEHOLDER_FOR_SUBSTITUTION)
     )
     parser.add_argument(
         "-e",
         "--encoding",
         default=None,
-        help="encoding to use when reading the CSV file (see https://docs.python.org/3/library/codecs.html#standard-encodings for choices)"
+        help="encoding to use when reading the CSV file"
+             " (see https://docs.python.org/3/library/codecs.html#standard-encodings for choices)"
     )
     return parser.parse_args()
 

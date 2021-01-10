@@ -19,7 +19,7 @@ class TSNEProjection(Projection):
 
         # If there are many features, then use PCA first before T-SNE as per recommendation in documentation
         # https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html
-        if len(df.columns)>MAX_NUM_FEATURES_TSNE:
+        if len(df.columns) > MAX_NUM_FEATURES_TSNE:
             pca = PCAProjection(2)
             df = pca.project(df)
 
@@ -27,3 +27,4 @@ class TSNEProjection(Projection):
         projection = tsne.fit_transform(df)
         # Convert back into a data-frame, assigning feature-names for each component
         return derive_projected_df(df, projection, "TSNE")
+

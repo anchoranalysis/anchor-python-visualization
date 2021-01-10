@@ -12,9 +12,12 @@ class LabelledFeatures:
     def __init__(self, features: pd.DataFrame, labels: pd.Series, image_paths: Optional[pd.Series] = None):
         """Constructor
 
-        :param features: data-frame containing only feature-values (all numeric), and with each row assigned an identifier
-        :param labels: series with labels for each item in df_features (the series must have the same size and order as ``df_features``)
-        :param image_paths: optional series with a path to an image for each item (the series must have the same size and order as ``df_features``)
+        :param features: data-frame containing only feature-values (all numeric), and with each row assigned an
+        identifier
+        :param labels: series with labels for each item in df_features (the series must have the same size and order as
+        ``features``)
+        :param image_paths: optional series with a path to an image for each item (the series must have the same size
+        and order as ``features``)
         """
         self.features = features
         self.labels = labels
@@ -28,7 +31,6 @@ class LabelledFeatures:
         """Samples without replacement (taking identical rows from each member data-frame/series)
 
         @param sample_size: number of items to sample
-        @param replace: allow or disallow sampling of the same row more than once.
         @:raise InsufficientRowsException if there are fewer rows available than n
         """
         number_rows = self.number_items()
@@ -37,7 +39,7 @@ class LabelledFeatures:
                                             number_rows)
         elif sample_size == number_rows:
             # Nothing to do
-            return
+            return self
         else:
             indices = random.sample(range(number_rows), sample_size)
             return LabelledFeatures(

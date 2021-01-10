@@ -103,8 +103,8 @@ def _sample_if_needed(features: LabelledFeatures) -> LabelledFeatures:
     num_rows = features.number_items()
     if num_rows > MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE:
         print(
-            "Sampling {} rows from a total of {} rows in the feature-table as this is the maximum allowed in the image-sprite"
-                .format(MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE, num_rows)
+            "Sampling {} rows from a total of {} rows in the feature-table as this is the maximum allowed in the"
+            " image-sprite".format(MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE, num_rows)
         )
         return features.sample_without_replacement(MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE)
     else:
