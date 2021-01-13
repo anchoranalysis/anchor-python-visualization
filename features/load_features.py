@@ -34,7 +34,7 @@ def load_features(args: argparse.Namespace) -> LabelledFeatures:
     # Take the first string col as the row names (index)
     return LabelledFeatures(
         df_with_identifiers,
-        _derive_first_group_label_from_identifiers(df_with_identifiers, args.max_label_index),
+        _derive_group_label_from_identifiers(df_with_identifiers, args.max_label_index),
         _maybe_image_paths(df_with_identifiers, args.image_dir_path, args.image_dir_sequence)
     )
 
@@ -116,7 +116,7 @@ def _add_row_names(df: pd.DataFrame, row_names: pd.Series) -> pd.DataFrame:
     return df
 
 
-def _derive_first_group_label_from_identifiers(df: pd.DataFrame, max_label_index: int) -> pd.Series:
+def _derive_group_label_from_identifiers(df: pd.DataFrame, max_label_index: int) -> pd.Series:
     """Derives the first group (leftmost group in name) from the names of a data-frame."""
     return pd.Series(
         list(labels_from_identifiers(df.index.values, max_label_index)),
