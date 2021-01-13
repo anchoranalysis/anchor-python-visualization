@@ -10,10 +10,10 @@ VISUALIZE_FEATURES_FACTORY_IDENTIFIERS = [VISUALIZE_FEATURES_DEFAULT_IDENTIFIER,
 
 
 def create_visualize_features_method(
-        method_identifier: Optional[str],
-        projection: Optional[Projection],
-        output_path: Optional[str]
-    ) -> VisualizeFeaturesScheme:
+                                        method_identifier: Optional[str],
+                                        projection: Optional[Projection],
+                                        output_path: Optional[str]
+                                    ) -> VisualizeFeaturesScheme:
     """
     Creates a visualize-features method from an identifier
     :param method_identifier: string that is one of VISUALIZE_FEATURES_FACTORY_IDENTIFIERS
