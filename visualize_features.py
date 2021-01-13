@@ -90,6 +90,14 @@ def _arg_parse() -> argparse.Namespace:
         help="encoding to use when reading the CSV file"
              " (see https://docs.python.org/3/library/codecs.html#standard-encodings for choices)"
     )
+    parser.add_argument(
+        "-l",
+        "--max_label_index",
+        default=1,
+        type=int,
+        help="maximum amount of groups to in include in label leftwards (if positive), or to exclude rightwards"
+             " (if negative)"
+    )
     return parser.parse_args()
 
 
