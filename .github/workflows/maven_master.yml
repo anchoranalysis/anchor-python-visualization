@@ -25,7 +25,7 @@ jobs:
         python-version: 3.8
     - name: Install dependencies
       run: |
-        sudo apt install pandoc
+        sudo apt install pandoc sphinx
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Build sphinx documentation
