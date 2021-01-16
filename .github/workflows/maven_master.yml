@@ -28,7 +28,7 @@ jobs:
         sudo apt install pandoc
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install sphinx
+        pip install sphinx sphinx-autoapi
     - name: Build sphinx documentation
       run: |
         cd docs
