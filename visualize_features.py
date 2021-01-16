@@ -27,10 +27,10 @@ Visualization methods
 
  * `plot` - interactive 2D plot of embeddings via `ploty <https://plotly.com/>`_ **(default)**
  * `TensorBoard` - exports a *log directory* to `TensorBoard <https://www.tensorflow.org/tensorboard>`_ at
-   `--output-path`
+   `--output-path` or `-o`
 
-Optionally, image thumbnails can be associated with each embedding for `TensorBoard` export with `--image_dir_sequence`
-or `--image_dir_path` containing paths where the string :const:`~embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION`\
+Optionally, image thumbnails can be associated with each embedding for `TensorBoard` export with `--image_sequence`
+or `--image_path` containing paths where the string :const:`~embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION`\
 is substituted respectively:
 
  * with an index from an incrementing six digit integer with leading zeros, corresponding to row order, or,
@@ -87,8 +87,8 @@ TensorBoard export
         D:\someDirectory\features.csv
         -p none
         -m TensorBoard
-        -o D:\someDirectory\tensorboard_logs
-        -ds D:\someDirectory\thumbnails\thumbnails_<IMAGE>.png
+        --output D:\someDirectory\tensorboard_logs
+        --image_sequence D:\someDirectory\thumbnails\thumbnails_<IMAGE>.png
         -–max_label_index -1
 
 The penultimate parameter is optional, and includes thumbnails.
@@ -131,7 +131,7 @@ def _main():
     visualize_scheme = visualize.create_method(
         args.method,
         projection.create_projector(args.projection),
-        args.output_path,
+        args.output
     )
     visualize_scheme.visualize_data_frame(input_features)
 
@@ -150,10 +150,10 @@ def _arg_parse() -> argparse.Namespace:
         projection.DEFAULT_IDENTIFIER,
         "projecting embeddings to smaller dimensionality",
     )
-    parser.add_argument("-o", "--output_path", help="path to write any output to for a particular visualization method")
+    parser.add_argument("-o", "--output", help="path to write any output to for a particular visualization method")
     parser.add_argument(
         "-dp",
-        "--image_dir_path",
+        "--image_path",
         help="Identify a directory with thumbnails using the identifier of each image to complete it."
         " If {}  present, instead the identifier is substituted into the path.".format(
             embeddings.PLACEHOLDER_FOR_SUBSTITUTION
@@ -161,7 +161,7 @@ def _arg_parse() -> argparse.Namespace:
     )
     parser.add_argument(
         "-ds",
-        "--image_dir_sequence",
+        "--image_sequence",
         help="Identify a directory with thumbnails using an incrementing six digit integer"
         " (000000, 000001, 000002 etc.) to substitute for {} in the the path.".format(
             embeddings.PLACEHOLDER_FOR_SUBSTITUTION
