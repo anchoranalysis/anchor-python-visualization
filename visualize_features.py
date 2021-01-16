@@ -1,4 +1,4 @@
-"""A script for visualizing embeddings in a CSV file.
+r"""A script for visualizing embeddings in a CSV file.
 
 The script:
 
@@ -29,14 +29,6 @@ Visualization methods
  * `TensorBoard` - exports a *log directory* to `TensorBoard <https://www.tensorflow.org/tensorboard>`_ at
    `--output-path`
 
-To view the *log directory* in `TensorBoard <https://www.tensorflow.org/tensorboard>`_ interactively:
-
-::
-
-    tensorboard --logdir <path_to_log_dir>
-
-and select ``Projection`` from the drop-down list box in the top-right.
-
 Optionally, image thumbnails can be associated with each embedding for `TensorBoard` export with `--image_dir_sequence`
 or `--image_dir_path` containing paths where the string :const:`~embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION`\
 is substituted respectively:
@@ -58,12 +50,62 @@ The CSV file should have:
 
 Otherwise:
 
- * the *numeric* columns are treated as feature-values
-  * the *non-numeric* columns can be combined into a
-label via the `--max_label_index` argument, combining a number of these columns from the left or the right.
+  * the *numeric* columns are treated as feature-values
+  * the *non-numeric* columns can be combined into a label via the `--max_label_index` argument, combining a number of
+    these columns from the left or the right.
+
+Note the label is split into separate groups by a slash (forward or backwards), and `--max_label_index` specifies
+a maximum number of groups to be read from the left (if positive) or to be excluded from the right (if negative).
 
 ``--encoding`` specifies the encoding of the CSV file as per
 `Python's standard encodings <https://docs.python.org/3/library/codecs.html#standard-encodings>`_.
+
+-------------
+Example Usage
+-------------
+
+Plotting
+--------
+
+Plotting using t-SNE to project to two dimensions.
+
+::
+
+    python visualize_features.py
+        D:\someDirectory\features.csv
+        -p t-SNE
+        -m plot
+
+TensorBoard export
+------------------
+
+1. Create the log-directory:
+
+::
+
+    python visualize_features.py
+        D:\someDirectory\features.csv
+        -p none
+        -m TensorBoard
+        -o D:\someDirectory\tensorboard_logs
+        -ds D:\someDirectory\thumbnails\thumbnails_<IMAGE>.png
+        -–max_label_index -1
+
+The penultimate parameter is optional, and includes thumbnails.
+
+The ultimate parameter directs the group label to, ignores the "last" port of string i.e. after the final slash.
+
+
+2. Open the log-directory in `TensorBoard <https://www.tensorflow.org/tensorboard>`_.
+
+::
+
+    tensorboard --logdir D:\someDirectory\tensorboard_logs
+
+
+3. Open the shown URL, probably `http://localhost:6006/ <http://localhost:6006/>`_
+
+4. Select ``Projector`` from the drop-down list box in the top-right corner.
 
 """
 
@@ -158,7 +200,7 @@ def _add_method_via_choices(
     default_choice: str,
     help_message: str
 ) -> None:
-    """Adds a multiple-choice method to the parser"""
+    """Adds a multiple-choice method to the parser, case-insensitive."""
     parser.add_argument(
         short_name,
         long_name,

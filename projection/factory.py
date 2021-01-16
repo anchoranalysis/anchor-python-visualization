@@ -8,20 +8,20 @@ DEFAULT_IDENTIFIER = "t-SNE"
 IDENTIFIERS = ["t-SNE", "PCA", "none"]
 
 
-def create_projector(method_identifier: str) -> Optional[Projector]:
+def create_projector(identifier: str) -> Optional[Projector]:
     """
     Creates a projection method from an identifier.
 
-    :param method_identifier: string that is one of :const:`IDENTIFIERS`
+    :param identifier: string that is one of :const:`IDENTIFIERS`
     :returns: a newly created projection method, or none at all.
     """
-    if method_identifier == IDENTIFIERS[0]:
+    if identifier == IDENTIFIERS[0]:
         return TSNEProjection()
-    elif method_identifier == IDENTIFIERS[1]:
+    elif identifier == IDENTIFIERS[1]:
         return PCAProjection()
-    elif method_identifier == IDENTIFIERS[2]:
+    elif identifier == IDENTIFIERS[2]:
         return None
     else:
         raise Exception(
-            "Unknown identifier for projection: {}".format(method_identifier)
+            "Unknown identifier for projection: {}".format(identifier)
         )

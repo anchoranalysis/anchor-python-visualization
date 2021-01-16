@@ -1,11 +1,18 @@
-"""A script for plotting a histogram from a CSV file that has `intensity` and `count` in two columns.
+r"""A script for plotting a histogram from a CSV file that has `intensity` and `count` in two columns.
 
 ---------------
 Input Arguments
 ---------------
 
-* `--file_path_to_csv` - a path to the CSV file.
+* `--file_path_to_csv` a path to the CSV file.
 
+-------------
+Example Usage
+-------------
+
+::
+
+    histogram_plot.py D:\somedirectory\features.csv
 
 """
 
