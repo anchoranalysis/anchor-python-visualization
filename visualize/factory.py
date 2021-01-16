@@ -1,31 +1,35 @@
+"""Creates :class:`~visualize.VisualizeFeaturesScheme`"""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 from typing import Optional
 
-from projection import Projection
+import projection
 from ._plot_features_projection import PlotFeaturesProjection
 from ._tensorboard_export import TensorBoardExport
 from .visualize_features_scheme import VisualizeFeaturesScheme
 
-VISUALIZE_FEATURES_DEFAULT_IDENTIFIER = "plot"
-VISUALIZE_FEATURES_FACTORY_IDENTIFIERS = [VISUALIZE_FEATURES_DEFAULT_IDENTIFIER, "TensorBoard"]
+IDENTIFIERS = ["plot", "TensorBoard"]
+DEFAULT_IDENTIFIER = "plot"
 
 
-def create_visualize_features_method(
-                                        method_identifier: Optional[str],
-                                        projection: Optional[Projection],
-                                        output_path: Optional[str]
-                                    ) -> VisualizeFeaturesScheme:
+def create_method(
+    identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]
+) -> VisualizeFeaturesScheme:
     """
-    Creates a visualize-features method from an identifier
-    :param method_identifier: string that is one of VISUALIZE_FEATURES_FACTORY_IDENTIFIERS
-    :param projection: method for performing projection into smaller dimensionality
-    :param output_path: a path for writing any relevant output
-    :return: a newly visualize-features
+    Creates a visualize-embeddings method from an identifier.
+
+    :param identifier: string that is one of :const:`IDENTIFIERS`.
+    :param projector: method for performing projection into smaller dimensionality.
+    :param output_path: a path for writing any relevant output.
+    :returns: a newly created instance corresponding to the identifier.
     """
-    if method_identifier == "plot" or method_identifier is None:
-        return PlotFeaturesProjection(projection)
-    elif method_identifier == "TensorBoard":
-        return TensorBoardExport(projection, output_path)
+    if identifier == IDENTIFIERS[0] or identifier is None:
+        return PlotFeaturesProjection(projector)
+    elif identifier == IDENTIFIERS[1]:
+        return TensorBoardExport(projector, output_path)
     else:
-        raise Exception(
-            "Unknown identifier for projection: {}".format(method_identifier)
-        )
+        raise ValueError("Unknown identifier for projection: {}".format(identifier))

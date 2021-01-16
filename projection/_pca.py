@@ -1,26 +1,33 @@
-"""PCA projection"""
+"""PCA projection."""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 import pandas as pd
-from sklearn.decomposition import PCA
+from sklearn import decomposition
 
-from ._derive_utilities import derive_projected_df
-from .projection import Projection
+from ._derive_utilities import derive_projected
+from .projector import Projector
 
 
-class PCAProjection(Projection):
-    """Projects using PCA to a lower dimensional feature-space. Produces features PCA0, PCA1, PCA2 etc."""
-    def __init__(self, num_components: int = 2):
+class PCAProjection(Projector):
+    """Projects using PCA to a lower dimensional feature-space. Produces embeddings PCA0, PCA1, PCA2 etc."""
+
+    def __init__(self, number_components: int = 2):
         """Constructor
 
-        :param num_components: target number of dimensions for the PCA projection
+        :param number_components: target number of dimensions for the PCA projection
         """
-        self.num_components = num_components
+        self.number_components = number_components
 
-    def project(self, df: pd.DataFrame) -> pd.DataFrame:
+    def project(self, features: pd.DataFrame) -> pd.DataFrame:
 
-        pca = PCA(n_components=self.num_components)
-        projection = pca.fit_transform(df)
+        pca = decomposition.PCA(n_components=self.number_components)
+        projection = pca.fit_transform(features)
 
-        print('Total Explained variation: {}'.format(pca.explained_variance_ratio_.sum()))
+        print("Total Explained variation: {}".format(pca.explained_variance_ratio_.sum()))
 
         # Convert back into a data-frame, assigning feature-names for each component
-        return derive_projected_df(df, projection, "PCA")
+        return derive_projected(features, projection, "PCA")

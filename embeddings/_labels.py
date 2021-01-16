@@ -1,4 +1,10 @@
-"""Labels associated with rows of features, that need not be unique. Useful for showing membership of groups."""
+"""Labels associated with rows of embeddings, that need not be unique. Useful for showing membership of groups."""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 from typing import Iterable, List
 
 
@@ -10,13 +16,11 @@ def labels_from_identifiers(identifiers: Iterable[str], max_label_index: int) ->
     rightwards (if negative)
     :return: the labels, respectively corresponding to each identifier
     """
-    def extract_first_group(name):
-        return _extract_label_from_groups(
-            _split_names_into_groups(name),
-            max_label_index
-        )
 
-    return map(extract_first_group, identifiers)
+    def extract_groups(name):
+        return _extract_label_from_groups(_split_names_into_groups(name), max_label_index)
+
+    return map(extract_groups, identifiers)
 
 
 def _extract_label_from_groups(groups: List[str], max_label_index: int) -> str:
