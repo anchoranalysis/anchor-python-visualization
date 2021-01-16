@@ -32,4 +32,4 @@ def create_method(
     elif identifier == IDENTIFIERS[1]:
         return TensorBoardExport(projector, output_path)
     else:
-        raise Exception("Unknown identifier for projection: {}".format(identifier))
+        raise ValueError("Unknown identifier for projection: {}".format(identifier))

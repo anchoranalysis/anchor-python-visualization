@@ -24,7 +24,7 @@ class PlotFeaturesProjection(VisualizeFeaturesScheme):
         :param projector how the projection is performed
         """
         if projector is None:
-            raise Exception("A projection is required for {}".format(self.__class__.__name__))
+            raise ValueError("A projection is required for {}".format(self.__class__.__name__))
 
         self._projector = projector
 
