@@ -92,6 +92,3 @@ html_static_path = ["_static"]
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
-
-# So stylesheets are loaded correctly when placed on the anchor-analysis website
-html_baseurl = 'https://www.anchoranalysis.org/anchor-python-visualization/'

@@ -34,6 +34,9 @@ jobs:
         cd docs
         make html
         
+        # Add a .nojekyll file so the directories prefixed with an underscore from sphinx e.g. _static are transferred correctly.
+        echo "" > _build/html/.nojekyll
+        
     - name: Deploy to GitHubPages
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
