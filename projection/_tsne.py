@@ -1,4 +1,10 @@
-"""T-SNE projection"""
+"""T-SNE projection."""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 import pandas as pd
 from sklearn.manifold import TSNE
 
@@ -6,7 +12,7 @@ from ._derive_utilities import derive_projected
 from ._pca import PCAProjection
 from .projector import Projector
 
-MAX_NUM_FEATURES_TSNE = 50
+MAX_NUMBER_FEATURES_TSNE = 50
 
 
 class TSNEProjection(Projector):
@@ -19,7 +25,7 @@ class TSNEProjection(Projector):
 
         # If there are many embeddings, then use PCA first before T-SNE as per recommendation in documentation
         # https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html
-        if len(features.columns) > MAX_NUM_FEATURES_TSNE:
+        if len(features.columns) > MAX_NUMBER_FEATURES_TSNE:
             pca = PCAProjection(2)
             features = pca.project(features)
 

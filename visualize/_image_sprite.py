@@ -1,4 +1,10 @@
-"""Creating an image-sprite suitable for TensorBoard from a list of image-paths"""
+"""Creating an image-sprite suitable for TensorBoard from a list of image-paths."""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 from typing import List, Tuple
 
 import cv2

@@ -1,3 +1,10 @@
+"""Creates instances of :class:`~projection.Projector`."""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 from typing import Optional
 
 from ._pca import PCAProjection

@@ -1,4 +1,10 @@
 """Labels associated with rows of embeddings, that need not be unique. Useful for showing membership of groups."""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 from typing import Iterable, List
 
 

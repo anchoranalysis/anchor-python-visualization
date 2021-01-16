@@ -1,4 +1,10 @@
-"""Routines for loading embeddings from CSV and adding identifiers and labels"""
+"""Routines for loading embeddings from CSV and adding identifiers and labels."""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 import random
 from typing import Optional
 from .exceptions import InsufficientRowsException

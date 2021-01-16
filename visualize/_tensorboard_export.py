@@ -1,3 +1,10 @@
+"""Exports to TensorBoard"""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 import os
 from typing import Optional
 

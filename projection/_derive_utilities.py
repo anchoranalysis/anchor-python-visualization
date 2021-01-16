@@ -1,4 +1,10 @@
-"""Utilities functions common to multiple projection methods"""
+"""Utilities functions common to multiple projection methods."""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 import numpy as np
 import pandas as pd
 

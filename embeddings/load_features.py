@@ -1,4 +1,10 @@
-"""Loading and labelling embeddings"""
+"""Loading and labelling embeddings."""
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
 import argparse
 import os
 from typing import Optional
