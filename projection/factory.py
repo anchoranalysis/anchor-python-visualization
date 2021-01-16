@@ -2,13 +2,13 @@ from typing import Optional
 
 from ._pca import PCAProjection
 from ._tsne import TSNEProjection
-from .projection import Projection
+from .projector import Projector
 
 DEFAULT_IDENTIFIER = "t-SNE"
 IDENTIFIERS = ["t-SNE", "PCA", "none"]
 
 
-def create_projection_method(method_identifier: str) -> Optional[Projection]:
+def create_projector(method_identifier: str) -> Optional[Projector]:
     """
     Creates a projection method from an identifier.
 

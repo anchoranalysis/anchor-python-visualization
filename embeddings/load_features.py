@@ -1,4 +1,4 @@
-"""Loading and labelling features"""
+"""Loading and labelling embeddings"""
 import argparse
 import os
 from typing import Optional
@@ -7,7 +7,7 @@ from ._labels import labels_from_identifiers
 import numpy as np
 import pandas as pd
 
-from features import LabelledFeatures
+from embeddings import LabelledFeatures
 
 # Name for index column
 COLUMN_NAME_IDENTIFIER = 'identifier'
@@ -17,7 +17,7 @@ PLACEHOLDER_FOR_SUBSTITUTION = '<IMAGE>'
 
 
 def load_features(args: argparse.Namespace) -> LabelledFeatures:
-    """Loads the features from a CSV file, determines identifiers and labels - all according to the arguments"""
+    """Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments"""
 
     # Read all columns, text and number
     features = _read_csv(args.file_path_to_csv, encoding=args.encoding)

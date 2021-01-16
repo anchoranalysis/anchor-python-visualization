@@ -1,4 +1,4 @@
-"""Labels associated with rows of features, that need not be unique. Useful for showing membership of groups."""
+"""Labels associated with rows of embeddings, that need not be unique. Useful for showing membership of groups."""
 from typing import Iterable, List
 
 

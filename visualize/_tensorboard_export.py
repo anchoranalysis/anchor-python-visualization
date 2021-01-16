@@ -5,8 +5,8 @@ import pandas as pd
 import tensorflow as tf
 from tensorboard.plugins import projector
 
-from features import LabelledFeatures
-from projection import Projection
+import embeddings
+import projection
 from ._image_sprite import create_sprite_at
 from .visualize_features_scheme import VisualizeFeaturesScheme
 
@@ -14,7 +14,7 @@ from .visualize_features_scheme import VisualizeFeaturesScheme
 IMAGE_SIZE_IN_SPRITE = (64, 64)
 
 FILENAME_METADATA = 'metadata.tsv'
-FILENAME_FEATURES = 'features.ckpt'
+FILENAME_FEATURES = 'embeddings.ckpt'
 FILENAME_IMAGE_SPRITE = 'sprite.png'
 
 # Max sprite size is apparently 8192 x 8192 pixels, so this is the maximum number of images that can be supported
@@ -22,14 +22,14 @@ MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE = (8192//IMAGE_SIZE_IN_SPRITE[0]) * (8192//I
 
 
 class TensorBoardExport(VisualizeFeaturesScheme):
-    """Exports features (and optional image sprites) in a format so that TensorBoard can be used for visualization"
+    """Exports embeddings (and optional image sprites) in a format so that TensorBoard can be used for visualization"
 
     If an image-path is associated with each item, a large tiled image (a sprite) is created with small scaled
     (thumnnail-like) versions of each image. TensorBoard can read this image to show the thumbnails alongside
     data-points.
 
-    If the features have more rows than MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE then a random-sample (without replacement)
-    is taken to reduce the number the features to MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE. Note this introduces
+    If the embeddings have more rows than MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE then a random-sample (without replacement)
+    is taken to reduce the number the embeddings to MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE. Note this introduces
     non-deterministic behaviour.
 
     Thanks to the TensorBoard tutorial
@@ -39,16 +39,16 @@ class TensorBoardExport(VisualizeFeaturesScheme):
     https://medium.com/looka-engineering/how-to-visualize-feature-vectors-with-sprites-and-tensorflows-tensorboard-3950ca1fb2c7
     """
 
-    def __init__(self, projection: Optional[Projection], output_path: str):
+    def __init__(self, projector_method: Optional[projection.Projector], output_path: str):
         """Constructor
 
-        :param projection: optional projection to reduce dimensionality before export
+        :param projector_method: optional projection to reduce dimensionality before export
         :param output_path: where to write the "log-dir" for tensorboard
         """
-        self._projection = projection
+        self._projector = projector_method
         self._output_path = _create_dir_or_throw(output_path)
 
-    def visualize_data_frame(self, features: LabelledFeatures) -> None:
+    def visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None:
 
         print("Exporting tensorboard logs to: {}".format(self._output_path))
 
@@ -72,8 +72,8 @@ class TensorBoardExport(VisualizeFeaturesScheme):
         projector.visualize_embeddings(self._output_path, projector_config)
 
     def _maybe_project(self, df: pd.DataFrame) -> pd.DataFrame:
-        if self._projection is not None:
-            return self._projection.project(df)
+        if self._projector is not None:
+            return self._projector.project(df)
         else:
             return df
 
@@ -94,8 +94,8 @@ class TensorBoardExport(VisualizeFeaturesScheme):
         return os.path.join(self._output_path, path_relative_to_log_dir)
 
 
-def _sample_if_needed(features: LabelledFeatures) -> LabelledFeatures:
-    """Randomly samples if needed to ensure num_rows(features) <=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE"""
+def _sample_if_needed(features: embeddings.LabelledFeatures) -> embeddings.LabelledFeatures:
+    """Randomly samples if needed to ensure num_rows(embeddings) <=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE"""
     if features.image_paths is None:
         # Number of rows irrelevant as no sprite will be created, so exit early unchanged
         return features

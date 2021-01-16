@@ -1,4 +1,4 @@
-"""Routines for loading features from CSV and adding identifiers and labels"""
+"""Routines for loading embeddings from CSV and adding identifiers and labels"""
 import random
 from typing import Optional
 from .exceptions import InsufficientRowsException
@@ -7,7 +7,7 @@ import pandas as pd
 
 
 class LabelledFeatures:
-    """Maintains separate data-frames for features and labels, but with the same number and order of rows"""
+    """Maintains separate data-frames for embeddings and labels, but with the same number and order of rows"""
 
     def __init__(self, features: pd.DataFrame, labels: pd.Series, image_paths: Optional[pd.Series] = None):
         """Constructor
@@ -15,9 +15,9 @@ class LabelledFeatures:
         :param features: data-frame containing only feature-values (all numeric), and with each row assigned an
         identifier
         :param labels: series with labels for each item in df_features (the series must have the same size and order as
-        ``features``)
+        ``embeddings``)
         :param image_paths: optional series with a path to an image for each item (the series must have the same size
-        and order as ``features``)
+        and order as ``embeddings``)
         """
         self.features = features
         self.labels = labels

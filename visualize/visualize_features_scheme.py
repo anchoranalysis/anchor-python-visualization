@@ -1,16 +1,16 @@
-"""Abstract base class for a scheme for visualizing features"""
+"""Abstract base class for a scheme for visualizing embeddings"""
 from abc import ABC
 
-from features import LabelledFeatures
+import embeddings
 
 
 class VisualizeFeaturesScheme(ABC):
     """An method to visualize a set of feature-values."""
 
-    def visualize_data_frame(self, features: LabelledFeatures) -> None:
+    def visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None:
         """
-        Performs some form of visualization of features.
+        Performs some form of visualization of embeddings.
 
-        :param features: features in a data-frame with associated labels.
+        :param features: embeddings in a data-frame with associated labels.
         """
         pass
