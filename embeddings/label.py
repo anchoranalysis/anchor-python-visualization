@@ -27,7 +27,7 @@ class LabelledFeatures:
         """Returns the number of items (i.e. rows) in the data-frames/series"""
         return len(self.features.index)
 
-    def sample_without_replacement(self, sample_size: int) -> 'LabelledFeatures':
+    def sample_without_replacement(self, sample_size: int) -> "LabelledFeatures":
         """Samples without replacement (taking identical rows from each member data-frame/series)
 
         @param sample_size: number of items to sample
@@ -35,15 +35,14 @@ class LabelledFeatures:
         """
         number_rows = self.number_items()
         if sample_size > number_rows:
-            raise InsufficientRowsException("Cannot sample {} rows from a data-frame with only {} rows", sample_size,
-                                            number_rows)
+            raise InsufficientRowsException(
+                "Cannot sample {} rows from a data-frame with only {} rows", sample_size, number_rows
+            )
         elif sample_size == number_rows:
             # Nothing to do
             return self
         else:
             indices = random.sample(range(number_rows), sample_size)
             return LabelledFeatures(
-                self.features.iloc[indices, :],
-                self.labels.iloc[indices],
-                self.image_paths.iloc[indices]
+                self.features.iloc[indices, :], self.labels.iloc[indices], self.image_paths.iloc[indices]
             )

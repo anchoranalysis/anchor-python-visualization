@@ -22,6 +22,4 @@ def create_projector(identifier: str) -> Optional[Projector]:
     elif identifier == IDENTIFIERS[2]:
         return None
     else:
-        raise Exception(
-            "Unknown identifier for projection: {}".format(identifier)
-        )
+        raise Exception("Unknown identifier for projection: {}".format(identifier))

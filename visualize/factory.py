@@ -10,10 +10,8 @@ DEFAULT_IDENTIFIER = "plot"
 
 
 def create_method(
-                                        identifier: Optional[str],
-                                        projector: Optional[projection.Projector],
-                                        output_path: Optional[str]
-                                    ) -> VisualizeFeaturesScheme:
+    identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]
+) -> VisualizeFeaturesScheme:
     """
     Creates a visualize-embeddings method from an identifier.
 
@@ -27,6 +25,4 @@ def create_method(
     elif identifier == IDENTIFIERS[1]:
         return TensorBoardExport(projector, output_path)
     else:
-        raise Exception(
-            "Unknown identifier for projection: {}".format(identifier)
-        )
+        raise Exception("Unknown identifier for projection: {}".format(identifier))

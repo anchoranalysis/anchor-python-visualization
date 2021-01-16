@@ -25,4 +25,4 @@ def _test_projector(projection: Projector, data_frame, identifier: str):
 
 
 def _create_data_frame() -> pd.DataFrame:
-    return pd.DataFrame(np.random.randint(0, 100, size=_DATA_FRAME_SIZE), columns=list('ABCD'))
+    return pd.DataFrame(np.random.randint(0, 100, size=_DATA_FRAME_SIZE), columns=list("ABCD"))

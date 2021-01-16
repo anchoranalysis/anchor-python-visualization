@@ -27,4 +27,3 @@ class TSNEProjection(Projector):
         projection = tsne.fit_transform(features)
         # Convert back into a data-frame, assigning feature-names for each component
         return derive_projected(features, projection, "TSNE")
-

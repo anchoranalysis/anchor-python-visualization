@@ -14,7 +14,5 @@ def derive_projected(unprojected: pd.DataFrame, projected: np.array, feature_pre
     """
     num_cols = np.size(projected, 1)
     return pd.DataFrame(
-        projected,
-        columns=['%s%i' % (feature_prefix, i) for i in range(num_cols)],
-        index=unprojected.index
+        projected, columns=["%s%i" % (feature_prefix, i) for i in range(num_cols)], index=unprojected.index
     )

@@ -13,12 +13,12 @@ from .visualize_features_scheme import VisualizeFeaturesScheme
 # Size of each image in the sprite. let's always keep each element to be an integer divisor of MAX_NUMBER_SAMPLES.
 IMAGE_SIZE_IN_SPRITE = (64, 64)
 
-FILENAME_METADATA = 'metadata.tsv'
-FILENAME_FEATURES = 'embeddings.ckpt'
-FILENAME_IMAGE_SPRITE = 'sprite.png'
+FILENAME_METADATA = "metadata.tsv"
+FILENAME_FEATURES = "embeddings.ckpt"
+FILENAME_IMAGE_SPRITE = "sprite.png"
 
 # Max sprite size is apparently 8192 x 8192 pixels, so this is the maximum number of images that can be supported
-MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE = (8192//IMAGE_SIZE_IN_SPRITE[0]) * (8192//IMAGE_SIZE_IN_SPRITE[1])
+MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE = (8192 // IMAGE_SIZE_IN_SPRITE[0]) * (8192 // IMAGE_SIZE_IN_SPRITE[1])
 
 
 class TensorBoardExport(VisualizeFeaturesScheme):
@@ -59,15 +59,9 @@ class TensorBoardExport(VisualizeFeaturesScheme):
 
         _write_labels(features.labels, path_metadata)
 
-        _save_embedding_as_checkpoint(
-            self._maybe_project(features.features),
-            path_features
-        )
+        _save_embedding_as_checkpoint(self._maybe_project(features.features), path_features)
 
-        projector_config = _create_projector_config(
-            path_metadata,
-            self._maybe_create_sprite(features.image_paths)
-        )
+        projector_config = _create_projector_config(path_metadata, self._maybe_create_sprite(features.image_paths))
 
         projector.visualize_embeddings(self._output_path, projector_config)
 

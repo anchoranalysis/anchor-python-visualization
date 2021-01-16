@@ -10,10 +10,10 @@ import pandas as pd
 from embeddings import LabelledFeatures
 
 # Name for index column
-COLUMN_NAME_IDENTIFIER = 'identifier'
+COLUMN_NAME_IDENTIFIER = "identifier"
 
 # Optional placeholder used in image_dir argument
-PLACEHOLDER_FOR_SUBSTITUTION = '<IMAGE>'
+PLACEHOLDER_FOR_SUBSTITUTION = "<IMAGE>"
 
 
 def load_features(args: argparse.Namespace) -> LabelledFeatures:
@@ -24,7 +24,7 @@ def load_features(args: argparse.Namespace) -> LabelledFeatures:
 
     # Find the numeric and string columns
     numeric_columns = features.select_dtypes(include=np.number)
-    string_columns = features.select_dtypes(include=['object'])
+    string_columns = features.select_dtypes(include=["object"])
 
     # Extract or create identifiers for the data-frame
     identifiers = _select_or_create_identifiers(string_columns)
@@ -35,7 +35,7 @@ def load_features(args: argparse.Namespace) -> LabelledFeatures:
     return LabelledFeatures(
         features_with_identifiers,
         _derive_group_label_from_identifiers(features_with_identifiers, args.max_label_index),
-        _maybe_image_paths(features_with_identifiers, args.image_dir_path, args.image_dir_sequence)
+        _maybe_image_paths(features_with_identifiers, args.image_dir_path, args.image_dir_sequence),
     )
 
 
@@ -44,8 +44,9 @@ def _read_csv(file_path_to_csv: str, encoding: str) -> pd.DataFrame:
     return pd.read_csv(file_path_to_csv, index_col=None, header=0, encoding=encoding)
 
 
-def _maybe_image_paths(df: pd.DataFrame, image_dir_path: Optional[str],
-                       image_dir_sequence: Optional[str]) -> Optional[pd.Series]:
+def _maybe_image_paths(
+    df: pd.DataFrame, image_dir_path: Optional[str], image_dir_sequence: Optional[str]
+) -> Optional[pd.Series]:
     """Maybe creates a series of image-paths derived from the index names in df (the returned series has identical
     size and order)
 
@@ -64,18 +65,14 @@ def _maybe_image_paths(df: pd.DataFrame, image_dir_path: Optional[str],
     # If image_dir_path is set, form complete image-paths for each feature-row by using the path
     # (the label in the index) of the data frame to join or substitute
     if image_dir_path:
-        return df.index.to_series().map(
-            lambda path: _join_or_substitute(image_dir_path, path)
-        )
+        return df.index.to_series().map(lambda path: _join_or_substitute(image_dir_path, path))
 
     # If image_dir_sequence is set, form coomplete image-paths for each feature-row using a six digit sequence to join
     # or substitute
     if image_dir_sequence:
         number_rows = len(df.index)
         sequence = pd.Series(range(0, number_rows))
-        return sequence.map(
-            lambda number: _join_or_substitute(image_dir_sequence, '{:06d}'.format(number))
-        )
+        return sequence.map(lambda number: _join_or_substitute(image_dir_sequence, "{:06d}".format(number)))
 
 
 def _join_or_substitute(image_directorz: str, path: str) -> str:
@@ -92,11 +89,7 @@ def _join_or_substitute(image_directorz: str, path: str) -> str:
     ``PLACEHOLDER_FOR_SUBSTITUTION``
     """
     if PLACEHOLDER_FOR_SUBSTITUTION in image_directorz:
-        return os.path.normpath(image_directorz).replace(
-            PLACEHOLDER_FOR_SUBSTITUTION,
-            os.path.normpath(path),
-            1
-        )
+        return os.path.normpath(image_directorz).replace(PLACEHOLDER_FOR_SUBSTITUTION, os.path.normpath(path), 1)
     else:
         return os.path.join(image_directorz, path)
 
@@ -106,11 +99,7 @@ def _select_or_create_identifiers(string_columns) -> pd.Series:
     if len(string_columns.columns) > 0:
         return string_columns.iloc[:, 0]
     else:
-        return pd.Series(
-            range(
-                len(string_columns.columns)
-            )
-        )
+        return pd.Series(range(len(string_columns.columns)))
 
 
 def _add_row_names(features: pd.DataFrame, row_names: pd.Series) -> pd.DataFrame:
@@ -123,8 +112,5 @@ def _add_row_names(features: pd.DataFrame, row_names: pd.Series) -> pd.DataFrame
 def _derive_group_label_from_identifiers(features: pd.DataFrame, max_label_index: int) -> pd.Series:
     """Derives the first group (leftmost group in name) from the names of a data-frame."""
     return pd.Series(
-        list(labels_from_identifiers(features.index.values, max_label_index)),
-        dtype="category",
-        index=features.index
+        list(labels_from_identifiers(features.index.values, max_label_index)), dtype="category", index=features.index
     )
-

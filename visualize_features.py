@@ -137,15 +137,10 @@ def _main():
 
 
 def _arg_parse() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description='Visualize a CSV file with different embeddings.')
-    parser.add_argument('file_path_to_csv', type=str, help='file-path to a csv file')
+    parser = argparse.ArgumentParser(description="Visualize a CSV file with different embeddings.")
+    parser.add_argument("file_path_to_csv", type=str, help="file-path to a csv file")
     _add_method_via_choices(
-        parser,
-        "-m",
-        "--method",
-        visualize.IDENTIFIERS,
-        visualize.DEFAULT_IDENTIFIER,
-        "visualization"
+        parser, "-m", "--method", visualize.IDENTIFIERS, visualize.DEFAULT_IDENTIFIER, "visualization"
     )
     _add_method_via_choices(
         parser,
@@ -153,33 +148,31 @@ def _arg_parse() -> argparse.Namespace:
         "--projection",
         projection.IDENTIFIERS,
         projection.DEFAULT_IDENTIFIER,
-        "projecting embeddings to smaller dimensionality"
+        "projecting embeddings to smaller dimensionality",
     )
-    parser.add_argument(
-        "-o",
-        "--output_path",
-        help="path to write any output to for a particular visualization method"
-    )
+    parser.add_argument("-o", "--output_path", help="path to write any output to for a particular visualization method")
     parser.add_argument(
         "-dp",
         "--image_dir_path",
         help="Identify a directory with thumbnails using the identifier of each image to complete it."
-             " If {}  present, instead the identifier is substituted into the path."
-        .format(embeddings.PLACEHOLDER_FOR_SUBSTITUTION)
+        " If {}  present, instead the identifier is substituted into the path.".format(
+            embeddings.PLACEHOLDER_FOR_SUBSTITUTION
+        ),
     )
     parser.add_argument(
         "-ds",
         "--image_dir_sequence",
         help="Identify a directory with thumbnails using an incrementing six digit integer"
-             " (000000, 000001, 000002 etc.) to substitute for {} in the the path."
-             .format(embeddings.PLACEHOLDER_FOR_SUBSTITUTION)
+        " (000000, 000001, 000002 etc.) to substitute for {} in the the path.".format(
+            embeddings.PLACEHOLDER_FOR_SUBSTITUTION
+        ),
     )
     parser.add_argument(
         "-e",
         "--encoding",
         default=None,
         help="encoding to use when reading the CSV file"
-             " (see https://docs.python.org/3/library/codecs.html#standard-encodings for choices)"
+        " (see https://docs.python.org/3/library/codecs.html#standard-encodings for choices)",
     )
     parser.add_argument(
         "-l",
@@ -187,7 +180,7 @@ def _arg_parse() -> argparse.Namespace:
         default=1,
         type=int,
         help="maximum amount of groups to in include in label leftwards (if positive), or to exclude rightwards"
-             " (if negative)"
+        " (if negative)",
     )
     return parser.parse_args()
 
@@ -198,7 +191,7 @@ def _add_method_via_choices(
     long_name: str,
     choices: List[str],
     default_choice: str,
-    help_message: str
+    help_message: str,
 ) -> None:
     """Adds a multiple-choice method to the parser, case-insensitive."""
     parser.add_argument(
@@ -206,7 +199,7 @@ def _add_method_via_choices(
         long_name,
         help="Method to use for {}. Defaults to '{}'".format(help_message, default_choice),
         choices=choices,
-        default=default_choice
+        default=default_choice,
     )
 
 

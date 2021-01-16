@@ -11,6 +11,7 @@ from .visualize_features_scheme import VisualizeFeaturesScheme
 
 class PlotFeaturesProjection(VisualizeFeaturesScheme):
     """Projects the feature space onto two dimensions and plots"""
+
     def __init__(self, projector: projection.Projector):
         """Constructor
 
@@ -37,10 +38,6 @@ def _plot_first_two_dims_projection(df: pd.DataFrame, labels: Optional[pd.Series
         df["label"] = labels
 
     fig = px.scatter(
-        df,
-        x=df.columns[0],
-        y=df.columns[1],
-        color="label" if labels is not None else None,
-        hover_name="identifier"
+        df, x=df.columns[0], y=df.columns[1], color="label" if labels is not None else None, hover_name="identifier"
     )
     fig.show()
