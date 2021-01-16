@@ -1,48 +1,97 @@
-"""A script for visualizing features in a CSV file in different ways
+"""A script for visualizing features in a CSV file.
 
-It first projects the features into an embedding, and then visualizes the embedding using different methods.
+The script:
+
+1. Creates embeddings, by projecting the features into a lower dimensional space.
+2. Visualizes the embeddings.
+
+Both steps offer a choice of methods.
+
+---------------
+Input Arguments
+---------------
 
 Projection methods
 ------------------
- * t-SNE (default)   https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
- * PCA               https://en.wikipedia.org/wiki/Principal_component_analysis
+
+`-p` or `--projection`
+
+ * `t-SNE <https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding>`_ **(default)**
+ * `PCA <https://en.wikipedia.org/wiki/Principal_component_analysis>`_
+ * `none` - unchanged dimensionality for the embeddings.
 
 Visusalization methods
 ----------------------
- * a 2D interactive plot of points in ploty, opens in the web-browser (default)
- * exports a log-dir which can be opened in TensorBoard
+
+`-m` or `--method`
+
+ * `plot` - interactive 2D plot of embeddings via `ploty <https://plotly.com/>`_ **(default)**
+ * `TensorBoard` - exports a *log directory* to `TensorBoard <https://www.tensorflow.org/tensorboard>`_ at
+   `--output-path`
+
+To view the *log directory* in `TensorBoard <https://www.tensorflow.org/tensorboard>`_ interactively:
+
+::
+
+    tensorboard --logdir <path_to_log_dir>
+
+and select ``Projection`` from the drop-down list box in the top-right.
+
+Optionally, image thumbnails can be associated with each embedding for `TensorBoard` export with `--image_dir_sequence`
+or `--image_dir_path` containing paths where the string :const:`~features.load_features.PLACEHOLDER_FOR_SUBSTITUTION` is
+ substituted respectively:
+
+ * with an index from an incrementing six digit integer with leading zeros, corresponding to row order, or,
+ * the unique identifier for the embedding.
+
 
 Structure of the CSV File
 -------------------------
-1. The CSV file should have features as columns, and data-items as rows - and include headers.
-2. The numeric columns are treated as feature-values, and the non-numeric columns as labels (handled different depending
-on command-line arguments).
 
-Author
-------
-Owen Feehan
+The CSV file should have:
+
+   * features as columns.
+   * data-items as rows.
+   * include headers as the first row.
+   * one column called :const:`~features.load_features.COLUMN_NAME_IDENTIFIER` with unique identifiers for each
+     embedding.
+
+Otherwise:
+
+ * the *numeric* columns are treated as feature-values
+  * the *non-numeric* columns can be combined into a
+label via the `--max_label_index` argument, combining a number of these columns from the left or the right.
+
+``--encoding`` specifies the encoding of the CSV file as per
+`Python's standard encodings <https://docs.python.org/3/library/codecs.html#standard-encodings>`_.
+
 """
+
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
+
 import argparse
+import visualize
+import projection
+import features
 from typing import List
 
-from features import load_features, LabelledFeatures, PLACEHOLDER_FOR_SUBSTITUTION
-from projection import create_projection_method, PROJECTION_FACTORY_IDENTIFIERS, PROJECTION_FACTORY_DEFAULT_IDENTIFIER
-from visualize import (create_visualize_features_method, VISUALIZE_FEATURES_FACTORY_IDENTIFIERS,
-                       VISUALIZE_FEATURES_DEFAULT_IDENTIFIER)
 
-
-def main():
-    """Entry point. Expects a path to the CSV file as an argument to the script"""
+def _main():
+    """Entry point."""
     args = _arg_parse()
 
-    features: LabelledFeatures = load_features(args)
+    input_features = features.load_features(args)
 
-    visualize_scheme = create_visualize_features_method(
+    visualize_scheme = visualize.create_method(
         args.method,
-        create_projection_method(args.projection),
+        projection.create_projection_method(args.projection),
         args.output_path,
     )
-    visualize_scheme.visualize_data_frame(features)
+    visualize_scheme.visualize_data_frame(input_features)
 
 
 def _arg_parse() -> argparse.Namespace:
@@ -52,16 +101,16 @@ def _arg_parse() -> argparse.Namespace:
         parser,
         "-m",
         "--method",
-        VISUALIZE_FEATURES_FACTORY_IDENTIFIERS,
-        VISUALIZE_FEATURES_DEFAULT_IDENTIFIER,
+        visualize.IDENTIFIERS,
+        visualize.DEFAULT_IDENTIFIER,
         "visualization"
     )
     _add_method_via_choices(
         parser,
         "-p",
         "--projection",
-        PROJECTION_FACTORY_IDENTIFIERS,
-        PROJECTION_FACTORY_DEFAULT_IDENTIFIER,
+        projection.IDENTIFIERS,
+        projection.DEFAULT_IDENTIFIER,
         "projecting features to smaller dimensionality"
     )
     parser.add_argument(
@@ -74,14 +123,14 @@ def _arg_parse() -> argparse.Namespace:
         "--image_dir_path",
         help="Identify a directory with thumbnails using the identifier of each image to complete it."
              " If {}  present, instead the identifier is substituted into the path."
-        .format(PLACEHOLDER_FOR_SUBSTITUTION)
+        .format(features.PLACEHOLDER_FOR_SUBSTITUTION)
     )
     parser.add_argument(
         "-ds",
         "--image_dir_sequence",
         help="Identify a directory with thumbnails using an incrementing six digit integer"
              " (000000, 000001, 000002 etc.) to substitute for {} in the the path."
-             .format(PLACEHOLDER_FOR_SUBSTITUTION)
+             .format(features.PLACEHOLDER_FOR_SUBSTITUTION)
     )
     parser.add_argument(
         "-e",
@@ -120,4 +169,4 @@ def _add_method_via_choices(
 
 
 if __name__ == "__main__":
-    main()
+    _main()

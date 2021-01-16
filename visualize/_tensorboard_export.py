@@ -145,4 +145,4 @@ def _create_dir_or_throw(path: Optional[str]) -> str:
             os.makedirs(path)
         return path
     else:
-        raise Exception("An output-path must be specified for the TensorBoard method")
+        raise ValueError("An output-path must be specified for the TensorBoard method")

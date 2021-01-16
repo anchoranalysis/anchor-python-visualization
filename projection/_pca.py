@@ -15,12 +15,12 @@ class PCAProjection(Projection):
         """
         self.num_components = num_components
 
-    def project(self, df: pd.DataFrame) -> pd.DataFrame:
+    def project(self, features: pd.DataFrame) -> pd.DataFrame:
 
         pca = PCA(n_components=self.num_components)
-        projection = pca.fit_transform(df)
+        projection = pca.fit_transform(features)
 
         print('Total Explained variation: {}'.format(pca.explained_variance_ratio_.sum()))
 
         # Convert back into a data-frame, assigning feature-names for each component
-        return derive_projected_df(df, projection, "PCA")
+        return derive_projected_df(features, projection, "PCA")

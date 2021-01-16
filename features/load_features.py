@@ -10,7 +10,7 @@ import pandas as pd
 from features import LabelledFeatures
 
 # Name for index column
-COL_NAME_INDEX = 'identifier'
+COLUMN_NAME_IDENTIFIER = 'identifier'
 
 # Optional placeholder used in image_dir argument
 PLACEHOLDER_FOR_SUBSTITUTION = '<IMAGE>'
@@ -20,30 +20,34 @@ def load_features(args: argparse.Namespace) -> LabelledFeatures:
     """Loads the features from a CSV file, determines identifiers and labels - all according to the arguments"""
 
     # Read all columns, text and number
-    df = pd.read_csv(args.file_path_to_csv, index_col=None, header=0, encoding=args.encoding)
+    features = _read_csv(args.file_path_to_csv, encoding=args.encoding)
 
     # Find the numeric and string columns
-    df_numeric_cols = df.select_dtypes(include=np.number)
-    df_string_cols = df.select_dtypes(include=['object'])
+    numeric_columns = features.select_dtypes(include=np.number)
+    string_columns = features.select_dtypes(include=['object'])
 
     # Extract or create identifiers for the data-frame
-    identifiers = _select_or_create_identifiers(df_string_cols)
+    identifiers = _select_or_create_identifiers(string_columns)
 
-    df_with_identifiers = _add_row_names(df_numeric_cols.copy(), identifiers)
+    features_with_identifiers = _add_row_names(numeric_columns.copy(), identifiers)
 
     # Take the first string col as the row names (index)
     return LabelledFeatures(
-        df_with_identifiers,
-        _derive_group_label_from_identifiers(df_with_identifiers, args.max_label_index),
-        _maybe_image_paths(df_with_identifiers, args.image_dir_path, args.image_dir_sequence)
+        features_with_identifiers,
+        _derive_group_label_from_identifiers(features_with_identifiers, args.max_label_index),
+        _maybe_image_paths(features_with_identifiers, args.image_dir_path, args.image_dir_sequence)
     )
 
 
-def _maybe_image_paths(df: pd.DataFrame, image_dir_path: Optional[str], image_dir_sequence: Optional[str]) ->\
-        Optional[pd.Series]:
-    """
-    Maybe creates a series of image-paths derived from the index names in df (the returned series has identical size
-    and order)
+def _read_csv(file_path_to_csv: str, encoding: str) -> pd.DataFrame:
+    """Reads the CSV from the file-system"""
+    return pd.read_csv(file_path_to_csv, index_col=None, header=0, encoding=encoding)
+
+
+def _maybe_image_paths(df: pd.DataFrame, image_dir_path: Optional[str],
+                       image_dir_sequence: Optional[str]) -> Optional[pd.Series]:
+    """Maybe creates a series of image-paths derived from the index names in df (the returned series has identical
+    size and order)
 
     No paths are created if image-dir is None, and instead None is returned.
 
@@ -74,53 +78,53 @@ def _maybe_image_paths(df: pd.DataFrame, image_dir_path: Optional[str], image_di
         )
 
 
-def _join_or_substitute(image_dir: str, path: str) -> str:
+def _join_or_substitute(image_directorz: str, path: str) -> str:
     """
     Derives paths to images by either joining path to image_dir or substituting path into image_dir (if it contains
     ``PLACEHOLDER_FOR_SUBSTITUTION``)
 
     Both paths are normed so that directory-seperators match the execution environment.
 
-    :param image_dir: either the absolute path to a directory OR a such a path with a placeholder
+    :param image_directorz: either the absolute path to a directory OR a such a path with a placeholder
     ``PLACEHOLDER_FOR_SUBSTITUTION`` which can be substituted
     :param path: the relative-path to an image
     :return: either the relative-path joined to image_dir or the relative-path substituted into image_dir in place of
     ``PLACEHOLDER_FOR_SUBSTITUTION``
     """
-    if PLACEHOLDER_FOR_SUBSTITUTION in image_dir:
-        return os.path.normpath(image_dir).replace(
+    if PLACEHOLDER_FOR_SUBSTITUTION in image_directorz:
+        return os.path.normpath(image_directorz).replace(
             PLACEHOLDER_FOR_SUBSTITUTION,
             os.path.normpath(path),
             1
         )
     else:
-        return os.path.join(image_dir, path)
+        return os.path.join(image_directorz, path)
 
 
-def _select_or_create_identifiers(df_string_cols) -> pd.Series:
+def _select_or_create_identifiers(string_columns) -> pd.Series:
     """Selects the first (left-most) string column as the identifiers or otherwise creates a range of numbers"""
-    if len(df_string_cols.columns) > 0:
-        return df_string_cols.iloc[:, 0]
+    if len(string_columns.columns) > 0:
+        return string_columns.iloc[:, 0]
     else:
         return pd.Series(
             range(
-                len(df_string_cols.columns)
+                len(string_columns.columns)
             )
         )
 
 
-def _add_row_names(df: pd.DataFrame, row_names: pd.Series) -> pd.DataFrame:
+def _add_row_names(features: pd.DataFrame, row_names: pd.Series) -> pd.DataFrame:
     """Adds a series as row-names to a data-frame"""
-    df[COL_NAME_INDEX] = row_names
-    df.set_index(COL_NAME_INDEX, inplace=True)
-    return df
+    features[COLUMN_NAME_IDENTIFIER] = row_names
+    features.set_index(COLUMN_NAME_IDENTIFIER, inplace=True)
+    return features
 
 
-def _derive_group_label_from_identifiers(df: pd.DataFrame, max_label_index: int) -> pd.Series:
+def _derive_group_label_from_identifiers(features: pd.DataFrame, max_label_index: int) -> pd.Series:
     """Derives the first group (leftmost group in name) from the names of a data-frame."""
     return pd.Series(
-        list(labels_from_identifiers(df.index.values, max_label_index)),
+        list(labels_from_identifiers(features.index.values, max_label_index)),
         dtype="category",
-        index=df.index
+        index=features.index
     )
 

@@ -5,25 +5,26 @@ from ._plot_features_projection import PlotFeaturesProjection
 from ._tensorboard_export import TensorBoardExport
 from .visualize_features_scheme import VisualizeFeaturesScheme
 
-VISUALIZE_FEATURES_DEFAULT_IDENTIFIER = "plot"
-VISUALIZE_FEATURES_FACTORY_IDENTIFIERS = [VISUALIZE_FEATURES_DEFAULT_IDENTIFIER, "TensorBoard"]
+IDENTIFIERS = ["plot", "TensorBoard"]
+DEFAULT_IDENTIFIER = "plot"
 
 
-def create_visualize_features_method(
+def create_method(
                                         method_identifier: Optional[str],
                                         projection: Optional[Projection],
                                         output_path: Optional[str]
                                     ) -> VisualizeFeaturesScheme:
     """
-    Creates a visualize-features method from an identifier
-    :param method_identifier: string that is one of VISUALIZE_FEATURES_FACTORY_IDENTIFIERS
-    :param projection: method for performing projection into smaller dimensionality
-    :param output_path: a path for writing any relevant output
-    :return: a newly visualize-features
+    Creates a visualize-features method from an identifier.
+
+    :param method_identifier: string that is one of :const:`IDENTIFIERS`.
+    :param projection: method for performing projection into smaller dimensionality.
+    :param output_path: a path for writing any relevant output.
+    :returns: a newly created instance corresponding to the identifier.
     """
-    if method_identifier == "plot" or method_identifier is None:
+    if method_identifier == IDENTIFIERS[0] or method_identifier is None:
         return PlotFeaturesProjection(projection)
-    elif method_identifier == "TensorBoard":
+    elif method_identifier == IDENTIFIERS[1]:
         return TensorBoardExport(projection, output_path)
     else:
         raise Exception(

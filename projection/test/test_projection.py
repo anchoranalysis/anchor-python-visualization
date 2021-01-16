@@ -1,9 +1,9 @@
-from projection import create_projection_method, PROJECTION_FACTORY_IDENTIFIERS, Projection
+from projection import create_projection_method, IDENTIFIERS, Projection
 import pandas as pd
 import numpy as np
 
 
-_DATA_FRAME_SIZE = (100,4)
+_DATA_FRAME_SIZE = (100, 4)
 
 
 def test_create_projection_method() -> None:
@@ -11,7 +11,7 @@ def test_create_projection_method() -> None:
 
     data_frame = _create_data_frame()
 
-    for identifier in PROJECTION_FACTORY_IDENTIFIERS:
+    for identifier in IDENTIFIERS:
         projection = create_projection_method(identifier)
 
         if projection is not None:

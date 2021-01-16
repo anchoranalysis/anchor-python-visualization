@@ -1,20 +1,27 @@
-"""A script for plotting a histogram from a CSV file that has "intensity" and "count" in two columns.
+"""A script for plotting a histogram from a CSV file that has `intensity` and `count` in two columns.
 
-Plots a histogram based upon columns in a CSV file.
+---------------
+Input Arguments
+---------------
 
-Author
--------
-Owen Feehan
+* `--file_path_to_csv` - a path to the CSV file.
+
+
 """
-import argparse
 
+__author__ = "Owen Feehan"
+__copyright__ = "Copyright (C) 2021 Owen Feehan"
+__license__ = "MIT"
+__version__ = "0.1"
+
+import argparse
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
 
-def main():
-    """Entry point. Expects a path to the CSV file as an argument to the script"""
+def _main():
+    """Entry point."""
     args = _arg_parse()
 
     csv = pd.read_csv(args.file_path_to_csv)
@@ -52,4 +59,5 @@ def _show_hist(keys: pd.Series, counts: pd.Series, num_bins: int) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    _main()
+

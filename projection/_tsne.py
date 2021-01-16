@@ -15,16 +15,16 @@ class TSNEProjection(Projection):
     It produces features TSNE0 and TSNE1.
     """
 
-    def project(self, df: pd.DataFrame) -> pd.DataFrame:
+    def project(self, features: pd.DataFrame) -> pd.DataFrame:
 
         # If there are many features, then use PCA first before T-SNE as per recommendation in documentation
         # https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html
-        if len(df.columns) > MAX_NUM_FEATURES_TSNE:
+        if len(features.columns) > MAX_NUM_FEATURES_TSNE:
             pca = PCAProjection(2)
-            df = pca.project(df)
+            features = pca.project(features)
 
         tsne = TSNE(n_components=2, random_state=0, verbose=1)
-        projection = tsne.fit_transform(df)
+        projection = tsne.fit_transform(features)
         # Convert back into a data-frame, assigning feature-names for each component
-        return derive_projected_df(df, projection, "TSNE")
+        return derive_projected_df(features, projection, "TSNE")
 
