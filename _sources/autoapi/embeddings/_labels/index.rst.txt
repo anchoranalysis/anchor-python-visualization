@@ -1,0 +1,35 @@
+:orphan:
+
+:mod:`embeddings._labels`
+=========================
+
+.. py:module:: embeddings._labels
+
+.. autoapi-nested-parse::
+
+   Labels associated with rows of embeddings, that need not be unique. Useful for showing membership of groups.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   embeddings._labels.labels_from_identifiers
+
+
+.. function:: labels_from_identifiers(identifiers: Iterable[str], max_label_index: int) -> Iterable[str]
+
+   Derives labels from identifiers, by splitting by directory separators.
+
+   :param identifiers: the identifiers
+   :param max_label_index:  maximum amount of groups to in include in label leftwards (if positive), or to exclude
+   rightwards (if negative)
+   :return: the labels, respectively corresponding to each identifier
+
+

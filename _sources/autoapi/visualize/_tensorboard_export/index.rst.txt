@@ -1,0 +1,74 @@
+:orphan:
+
+:mod:`visualize._tensorboard_export`
+====================================
+
+.. py:module:: visualize._tensorboard_export
+
+.. autoapi-nested-parse::
+
+   Exports to TensorBoard
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   visualize._tensorboard_export.TensorBoardExport
+
+
+
+.. data:: IMAGE_SIZE_IN_SPRITE
+   :annotation: = [64, 64]
+
+   
+
+.. data:: FILENAME_METADATA
+   :annotation: = metadata.tsv
+
+   
+
+.. data:: FILENAME_FEATURES
+   :annotation: = embeddings.ckpt
+
+   
+
+.. data:: FILENAME_IMAGE_SPRITE
+   :annotation: = sprite.png
+
+   
+
+.. data:: MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE
+   
+
+   
+
+.. py:class:: TensorBoardExport(projector_method: Optional[projection.Projector], output_path: str)
+
+   Bases: :class:`visualize.visualize_features_scheme.VisualizeFeaturesScheme`
+
+   Exports embeddings (and optional image sprites) in a format so that TensorBoard can be used for visualization"
+
+   If an image-path is associated with each item, a large tiled image (a sprite) is created with small scaled
+   (thumnnail-like) versions of each image. TensorBoard can read this image to show the thumbnails alongside
+   data-points.
+
+   If the embeddings have more rows than MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE then a random-sample (without replacement)
+   is taken to reduce the number the embeddings to MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE. Note this introduces
+   non-deterministic behaviour.
+
+   Thanks to the TensorBoard tutorial
+   https://www.tensorflow.org/tensorboard/tensorboard_projector_plugin
+
+   Thanks to a medium.com post by Andrew B. Martin for the inspiration
+   https://medium.com/looka-engineering/how-to-visualize-feature-vectors-with-sprites-and-tensorflows-tensorboard-3950ca1fb2c7
+
+   .. method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
+
+
+

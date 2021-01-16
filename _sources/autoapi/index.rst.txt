@@ -1,0 +1,15 @@
+API Reference
+=============
+
+This page contains auto-generated API reference documentation [#f1]_.
+
+.. toctree::
+   :titlesonly:
+
+   /autoapi/visualize_features/index
+   /autoapi/histogram_plot/index
+   /autoapi/visualize/index
+   /autoapi/projection/index
+   /autoapi/embeddings/index
+
+.. [#f1] Created with `sphinx-autoapi <https://github.com/readthedocs/sphinx-autoapi>`_

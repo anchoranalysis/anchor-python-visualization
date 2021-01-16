@@ -1,0 +1,42 @@
+:orphan:
+
+:mod:`projection._tsne`
+=======================
+
+.. py:module:: projection._tsne
+
+.. autoapi-nested-parse::
+
+   T-SNE projection.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   projection._tsne.TSNEProjection
+
+
+
+.. data:: MAX_NUMBER_FEATURES_TSNE
+   :annotation: = 50
+
+   
+
+.. py:class:: TSNEProjection
+
+   Bases: :class:`projection.projector.Projector`
+
+   Projects to two-dimensions using T-SNE (preceded by a PCA if num(embeddings) > MAX_NUM_FEATURES_TSNE)
+
+   It produces embeddings TSNE0 and TSNE1.
+
+   .. method:: project(self, features: pd.DataFrame) -> pd.DataFrame
+
+
+

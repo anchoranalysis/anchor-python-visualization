@@ -1,0 +1,59 @@
+:mod:`embeddings`
+=================
+
+.. py:module:: embeddings
+
+.. autoapi-nested-parse::
+
+   Methods for loading embeddings and determining labels
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   exceptions/index.rst
+   label/index.rst
+   load_features/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   embeddings.LabelledFeatures
+
+
+
+.. py:class:: LabelledFeatures(features: pd.DataFrame, labels: pd.Series, image_paths: Optional[pd.Series] = None)
+
+   Maintains separate data-frames for embeddings and labels, but with the same number and order of rows
+
+   .. method:: number_items(self) -> int
+
+      Returns the number of items (i.e. rows) in the data-frames/series
+
+
+   .. method:: sample_without_replacement(self, sample_size: int) -> 'LabelledFeatures'
+
+      Samples without replacement (taking identical rows from each member data-frame/series)
+
+      @param sample_size: number of items to sample
+      @:raise InsufficientRowsException if there are fewer rows available than n
+
+
+
+.. py:exception:: InsufficientRowsException
+
+   Bases: :class:`Exception`
+
+   Raised when there are too few rows in the data-frame for a particular operation.
+
+

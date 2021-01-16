@@ -1,0 +1,75 @@
+:mod:`visualize`
+================
+
+.. py:module:: visualize
+
+.. autoapi-nested-parse::
+
+   Different schemes for visualizing embeddings or other types of data
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   factory/index.rst
+   visualize_features_scheme/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   visualize.VisualizeFeaturesScheme
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   visualize.create_method
+
+
+.. function:: create_method(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) -> VisualizeFeaturesScheme
+
+   Creates a visualize-embeddings method from an identifier.
+
+   :param identifier: string that is one of :const:`IDENTIFIERS`.
+   :param projector: method for performing projection into smaller dimensionality.
+   :param output_path: a path for writing any relevant output.
+   :returns: a newly created instance corresponding to the identifier.
+
+
+.. data:: IDENTIFIERS
+   :annotation: = ['plot', 'TensorBoard']
+
+   
+
+.. data:: DEFAULT_IDENTIFIER
+   :annotation: = plot
+
+   
+
+.. py:class:: VisualizeFeaturesScheme
+
+   Bases: :class:`abc.ABC`
+
+   An method to visualize a set of feature-values.
+
+   .. method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
+
+      Performs some form of visualization of embeddings.
+
+      :param features: embeddings in a data-frame with associated labels.
+
+
+

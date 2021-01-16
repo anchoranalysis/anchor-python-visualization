@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>embeddings.load_features &#8212; anchor-python-visualization 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.load_features</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-embeddings.load_features">
+<span id="embeddings-load-features"></span><h1><a class="reference internal" href="#module-embeddings.load_features" title="embeddings.load_features"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.load_features</span></code></a><a class="headerlink" href="#module-embeddings.load_features" title="Permalink to this headline">¶</a></h1>
+<p>Loading and labelling embeddings.</p>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#embeddings.load_features.load_features" title="embeddings.load_features.load_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_features</span></code></a>(args: argparse.Namespace) → LabelledFeatures</p></td>
+<td><p>Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="embeddings.load_features.COLUMN_NAME_IDENTIFIER">
+<code class="sig-prename descclassname">embeddings.load_features.</code><code class="sig-name descname">COLUMN_NAME_IDENTIFIER</code><em class="property"> = identifier</em><a class="reference internal" href="../../../_modules/embeddings/load_features.html#COLUMN_NAME_IDENTIFIER"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#embeddings.load_features.COLUMN_NAME_IDENTIFIER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION">
+<code class="sig-prename descclassname">embeddings.load_features.</code><code class="sig-name descname">PLACEHOLDER_FOR_SUBSTITUTION</code><em class="property"> = &lt;IMAGE&gt;</em><a class="reference internal" href="../../../_modules/embeddings/load_features.html#PLACEHOLDER_FOR_SUBSTITUTION"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="embeddings.load_features.load_features">
+<code class="sig-prename descclassname">embeddings.load_features.</code><code class="sig-name descname">load_features</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">args</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Namespace" title="(in Python v3.9)">argparse.Namespace</a></span></em><span class="sig-paren">)</span> &#x2192; LabelledFeatures<a class="reference internal" href="../../../_modules/embeddings/load_features.html#load_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#embeddings.load_features.load_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.load_features</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#embeddings.load_features.COLUMN_NAME_IDENTIFIER">COLUMN_NAME_IDENTIFIER</a></li>
+<li><a class="reference internal" href="#embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION">PLACEHOLDER_FOR_SUBSTITUTION</a></li>
+<li><a class="reference internal" href="#embeddings.load_features.load_features">load_features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/autoapi/embeddings/load_features/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.load_features</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Owen Feehan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

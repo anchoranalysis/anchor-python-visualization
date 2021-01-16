@@ -1,0 +1,43 @@
+:mod:`visualize.factory`
+========================
+
+.. py:module:: visualize.factory
+
+.. autoapi-nested-parse::
+
+   Creates :class:`~visualize.VisualizeFeaturesScheme`
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   visualize.factory.create_method
+
+
+.. data:: IDENTIFIERS
+   :annotation: = ['plot', 'TensorBoard']
+
+   
+
+.. data:: DEFAULT_IDENTIFIER
+   :annotation: = plot
+
+   
+
+.. function:: create_method(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) -> VisualizeFeaturesScheme
+
+   Creates a visualize-embeddings method from an identifier.
+
+   :param identifier: string that is one of :const:`IDENTIFIERS`.
+   :param projector: method for performing projection into smaller dimensionality.
+   :param output_path: a path for writing any relevant output.
+   :returns: a newly created instance corresponding to the identifier.
+
+

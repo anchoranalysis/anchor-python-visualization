@@ -1,0 +1,37 @@
+:mod:`visualize.visualize_features_scheme`
+==========================================
+
+.. py:module:: visualize.visualize_features_scheme
+
+.. autoapi-nested-parse::
+
+   Abstract base class for a scheme for visualizing embeddings
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   visualize.visualize_features_scheme.VisualizeFeaturesScheme
+
+
+
+.. py:class:: VisualizeFeaturesScheme
+
+   Bases: :class:`abc.ABC`
+
+   An method to visualize a set of feature-values.
+
+   .. method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
+
+      Performs some form of visualization of embeddings.
+
+      :param features: embeddings in a data-frame with associated labels.
+
+
+

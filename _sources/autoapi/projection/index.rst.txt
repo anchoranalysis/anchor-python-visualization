@@ -1,0 +1,74 @@
+:mod:`projection`
+=================
+
+.. py:module:: projection
+
+.. autoapi-nested-parse::
+
+   Methods for projecting a feature space to lower dimensionality.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   factory/index.rst
+   projector/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   projection.Projector
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   projection.create_projector
+
+
+.. function:: create_projector(identifier: str) -> Optional[Projector]
+
+   Creates a projection method from an identifier.
+
+   :param identifier: string that is one of :const:`IDENTIFIERS`
+   :returns: a newly created projection method, or none at all.
+
+
+.. data:: IDENTIFIERS
+   :annotation: = ['t-SNE', 'PCA', 'none']
+
+   
+
+.. data:: DEFAULT_IDENTIFIER
+   :annotation: = t-SNE
+
+   
+
+.. py:class:: Projector
+
+   Bases: :class:`abc.ABC`
+
+   Projects the feature-space to lower dimensionality.
+
+   .. method:: project(self, features: pd.DataFrame) -> pd.DataFrame
+
+      Performs projection, while preserving a data-frame with identical row names.
+
+      :param features: data_frame containing only numerical embeddings (as columns) and with labelled row.names
+      :return: a data-frame of embeddings with identical order and row names, but changed columns.
+
+
+

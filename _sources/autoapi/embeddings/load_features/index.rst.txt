@@ -1,0 +1,38 @@
+:mod:`embeddings.load_features`
+===============================
+
+.. py:module:: embeddings.load_features
+
+.. autoapi-nested-parse::
+
+   Loading and labelling embeddings.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   embeddings.load_features.load_features
+
+
+.. data:: COLUMN_NAME_IDENTIFIER
+   :annotation: = identifier
+
+   
+
+.. data:: PLACEHOLDER_FOR_SUBSTITUTION
+   :annotation: = <IMAGE>
+
+   
+
+.. function:: load_features(args: argparse.Namespace) -> LabelledFeatures
+
+   Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments
+
+

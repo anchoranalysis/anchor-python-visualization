@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>visualize.factory &#8212; anchor-python-visualization 0.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualize.factory</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-visualize.factory">
+<span id="visualize-factory"></span><h1><a class="reference internal" href="#module-visualize.factory" title="visualize.factory"><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualize.factory</span></code></a><a class="headerlink" href="#module-visualize.factory" title="Permalink to this headline">¶</a></h1>
+<p>Creates <a class="reference internal" href="../index.html#visualize.VisualizeFeaturesScheme" title="visualize.VisualizeFeaturesScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">VisualizeFeaturesScheme</span></code></a></p>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#visualize.factory.create_method" title="visualize.factory.create_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_method</span></code></a>(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) → VisualizeFeaturesScheme</p></td>
+<td><p>Creates a visualize-embeddings method from an identifier.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="visualize.factory.IDENTIFIERS">
+<code class="sig-prename descclassname">visualize.factory.</code><code class="sig-name descname">IDENTIFIERS</code><em class="property"> = ['plot', 'TensorBoard']</em><a class="reference internal" href="../../../_modules/visualize/factory.html#IDENTIFIERS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#visualize.factory.IDENTIFIERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="visualize.factory.DEFAULT_IDENTIFIER">
+<code class="sig-prename descclassname">visualize.factory.</code><code class="sig-name descname">DEFAULT_IDENTIFIER</code><em class="property"> = plot</em><a class="reference internal" href="../../../_modules/visualize/factory.html#DEFAULT_IDENTIFIER"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#visualize.factory.DEFAULT_IDENTIFIER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="visualize.factory.create_method">
+<code class="sig-prename descclassname">visualize.factory.</code><code class="sig-name descname">create_method</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">identifier</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">projector</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="../../projection/index.html#projection.Projector" title="projection.Projector">projection.Projector</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">output_path</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; VisualizeFeaturesScheme<a class="reference internal" href="../../../_modules/visualize/factory.html#create_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#visualize.factory.create_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a visualize-embeddings method from an identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>identifier</strong> – string that is one of <a class="reference internal" href="#visualize.factory.IDENTIFIERS" title="visualize.factory.IDENTIFIERS"><code class="xref py py-const docutils literal notranslate"><span class="pre">IDENTIFIERS</span></code></a>.</p></li>
+<li><p><strong>projector</strong> – method for performing projection into smaller dimensionality.</p></li>
+<li><p><strong>output_path</strong> – a path for writing any relevant output.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a newly created instance corresponding to the identifier.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualize.factory</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#visualize.factory.IDENTIFIERS">IDENTIFIERS</a></li>
+<li><a class="reference internal" href="#visualize.factory.DEFAULT_IDENTIFIER">DEFAULT_IDENTIFIER</a></li>
+<li><a class="reference internal" href="#visualize.factory.create_method">create_method</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/autoapi/visualize/factory/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualize.factory</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Owen Feehan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

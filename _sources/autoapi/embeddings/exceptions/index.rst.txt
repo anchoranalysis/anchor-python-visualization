@@ -1,0 +1,21 @@
+:mod:`embeddings.exceptions`
+============================
+
+.. py:module:: embeddings.exceptions
+
+.. autoapi-nested-parse::
+
+   Custom exception-types for this package.
+
+
+
+Module Contents
+---------------
+
+.. py:exception:: InsufficientRowsException
+
+   Bases: :class:`Exception`
+
+   Raised when there are too few rows in the data-frame for a particular operation.
+
+

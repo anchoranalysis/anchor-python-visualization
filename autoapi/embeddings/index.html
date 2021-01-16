@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>embeddings &#8212; anchor-python-visualization 0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-embeddings">
+<span id="embeddings"></span><h1><a class="reference internal" href="#module-embeddings" title="embeddings"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a><a class="headerlink" href="#module-embeddings" title="Permalink to this headline">¶</a></h1>
+<p>Methods for loading embeddings and determining labels</p>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.exceptions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="label/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.label</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="load_features/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.load_features</span></code></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#embeddings.LabelledFeatures" title="embeddings.LabelledFeatures"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LabelledFeatures</span></code></a></p></td>
+<td><p>Maintains separate data-frames for embeddings and labels, but with the same number and order of rows</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="embeddings.LabelledFeatures">
+<em class="property">class </em><code class="sig-prename descclassname">embeddings.</code><code class="sig-name descname">LabelledFeatures</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">pd.DataFrame</span></em>, <em class="sig-param"><span class="n">labels</span><span class="p">:</span> <span class="n">pd.Series</span></em>, <em class="sig-param"><span class="n">image_paths</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>pd.Series<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/embeddings/label.html#LabelledFeatures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#embeddings.LabelledFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maintains separate data-frames for embeddings and labels, but with the same number and order of rows</p>
+<dl class="py method">
+<dt id="embeddings.LabelledFeatures.number_items">
+<code class="sig-name descname">number_items</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a><a class="headerlink" href="#embeddings.LabelledFeatures.number_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of items (i.e. rows) in the data-frames/series</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="embeddings.LabelledFeatures.sample_without_replacement">
+<code class="sig-name descname">sample_without_replacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">sample_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#embeddings.LabelledFeatures" title="embeddings.LabelledFeatures">LabelledFeatures</a><a class="headerlink" href="#embeddings.LabelledFeatures.sample_without_replacement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples without replacement (taking identical rows from each member data-frame/series)</p>
+<p>&#64;param sample_size: number of items to sample
+&#64;:raise InsufficientRowsException if there are fewer rows available than n</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="embeddings.InsufficientRowsException">
+<em class="property">exception </em><code class="sig-prename descclassname">embeddings.</code><code class="sig-name descname">InsufficientRowsException</code><a class="reference internal" href="../../_modules/embeddings/exceptions.html#InsufficientRowsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#embeddings.InsufficientRowsException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Raised when there are too few rows in the data-frame for a particular operation.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#embeddings.LabelledFeatures">LabelledFeatures</a><ul>
+<li><a class="reference internal" href="#embeddings.LabelledFeatures.number_items">number_items</a></li>
+<li><a class="reference internal" href="#embeddings.LabelledFeatures.sample_without_replacement">sample_without_replacement</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#embeddings.InsufficientRowsException">InsufficientRowsException</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/autoapi/embeddings/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Owen Feehan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

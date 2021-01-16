@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>visualize._tensorboard_export &#8212; anchor-python-visualization 0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../visualize.html" accesskey="U">visualize</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">visualize._tensorboard_export</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for visualize._tensorboard_export</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Exports to TensorBoard&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Owen Feehan&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright (C) 2021 Owen Feehan&quot;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;MIT&quot;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorboard.plugins</span> <span class="kn">import</span> <span class="n">projector</span>
+
+<span class="kn">import</span> <span class="nn">embeddings</span>
+<span class="kn">import</span> <span class="nn">projection</span>
+<span class="kn">from</span> <span class="nn">._image_sprite</span> <span class="kn">import</span> <span class="n">create_sprite_at</span>
+<span class="kn">from</span> <span class="nn">.visualize_features_scheme</span> <span class="kn">import</span> <span class="n">VisualizeFeaturesScheme</span>
+
+<span class="c1"># Size of each image in the sprite. let&#39;s always keep each element to be an integer divisor of MAX_NUMBER_SAMPLES.</span>
+<div class="viewcode-block" id="IMAGE_SIZE_IN_SPRITE"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.IMAGE_SIZE_IN_SPRITE">[docs]</a><span class="n">IMAGE_SIZE_IN_SPRITE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FILENAME_METADATA"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.FILENAME_METADATA">[docs]</a><span class="n">FILENAME_METADATA</span> <span class="o">=</span> <span class="s2">&quot;metadata.tsv&quot;</span></div>
+<div class="viewcode-block" id="FILENAME_FEATURES"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.FILENAME_FEATURES">[docs]</a><span class="n">FILENAME_FEATURES</span> <span class="o">=</span> <span class="s2">&quot;embeddings.ckpt&quot;</span></div>
+<div class="viewcode-block" id="FILENAME_IMAGE_SPRITE"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.FILENAME_IMAGE_SPRITE">[docs]</a><span class="n">FILENAME_IMAGE_SPRITE</span> <span class="o">=</span> <span class="s2">&quot;sprite.png&quot;</span></div>
+
+<span class="c1"># Max sprite size is apparently 8192 x 8192 pixels, so this is the maximum number of images that can be supported</span>
+<div class="viewcode-block" id="MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE">[docs]</a><span class="n">MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8192</span> <span class="o">//</span> <span class="n">IMAGE_SIZE_IN_SPRITE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="mi">8192</span> <span class="o">//</span> <span class="n">IMAGE_SIZE_IN_SPRITE</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="TensorBoardExport"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.TensorBoardExport">[docs]</a><span class="k">class</span> <span class="nc">TensorBoardExport</span><span class="p">(</span><span class="n">VisualizeFeaturesScheme</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Exports embeddings (and optional image sprites) in a format so that TensorBoard can be used for visualization&quot;</span>
+
+<span class="sd">    If an image-path is associated with each item, a large tiled image (a sprite) is created with small scaled</span>
+<span class="sd">    (thumnnail-like) versions of each image. TensorBoard can read this image to show the thumbnails alongside</span>
+<span class="sd">    data-points.</span>
+
+<span class="sd">    If the embeddings have more rows than MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE then a random-sample (without replacement)</span>
+<span class="sd">    is taken to reduce the number the embeddings to MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE. Note this introduces</span>
+<span class="sd">    non-deterministic behaviour.</span>
+
+<span class="sd">    Thanks to the TensorBoard tutorial</span>
+<span class="sd">    https://www.tensorflow.org/tensorboard/tensorboard_projector_plugin</span>
+
+<span class="sd">    Thanks to a medium.com post by Andrew B. Martin for the inspiration</span>
+<span class="sd">    https://medium.com/looka-engineering/how-to-visualize-feature-vectors-with-sprites-and-tensorflows-tensorboard-3950ca1fb2c7</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projector_method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">projection</span><span class="o">.</span><span class="n">Projector</span><span class="p">],</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor</span>
+
+<span class="sd">        :param projector_method: optional projection to reduce dimensionality before export</span>
+<span class="sd">        :param output_path: where to write the &quot;log-dir&quot; for tensorboard</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_projector</span> <span class="o">=</span> <span class="n">projector_method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_path</span> <span class="o">=</span> <span class="n">_create_dir_or_throw</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TensorBoardExport.visualize_data_frame"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.TensorBoardExport.visualize_data_frame">[docs]</a>    <span class="k">def</span> <span class="nf">visualize_data_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">LabelledFeatures</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exporting tensorboard logs to: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_path</span><span class="p">))</span>
+
+        <span class="n">features</span> <span class="o">=</span> <span class="n">_sample_if_needed</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+        <span class="n">path_metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolved_path</span><span class="p">(</span><span class="n">FILENAME_METADATA</span><span class="p">)</span>
+        <span class="n">path_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolved_path</span><span class="p">(</span><span class="n">FILENAME_FEATURES</span><span class="p">)</span>
+
+        <span class="n">_write_labels</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">path_metadata</span><span class="p">)</span>
+
+        <span class="n">_save_embedding_as_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_maybe_project</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">features</span><span class="p">),</span> <span class="n">path_features</span><span class="p">)</span>
+
+        <span class="n">projector_config</span> <span class="o">=</span> <span class="n">_create_projector_config</span><span class="p">(</span><span class="n">path_metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_create_sprite</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">image_paths</span><span class="p">))</span>
+
+        <span class="n">projector</span><span class="o">.</span><span class="n">visualize_embeddings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_path</span><span class="p">,</span> <span class="n">projector_config</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_maybe_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projector</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projector</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">df</span>
+
+    <span class="k">def</span> <span class="nf">_maybe_create_sprite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">image_paths</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sprite_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolved_path</span><span class="p">(</span><span class="n">FILENAME_IMAGE_SPRITE</span><span class="p">)</span>
+            <span class="n">create_sprite_at</span><span class="p">(</span><span class="n">image_paths</span><span class="p">,</span> <span class="n">sprite_path</span><span class="p">,</span> <span class="n">IMAGE_SIZE_IN_SPRITE</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">sprite_path</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_resolved_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_relative_to_log_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Resolves a path to the log-dir</span>
+
+<span class="sd">        :param path_relative_to_log_dir a path expressed relative only to the log dir</span>
+<span class="sd">        :return an absolute path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_path</span><span class="p">,</span> <span class="n">path_relative_to_log_dir</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_sample_if_needed</span><span class="p">(</span><span class="n">features</span><span class="p">:</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">LabelledFeatures</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">LabelledFeatures</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Randomly samples if needed to ensure num_rows(embeddings) &lt;=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">features</span><span class="o">.</span><span class="n">image_paths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Number of rows irrelevant as no sprite will be created, so exit early unchanged</span>
+        <span class="k">return</span> <span class="n">features</span>
+
+    <span class="n">num_rows</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">number_items</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">num_rows</span> <span class="o">&gt;</span> <span class="n">MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Sampling </span><span class="si">{}</span><span class="s2"> rows from a total of </span><span class="si">{}</span><span class="s2"> rows in the feature-table as this is the maximum allowed in the&quot;</span>
+            <span class="s2">&quot; image-sprite&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE</span><span class="p">,</span> <span class="n">num_rows</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">features</span><span class="o">.</span><span class="n">sample_without_replacement</span><span class="p">(</span><span class="n">MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">features</span>
+
+
+<span class="k">def</span> <span class="nf">_create_projector_config</span><span class="p">(</span><span class="n">path_metadata</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path_sprite</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">projector</span><span class="o">.</span><span class="n">ProjectorConfig</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Creates a projector-config as needed to show the embedding in Tensorboard&quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">projector</span><span class="o">.</span><span class="n">ProjectorConfig</span><span class="p">()</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">embeddings</span><span class="o">.</span><span class="n">add</span><span class="p">()</span>
+    <span class="n">embedding</span><span class="o">.</span><span class="n">tensor_name</span> <span class="o">=</span> <span class="s2">&quot;embedding/.ATTRIBUTES/VARIABLE_VALUE&quot;</span>
+    <span class="n">embedding</span><span class="o">.</span><span class="n">metadata_path</span> <span class="o">=</span> <span class="n">path_metadata</span>
+
+    <span class="k">if</span> <span class="n">path_sprite</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">embedding</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">image_path</span> <span class="o">=</span> <span class="n">path_sprite</span>
+        <span class="n">embedding</span><span class="o">.</span><span class="n">sprite</span><span class="o">.</span><span class="n">single_image_dim</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">IMAGE_SIZE_IN_SPRITE</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">config</span>
+
+
+<span class="k">def</span> <span class="nf">_save_embedding_as_checkpoint</span><span class="p">(</span><span class="n">embedding</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Saves the feature embedding as a checkpointed tensor&quot;&quot;&quot;</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">embedding</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()))</span>
+    <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Checkpoint</span><span class="p">(</span><span class="n">embedding</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">checkpoint</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_write_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Writes each label on a separate line to a file&quot;&quot;&quot;</span>
+    <span class="n">labels</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Label&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s2">&quot;Identifier&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_create_dir_or_throw</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Creates a directory if necessary and if defined. If not defined, throw an exception.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Make the directory if necessary</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">path</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;An output-path must be specified for the TensorBoard method&quot;</span><span class="p">)</span>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../visualize.html" >visualize</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">visualize._tensorboard_export</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Owen Feehan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>
