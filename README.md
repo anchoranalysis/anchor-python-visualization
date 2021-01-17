@@ -4,10 +4,9 @@ Scripts in Python for visualizing plots / images etc.
 
 ## Usage
 
-Each `.py` script in the top-level directory is designed to be used as a command-line application. See the comments on the top of each file for more information.
+Each `.py` script in the top-level directory is designed to be used as a command-line application.
 
-No versioning (of packages or their dependencies) is currently specified, but only standard
-libraries are used.
+See the [API documentation](https://www.anchoranalysis.org/anchor-python-visualization/) and/or comments on the top of each file for more information.
 
 ## Author
 
