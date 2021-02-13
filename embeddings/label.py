@@ -36,8 +36,8 @@ class LabelledFeatures:
     def sample_without_replacement(self, sample_size: int) -> "LabelledFeatures":
         """Samples without replacement (taking identical rows from each member data-frame/series)
 
-        @param sample_size: number of items to sample
-        @:raise InsufficientRowsException if there are fewer rows available than n
+        :param sample_size: number of items to sample
+        :raise InsufficientRowsException if there are fewer rows available than n
         """
         number_rows = self.number_items()
         if sample_size > number_rows:
