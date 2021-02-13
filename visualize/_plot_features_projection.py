@@ -21,7 +21,7 @@ class PlotFeaturesProjection(VisualizeFeaturesScheme):
     def __init__(self, projector: projection.Projector):
         """Constructor
 
-        :param projector how the projection is performed
+        :param projector: how the projection is performed
         """
         if projector is None:
             raise ValueError("A projection is required for {}".format(self.__class__.__name__))
