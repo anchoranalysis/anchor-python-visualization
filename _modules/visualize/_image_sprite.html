@@ -63,9 +63,9 @@
 
 <span class="sd">    The sprite MUST always be of square dimensionality, so any unused patches are left blank at the end.</span>
 
-<span class="sd">    :param image_paths a series of image-paths for each image that should exist in the sprite (in that order)</span>
-<span class="sd">    :param sprite_path the path to write the sprite to</span>
-<span class="sd">    :param image_size_in_sprite the size of each image inside the sprite</span>
+<span class="sd">    :param image_paths: a series of image-paths for each image that should exist in the sprite (in that order)</span>
+<span class="sd">    :param sprite_path: the path to write the sprite to</span>
+<span class="sd">    :param image_size_in_sprite: the size of each image inside the sprite</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">)):</span>
@@ -93,8 +93,8 @@
 
 <span class="sd">    See https://stackoverflow.com/questions/43185605/how-do-i-read-an-image-from-a-path-with-unicode-characters/43185606</span>
 
-<span class="sd">    @param path to be opened</span>
-<span class="sd">    @return an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.</span>
+<span class="sd">    :param path: to be opened</span>
+<span class="sd">    :return: an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imdecode</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_UNCHANGED</span><span class="p">)</span>
 

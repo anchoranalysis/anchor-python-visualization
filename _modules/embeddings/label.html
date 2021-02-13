@@ -79,7 +79,7 @@
         <span class="sd">&quot;&quot;&quot;Samples without replacement (taking identical rows from each member data-frame/series)</span>
 
 <span class="sd">        :param sample_size: number of items to sample</span>
-<span class="sd">        :raise InsufficientRowsException if there are fewer rows available than n</span>
+<span class="sd">        :raises InsufficientRowsException: if there are fewer rows available than n</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">number_rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_items</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">sample_size</span> <span class="o">&gt;</span> <span class="n">number_rows</span><span class="p">:</span>

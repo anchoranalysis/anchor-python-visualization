@@ -33,8 +33,8 @@ Functions
 
    The sprite MUST always be of square dimensionality, so any unused patches are left blank at the end.
 
-   :param image_paths a series of image-paths for each image that should exist in the sprite (in that order)
-   :param sprite_path the path to write the sprite to
-   :param image_size_in_sprite the size of each image inside the sprite
+   :param image_paths: a series of image-paths for each image that should exist in the sprite (in that order)
+   :param sprite_path: the path to write the sprite to
+   :param image_size_in_sprite: the size of each image inside the sprite
 
 
