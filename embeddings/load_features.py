@@ -51,14 +51,14 @@ def _read_csv(file_path_to_csv: str, encoding: str) -> pd.DataFrame:
 
 
 def _maybe_image_paths(
-    df: pd.DataFrame, image_dir_path: Optional[str], image_dir_sequence: Optional[str]
+    features: pd.DataFrame, image_dir_path: Optional[str], image_dir_sequence: Optional[str]
 ) -> Optional[pd.Series]:
-    """Maybe creates a series of image-paths derived from the index names in df (the returned series has identical
-    size and order)
+    """Maybe creates a series of image-paths derived from the index names in data/frame (the returned series has
+    identical size and order)
 
     No paths are created if image-dir is None, and instead None is returned.
 
-    @param df data-frame the images prefer to
+    @param features data-frame the images prefer to
     @param image_dir_path iff present, the index name of df (a relaitive path) for each feature row is
     appended/substituted to form a complete path to an image
     @param image_dir_sequence iff present, a six-digit integer sequence for each feature row is appended/substituted to
@@ -71,33 +71,33 @@ def _maybe_image_paths(
     # If image_dir_path is set, form complete image-paths for each feature-row by using the path
     # (the label in the index) of the data frame to join or substitute
     if image_dir_path:
-        return df.index.to_series().map(lambda path: _join_or_substitute(image_dir_path, path))
+        return features.index.to_series().map(lambda path: _join_or_substitute(image_dir_path, path))
 
     # If image_dir_sequence is set, form coomplete image-paths for each feature-row using a six digit sequence to join
     # or substitute
     if image_dir_sequence:
-        number_rows = len(df.index)
+        number_rows = len(features.index)
         sequence = pd.Series(range(0, number_rows))
         return sequence.map(lambda number: _join_or_substitute(image_dir_sequence, "{:06d}".format(number)))
 
 
-def _join_or_substitute(image_directorz: str, path: str) -> str:
+def _join_or_substitute(image_directory: str, path: str) -> str:
     """
     Derives paths to images by either joining path to image_dir or substituting path into image_dir (if it contains
     ``PLACEHOLDER_FOR_SUBSTITUTION``)
 
     Both paths are normed so that directory-seperators match the execution environment.
 
-    :param image_directorz: either the absolute path to a directory OR a such a path with a placeholder
+    :param image_directory: either the absolute path to a directory OR a such a path with a placeholder
     ``PLACEHOLDER_FOR_SUBSTITUTION`` which can be substituted
     :param path: the relative-path to an image
     :return: either the relative-path joined to image_dir or the relative-path substituted into image_dir in place of
     ``PLACEHOLDER_FOR_SUBSTITUTION``
     """
-    if PLACEHOLDER_FOR_SUBSTITUTION in image_directorz:
-        return os.path.normpath(image_directorz).replace(PLACEHOLDER_FOR_SUBSTITUTION, os.path.normpath(path), 1)
+    if PLACEHOLDER_FOR_SUBSTITUTION in image_directory:
+        return os.path.normpath(image_directory).replace(PLACEHOLDER_FOR_SUBSTITUTION, os.path.normpath(path), 1)
     else:
-        return os.path.join(image_directorz, path)
+        return os.path.join(image_directory, path)
 
 
 def _select_or_create_identifiers(string_columns) -> pd.Series:
