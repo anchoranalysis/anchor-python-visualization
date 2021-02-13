@@ -32,7 +32,8 @@ Classes
 
 
 
-.. py:class:: LabelledFeatures(features: pd.DataFrame, labels: pd.Series, image_paths: Optional[pd.Series] = None)
+.. class:: LabelledFeatures(features: pandas.DataFrame, labels: pandas.Series, image_paths: Optional[pd.Series] = None)
+
 
    Maintains separate data-frames for embeddings and labels, but with the same number and order of rows
 
@@ -41,16 +42,17 @@ Classes
       Returns the number of items (i.e. rows) in the data-frames/series
 
 
-   .. method:: sample_without_replacement(self, sample_size: int) -> 'LabelledFeatures'
+   .. method:: sample_without_replacement(self, sample_size: int) -> embeddings.label.LabelledFeatures
 
       Samples without replacement (taking identical rows from each member data-frame/series)
 
-      @param sample_size: number of items to sample
-      @:raise InsufficientRowsException if there are fewer rows available than n
+      :param sample_size: number of items to sample
+      :raise InsufficientRowsException if there are fewer rows available than n
 
 
 
-.. py:exception:: InsufficientRowsException
+.. exception:: InsufficientRowsException
+
 
    Bases: :class:`Exception`
 

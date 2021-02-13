@@ -23,7 +23,7 @@ Functions
    projection._derive_utilities.derive_projected
 
 
-.. function:: derive_projected(unprojected: pd.DataFrame, projected: np.array, feature_prefix: str)
+.. function:: derive_projected(unprojected: pandas.DataFrame, projected: numpy.array, feature_prefix: str)
 
    Converts a projected numpy array (derived from a data-frame) back into data-frame format with row.names
 

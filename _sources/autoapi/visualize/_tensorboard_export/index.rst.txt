@@ -48,7 +48,8 @@ Classes
 
    
 
-.. py:class:: TensorBoardExport(projector_method: Optional[projection.Projector], output_path: str)
+.. class:: TensorBoardExport(projector_method: Optional[projection.Projector], output_path: str)
+
 
    Bases: :class:`visualize.visualize_features_scheme.VisualizeFeaturesScheme`
 

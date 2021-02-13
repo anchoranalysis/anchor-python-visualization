@@ -21,13 +21,13 @@ Classes
 
 
 
-.. py:class:: Projector
+.. class:: Projector
 
    Bases: :class:`abc.ABC`
 
    Projects the feature-space to lower dimensionality.
 
-   .. method:: project(self, features: pd.DataFrame) -> pd.DataFrame
+   .. method:: project(self, features: pandas.DataFrame) -> pandas.DataFrame
 
       Performs projection, while preserving a data-frame with identical row names.
 

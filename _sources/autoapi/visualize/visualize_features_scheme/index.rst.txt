@@ -21,7 +21,7 @@ Classes
 
 
 
-.. py:class:: VisualizeFeaturesScheme
+.. class:: VisualizeFeaturesScheme
 
    Bases: :class:`abc.ABC`
 

@@ -12,7 +12,8 @@
 Module Contents
 ---------------
 
-.. py:exception:: InsufficientRowsException
+.. exception:: InsufficientRowsException
+
 
    Bases: :class:`Exception`
 

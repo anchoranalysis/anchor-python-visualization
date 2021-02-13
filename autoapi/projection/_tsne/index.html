@@ -68,8 +68,17 @@
 <p>It produces embeddings TSNE0 and TSNE1.</p>
 <dl class="py method">
 <dt id="projection._tsne.TSNEProjection.project">
-<code class="sig-name descname">project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">pd.DataFrame</span></em><span class="sig-paren">)</span> &#x2192; pd.DataFrame<a class="reference internal" href="../../../_modules/projection/_tsne.html#TSNEProjection.project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#projection._tsne.TSNEProjection.project" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.0.dev0+712.gfc9fdba65)">pandas.DataFrame</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.0.dev0+712.gfc9fdba65)">pandas.DataFrame</a><a class="reference internal" href="../../../_modules/projection/_tsne.html#TSNEProjection.project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#projection._tsne.TSNEProjection.project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs projection, while preserving a data-frame with identical row names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>features</strong> – data_frame containing only numerical embeddings (as columns) and with labelled row.names</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a data-frame of embeddings with identical order and row names, but changed columns.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

@@ -28,7 +28,7 @@ Classes
 
    
 
-.. py:class:: TSNEProjection
+.. class:: TSNEProjection
 
    Bases: :class:`projection.projector.Projector`
 
@@ -36,7 +36,12 @@ Classes
 
    It produces embeddings TSNE0 and TSNE1.
 
-   .. method:: project(self, features: pd.DataFrame) -> pd.DataFrame
+   .. method:: project(self, features: pandas.DataFrame) -> pandas.DataFrame
+
+      Performs projection, while preserving a data-frame with identical row names.
+
+      :param features: data_frame containing only numerical embeddings (as columns) and with labelled row.names
+      :return: a data-frame of embeddings with identical order and row names, but changed columns.
 
 
 

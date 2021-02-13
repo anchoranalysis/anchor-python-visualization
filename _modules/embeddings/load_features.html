@@ -93,14 +93,14 @@
 
 
 <span class="k">def</span> <span class="nf">_maybe_image_paths</span><span class="p">(</span>
-    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">image_dir_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">image_dir_sequence</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">features</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">image_dir_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">image_dir_sequence</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Maybe creates a series of image-paths derived from the index names in df (the returned series has identical</span>
-<span class="sd">    size and order)</span>
+    <span class="sd">&quot;&quot;&quot;Maybe creates a series of image-paths derived from the index names in data/frame (the returned series has</span>
+<span class="sd">    identical size and order)</span>
 
 <span class="sd">    No paths are created if image-dir is None, and instead None is returned.</span>
 
-<span class="sd">    @param df data-frame the images prefer to</span>
+<span class="sd">    @param features data-frame the images prefer to</span>
 <span class="sd">    @param image_dir_path iff present, the index name of df (a relaitive path) for each feature row is</span>
 <span class="sd">    appended/substituted to form a complete path to an image</span>
 <span class="sd">    @param image_dir_sequence iff present, a six-digit integer sequence for each feature row is appended/substituted to</span>
@@ -113,33 +113,33 @@
     <span class="c1"># If image_dir_path is set, form complete image-paths for each feature-row by using the path</span>
     <span class="c1"># (the label in the index) of the data frame to join or substitute</span>
     <span class="k">if</span> <span class="n">image_dir_path</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_series</span><span class="p">()</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">path</span><span class="p">:</span> <span class="n">_join_or_substitute</span><span class="p">(</span><span class="n">image_dir_path</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">features</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_series</span><span class="p">()</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">path</span><span class="p">:</span> <span class="n">_join_or_substitute</span><span class="p">(</span><span class="n">image_dir_path</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span>
 
     <span class="c1"># If image_dir_sequence is set, form coomplete image-paths for each feature-row using a six digit sequence to join</span>
     <span class="c1"># or substitute</span>
     <span class="k">if</span> <span class="n">image_dir_sequence</span><span class="p">:</span>
-        <span class="n">number_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">number_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
         <span class="n">sequence</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">number_rows</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">sequence</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">number</span><span class="p">:</span> <span class="n">_join_or_substitute</span><span class="p">(</span><span class="n">image_dir_sequence</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{:06d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">number</span><span class="p">)))</span>
 
 
-<span class="k">def</span> <span class="nf">_join_or_substitute</span><span class="p">(</span><span class="n">image_directorz</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">_join_or_substitute</span><span class="p">(</span><span class="n">image_directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Derives paths to images by either joining path to image_dir or substituting path into image_dir (if it contains</span>
 <span class="sd">    ``PLACEHOLDER_FOR_SUBSTITUTION``)</span>
 
 <span class="sd">    Both paths are normed so that directory-seperators match the execution environment.</span>
 
-<span class="sd">    :param image_directorz: either the absolute path to a directory OR a such a path with a placeholder</span>
+<span class="sd">    :param image_directory: either the absolute path to a directory OR a such a path with a placeholder</span>
 <span class="sd">    ``PLACEHOLDER_FOR_SUBSTITUTION`` which can be substituted</span>
 <span class="sd">    :param path: the relative-path to an image</span>
 <span class="sd">    :return: either the relative-path joined to image_dir or the relative-path substituted into image_dir in place of</span>
 <span class="sd">    ``PLACEHOLDER_FOR_SUBSTITUTION``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">PLACEHOLDER_FOR_SUBSTITUTION</span> <span class="ow">in</span> <span class="n">image_directorz</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">image_directorz</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">PLACEHOLDER_FOR_SUBSTITUTION</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">PLACEHOLDER_FOR_SUBSTITUTION</span> <span class="ow">in</span> <span class="n">image_directory</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">image_directory</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">PLACEHOLDER_FOR_SUBSTITUTION</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_directorz</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_directory</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_select_or_create_identifiers</span><span class="p">(</span><span class="n">string_columns</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>

@@ -57,7 +57,7 @@
 </table>
 <dl class="py class">
 <dt id="embeddings.label.LabelledFeatures">
-<em class="property">class </em><code class="sig-prename descclassname">embeddings.label.</code><code class="sig-name descname">LabelledFeatures</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n">pd.DataFrame</span></em>, <em class="sig-param"><span class="n">labels</span><span class="p">:</span> <span class="n">pd.Series</span></em>, <em class="sig-param"><span class="n">image_paths</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>pd.Series<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/embeddings/label.html#LabelledFeatures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#embeddings.label.LabelledFeatures" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">embeddings.label.</code><code class="sig-name descname">LabelledFeatures</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">features</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.0.dev0+712.gfc9fdba65)">pandas.DataFrame</a></span></em>, <em class="sig-param"><span class="n">labels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v1.3.0.dev0+712.gfc9fdba65)">pandas.Series</a></span></em>, <em class="sig-param"><span class="n">image_paths</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>pd.Series<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/embeddings/label.html#LabelledFeatures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#embeddings.label.LabelledFeatures" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maintains separate data-frames for embeddings and labels, but with the same number and order of rows</p>
 <dl class="py method">
 <dt id="embeddings.label.LabelledFeatures.number_items">
@@ -67,10 +67,14 @@
 
 <dl class="py method">
 <dt id="embeddings.label.LabelledFeatures.sample_without_replacement">
-<code class="sig-name descname">sample_without_replacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">sample_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#embeddings.label.LabelledFeatures" title="embeddings.label.LabelledFeatures">LabelledFeatures</a><a class="reference internal" href="../../../_modules/embeddings/label.html#LabelledFeatures.sample_without_replacement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#embeddings.label.LabelledFeatures.sample_without_replacement" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample_without_replacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">sample_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#embeddings.label.LabelledFeatures" title="embeddings.label.LabelledFeatures">embeddings.label.LabelledFeatures</a><a class="reference internal" href="../../../_modules/embeddings/label.html#LabelledFeatures.sample_without_replacement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#embeddings.label.LabelledFeatures.sample_without_replacement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Samples without replacement (taking identical rows from each member data-frame/series)</p>
-<p>&#64;param sample_size: number of items to sample
-&#64;:raise InsufficientRowsException if there are fewer rows available than n</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sample_size</strong> – number of items to sample</p>
+</dd>
+</dl>
+<p>:raise InsufficientRowsException if there are fewer rows available than n</p>
 </dd></dl>
 
 </dd></dl>

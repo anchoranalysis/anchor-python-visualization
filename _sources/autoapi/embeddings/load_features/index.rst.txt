@@ -31,7 +31,7 @@ Functions
 
    
 
-.. function:: load_features(args: argparse.Namespace) -> LabelledFeatures
+.. function:: load_features(args: argparse.Namespace) -> embeddings.LabelledFeatures
 
    Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments
 
