@@ -56,13 +56,13 @@ def _maybe_image_paths(
     """Maybe creates a series of image-paths derived from the index names in data/frame (the returned series has
     identical size and order)
 
-    No paths are created if image-dir is None, and instead None is returned.
+    No paths are created if image_directory_path is None, and instead None is returned.
 
     :param features: data-frame the images prefer to
-    :param image_directory_path: iff present, the index name of df (a relaitive path) for each feature row is
+    :param image_directory_path: iff present, the index name of df (a relative path) for each feature row is
     appended/substituted to form a complete path to an image
-    :param image_directory_sequence: iff present, a six-digit integer sequence for each feature row is appended/substituted to
-    form a complete path to an image
+    :param image_directory_sequence: iff present, a six-digit integer sequence for each feature row is
+    appended/substituted to form a complete path to an image
     """
     # If neither image_dir argument is set exit
     if (image_directory_path is None) and (image_directory_sequence is None):
