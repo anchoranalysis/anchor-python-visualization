@@ -51,34 +51,34 @@ def _read_csv(file_path_to_csv: str, encoding: str) -> pd.DataFrame:
 
 
 def _maybe_image_paths(
-    features: pd.DataFrame, image_dir_path: Optional[str], image_dir_sequence: Optional[str]
+    features: pd.DataFrame, image_directory_path: Optional[str], image_directory_sequence: Optional[str]
 ) -> Optional[pd.Series]:
     """Maybe creates a series of image-paths derived from the index names in data/frame (the returned series has
     identical size and order)
 
     No paths are created if image-dir is None, and instead None is returned.
 
-    @param features data-frame the images prefer to
-    @param image_dir_path iff present, the index name of df (a relaitive path) for each feature row is
+    :param features: data-frame the images prefer to
+    :param image_directory_path: iff present, the index name of df (a relaitive path) for each feature row is
     appended/substituted to form a complete path to an image
-    @param image_dir_sequence iff present, a six-digit integer sequence for each feature row is appended/substituted to
+    :param image_directory_sequence: iff present, a six-digit integer sequence for each feature row is appended/substituted to
     form a complete path to an image
     """
     # If neither image_dir argument is set exit
-    if (image_dir_path is None) and (image_dir_sequence is None):
+    if (image_directory_path is None) and (image_directory_sequence is None):
         return None
 
     # If image_dir_path is set, form complete image-paths for each feature-row by using the path
     # (the label in the index) of the data frame to join or substitute
-    if image_dir_path:
-        return features.index.to_series().map(lambda path: _join_or_substitute(image_dir_path, path))
+    if image_directory_path:
+        return features.index.to_series().map(lambda path: _join_or_substitute(image_directory_path, path))
 
     # If image_dir_sequence is set, form coomplete image-paths for each feature-row using a six digit sequence to join
     # or substitute
-    if image_dir_sequence:
+    if image_directory_sequence:
         number_rows = len(features.index)
         sequence = pd.Series(range(0, number_rows))
-        return sequence.map(lambda number: _join_or_substitute(image_dir_sequence, "{:06d}".format(number)))
+        return sequence.map(lambda number: _join_or_substitute(image_directory_sequence, "{:06d}".format(number)))
 
 
 def _join_or_substitute(image_directory: str, path: str) -> str:

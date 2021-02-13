@@ -42,16 +42,16 @@ def _arg_parse() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def _show_hist(keys: pd.Series, counts: pd.Series, num_bins: int) -> None:
+def _show_hist(keys: pd.Series, counts: pd.Series, number_bins: int) -> None:
     """
     Shows a histogram-plot with a logarithmic scale.
 
-    :param keys a series referring to the keys of the histogram; each key has a corresponding count
-    :param counts a series referring to corresponding counts for each key of the histogram, identical in size and order
+    :param keys: a series referring to the keys of the histogram; each key has a corresponding count
+    :param counts: a series referring to corresponding counts for each key of the histogram, identical in size and order
     to keys
-    :param num_bins the number of bins to use in the histogram
+    :param number_bins: the number of bins to use in the histogram
     """
-    ax = sns.distplot(list(keys), hist_kws={"weights": list(counts)}, norm_hist=False, kde=False, bins=num_bins)
+    ax = sns.distplot(list(keys), hist_kws={"weights": list(counts)}, norm_hist=False, kde=False, bins=number_bins)
     ax.set_yscale("log")
 
     plt.xlabel("Intensity")

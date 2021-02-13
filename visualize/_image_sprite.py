@@ -21,9 +21,9 @@ def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_spr
 
     The sprite MUST always be of square dimensionality, so any unused patches are left blank at the end.
 
-    :param image_paths a series of image-paths for each image that should exist in the sprite (in that order)
-    :param sprite_path the path to write the sprite to
-    :param image_size_in_sprite the size of each image inside the sprite
+    :param image_paths: a series of image-paths for each image that should exist in the sprite (in that order)
+    :param sprite_path: the path to write the sprite to
+    :param image_size_in_sprite: the size of each image inside the sprite
     """
     images = []
     for i in range(len(image_paths)):
@@ -51,8 +51,8 @@ def _read_with_unicode_path(path: str) -> str:
 
     See https://stackoverflow.com/questions/43185605/how-do-i-read-an-image-from-a-path-with-unicode-characters/43185606
 
-    @param path to be opened
-    @return an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.
+    :param path: to be opened
+    :return: an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.
     """
     return cv2.imdecode(np.fromfile(path, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
 
