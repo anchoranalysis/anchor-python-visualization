@@ -41,7 +41,7 @@ def load_features(args: argparse.Namespace) -> LabelledFeatures:
     return LabelledFeatures(
         features_with_identifiers,
         _derive_group_label_from_identifiers(features_with_identifiers, args.max_label_index),
-        _maybe_image_paths(features_with_identifiers, args.image_dir_path, args.image_dir_sequence),
+        _maybe_image_paths(features_with_identifiers, args.image_path, args.image_sequence),
     )
 
 
