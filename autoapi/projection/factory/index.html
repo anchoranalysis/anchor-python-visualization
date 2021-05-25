@@ -4,13 +4,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>projection.factory &#8212; anchor-python-visualization 0.1 documentation</title>
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
     
-    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
@@ -37,12 +38,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-projection.factory">
+  <section id="module-projection.factory">
 <span id="projection-factory"></span><h1><a class="reference internal" href="#module-projection.factory" title="projection.factory"><code class="xref py py-mod docutils literal notranslate"><span class="pre">projection.factory</span></code></a><a class="headerlink" href="#module-projection.factory" title="Permalink to this headline">¶</a></h1>
 <p>Creates instances of <a class="reference internal" href="../index.html#projection.Projector" title="projection.Projector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projector</span></code></a>.</p>
-<div class="section" id="module-contents">
+<section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="functions">
+<section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -50,24 +51,41 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#projection.factory.create_projector" title="projection.factory.create_projector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_projector</span></code></a>(identifier: str) → Optional[Projector]</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#projection.factory.create_projector" title="projection.factory.create_projector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_projector</span></code></a>(identifier: str) → Optional[projection.projector.Projector]</p></td>
 <td><p>Creates a projection method from an identifier.</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#projection.factory.DEFAULT_IDENTIFIER" title="projection.factory.DEFAULT_IDENTIFIER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEFAULT_IDENTIFIER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#projection.factory.IDENTIFIERS" title="projection.factory.IDENTIFIERS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IDENTIFIERS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py data">
-<dt id="projection.factory.DEFAULT_IDENTIFIER">
-<code class="sig-prename descclassname">projection.factory.</code><code class="sig-name descname">DEFAULT_IDENTIFIER</code><em class="property"> = t-SNE</em><a class="reference internal" href="../../../_modules/projection/factory.html#DEFAULT_IDENTIFIER"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#projection.factory.DEFAULT_IDENTIFIER" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="projection.factory.DEFAULT_IDENTIFIER">
+<span class="sig-prename descclassname"><span class="pre">projection.factory.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_IDENTIFIER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">t-SNE</span></em><a class="reference internal" href="../../../_modules/projection/factory.html#DEFAULT_IDENTIFIER"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection.factory.DEFAULT_IDENTIFIER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py data">
-<dt id="projection.factory.IDENTIFIERS">
-<code class="sig-prename descclassname">projection.factory.</code><code class="sig-name descname">IDENTIFIERS</code><em class="property"> = ['t-SNE', 'PCA', 'none']</em><a class="reference internal" href="../../../_modules/projection/factory.html#IDENTIFIERS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#projection.factory.IDENTIFIERS" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="projection.factory.IDENTIFIERS">
+<span class="sig-prename descclassname"><span class="pre">projection.factory.</span></span><span class="sig-name descname"><span class="pre">IDENTIFIERS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['t-SNE',</span> <span class="pre">'PCA',</span> <span class="pre">'none']</span></em><a class="reference internal" href="../../../_modules/projection/factory.html#IDENTIFIERS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection.factory.IDENTIFIERS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="projection.factory.create_projector">
-<code class="sig-prename descclassname">projection.factory.</code><code class="sig-name descname">create_projector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">identifier</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>Projector<span class="p">]</span><a class="reference internal" href="../../../_modules/projection/factory.html#create_projector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#projection.factory.create_projector" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="projection.factory.create_projector">
+<span class="sig-prename descclassname"><span class="pre">projection.factory.</span></span><span class="sig-name descname"><span class="pre">create_projector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../projector/index.html#projection.projector.Projector" title="projection.projector.Projector"><span class="pre">projection.projector.Projector</span></a><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../../../_modules/projection/factory.html#create_projector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection.factory.create_projector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a projection method from an identifier.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -79,9 +97,9 @@
 </dl>
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -94,7 +112,8 @@
   <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">projection.factory</span></code></a><ul>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
 <li><a class="reference internal" href="#projection.factory.DEFAULT_IDENTIFIER">DEFAULT_IDENTIFIER</a></li>
 <li><a class="reference internal" href="#projection.factory.IDENTIFIERS">IDENTIFIERS</a></li>
 <li><a class="reference internal" href="#projection.factory.create_projector">create_projector</a></li>
@@ -142,7 +161,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

@@ -21,9 +21,10 @@ Classes
 
 
 
+
 .. class:: VisualizeFeaturesScheme
 
-   Bases: :class:`abc.ABC`
+   Bases: :py:obj:`abc.ABC`
 
    An method to visualize a set of feature-values.
 

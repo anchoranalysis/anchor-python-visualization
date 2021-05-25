@@ -23,7 +23,8 @@ Functions
    visualize._image_sprite.create_sprite_at
 
 
-.. function:: create_sprite_at(image_paths: pandas.Series, sprite_path: str, image_size_in_sprite: Tuple[(int, int)]) -> None
+
+.. function:: create_sprite_at(image_paths: pandas.Series, sprite_path: str, image_size_in_sprite: Tuple[int, int]) -> None
 
    Creates an image-sprite in the format expected by TensorBoard
 

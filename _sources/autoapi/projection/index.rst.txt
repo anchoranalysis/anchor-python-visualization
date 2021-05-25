@@ -39,7 +39,17 @@ Functions
    projection.create_projector
 
 
-.. function:: create_projector(identifier: str) -> Optional[Projector]
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   projection.IDENTIFIERS
+   projection.DEFAULT_IDENTIFIER
+
+
+.. function:: create_projector(identifier: str) -> Optional[projection.projector.Projector]
 
    Creates a projection method from an identifier.
 
@@ -59,7 +69,7 @@ Functions
 
 .. class:: Projector
 
-   Bases: :class:`abc.ABC`
+   Bases: :py:obj:`abc.ABC`
 
    Projects the feature-space to lower dimensionality.
 

@@ -23,6 +23,19 @@ Classes
 
 
 
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   visualize._tensorboard_export.IMAGE_SIZE_IN_SPRITE
+   visualize._tensorboard_export.FILENAME_METADATA
+   visualize._tensorboard_export.FILENAME_FEATURES
+   visualize._tensorboard_export.FILENAME_IMAGE_SPRITE
+   visualize._tensorboard_export.MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE
+
+
 .. data:: IMAGE_SIZE_IN_SPRITE
    :annotation: = [64, 64]
 
@@ -51,7 +64,7 @@ Classes
 .. class:: TensorBoardExport(projector_method: Optional[projection.Projector], output_path: str)
 
 
-   Bases: :class:`visualize.visualize_features_scheme.VisualizeFeaturesScheme`
+   Bases: :py:obj:`visualize.visualize_features_scheme.VisualizeFeaturesScheme`
 
    Exports embeddings (and optional image sprites) in a format so that TensorBoard can be used for visualization"
 
@@ -70,6 +83,10 @@ Classes
    https://medium.com/looka-engineering/how-to-visualize-feature-vectors-with-sprites-and-tensorflows-tensorboard-3950ca1fb2c7
 
    .. method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
+
+      Performs some form of visualization of embeddings.
+
+      :param features: embeddings in a data-frame with associated labels.
 
 
 

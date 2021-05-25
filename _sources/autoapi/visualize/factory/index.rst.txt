@@ -21,6 +21,16 @@ Functions
    visualize.factory.create_method
 
 
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   visualize.factory.IDENTIFIERS
+   visualize.factory.DEFAULT_IDENTIFIER
+
+
 .. data:: IDENTIFIERS
    :annotation: = ['plot', 'TensorBoard']
 

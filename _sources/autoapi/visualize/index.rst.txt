@@ -39,6 +39,16 @@ Functions
    visualize.create_method
 
 
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   visualize.IDENTIFIERS
+   visualize.DEFAULT_IDENTIFIER
+
+
 .. function:: create_method(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
 
    Creates a visualize-embeddings method from an identifier.
@@ -61,7 +71,7 @@ Functions
 
 .. class:: VisualizeFeaturesScheme
 
-   Bases: :class:`abc.ABC`
+   Bases: :py:obj:`abc.ABC`
 
    An method to visualize a set of feature-values.
 

@@ -23,6 +23,7 @@ Functions
    embeddings._labels.labels_from_identifiers
 
 
+
 .. function:: labels_from_identifiers(identifiers: Iterable[str], max_label_index: int) -> Iterable[str]
 
    Derives labels from identifiers, by splitting by directory separators.

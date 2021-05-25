@@ -21,6 +21,16 @@ Functions
    embeddings.load_features.load_features
 
 
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   embeddings.load_features.COLUMN_NAME_IDENTIFIER
+   embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION
+
+
 .. data:: COLUMN_NAME_IDENTIFIER
    :annotation: = identifier
 

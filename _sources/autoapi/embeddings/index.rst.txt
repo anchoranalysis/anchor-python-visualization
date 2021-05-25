@@ -32,7 +32,25 @@ Classes
 
 
 
-.. class:: LabelledFeatures(features: pandas.DataFrame, labels: pandas.Series, image_paths: Optional[pd.Series] = None)
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   embeddings.load_features
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   embeddings.PLACEHOLDER_FOR_SUBSTITUTION
+   embeddings.COLUMN_NAME_IDENTIFIER
+
+
+.. class:: LabelledFeatures(features: pandas.DataFrame, labels: pandas.Series, image_paths: Optional[pandas.Series] = None)
 
 
    Maintains separate data-frames for embeddings and labels, but with the same number and order of rows
@@ -42,7 +60,7 @@ Classes
       Returns the number of items (i.e. rows) in the data-frames/series
 
 
-   .. method:: sample_without_replacement(self, sample_size: int) -> embeddings.label.LabelledFeatures
+   .. method:: sample_without_replacement(self, sample_size: int) -> LabelledFeatures
 
       Samples without replacement (taking identical rows from each member data-frame/series)
 
@@ -51,10 +69,25 @@ Classes
 
 
 
+.. function:: load_features(args: argparse.Namespace) -> embeddings.LabelledFeatures
+
+   Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments
+
+
+.. data:: PLACEHOLDER_FOR_SUBSTITUTION
+   :annotation: = <IMAGE>
+
+   
+
+.. data:: COLUMN_NAME_IDENTIFIER
+   :annotation: = identifier
+
+   
+
 .. exception:: InsufficientRowsException
 
 
-   Bases: :class:`Exception`
+   Bases: :py:obj:`Exception`
 
    Raised when there are too few rows in the data-frame for a particular operation.
 

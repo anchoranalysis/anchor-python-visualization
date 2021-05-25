@@ -4,13 +4,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>visualize_features &#8212; anchor-python-visualization 0.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
@@ -37,7 +38,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-visualize_features">
+  <section id="module-visualize_features">
 <span id="visualize-features"></span><h1><a class="reference internal" href="#module-visualize_features" title="visualize_features"><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualize_features</span></code></a><a class="headerlink" href="#module-visualize_features" title="Permalink to this headline">¶</a></h1>
 <p>A script for visualizing embeddings in a CSV file.</p>
 <p>The script:</p>
@@ -46,9 +47,9 @@
 <li><p>Visualizes the embeddings.</p></li>
 </ol>
 <p>Both steps offer a choice of methods.</p>
-<div class="section" id="input-arguments">
+<section id="input-arguments">
 <h2>Input Arguments<a class="headerlink" href="#input-arguments" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="projection-methods">
+<section id="projection-methods">
 <h3>Projection methods<a class="headerlink" href="#projection-methods" title="Permalink to this headline">¶</a></h3>
 <p><cite>-p</cite> or <cite>–projection</cite></p>
 <blockquote>
@@ -58,8 +59,8 @@
 <li><p><cite>none</cite> - unchanged dimensionality for the embeddings.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="visualization-methods">
+</section>
+<section id="visualization-methods">
 <h3>Visualization methods<a class="headerlink" href="#visualization-methods" title="Permalink to this headline">¶</a></h3>
 <p><cite>-m</cite> or <cite>–method</cite></p>
 <blockquote>
@@ -77,8 +78,8 @@ or <cite>–image_path</cite> containing paths where the string <a class="refere
 <li><p>the unique identifier for the embedding.</p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="structure-of-the-csv-file">
+</section>
+<section id="structure-of-the-csv-file">
 <h3>Structure of the CSV File<a class="headerlink" href="#structure-of-the-csv-file" title="Permalink to this headline">¶</a></h3>
 <p>The CSV file should have:</p>
 <blockquote>
@@ -102,11 +103,11 @@ these columns from the left or the right.</p></li>
 a maximum number of groups to be read from the left (if positive) or to be excluded from the right (if negative).</p>
 <p><code class="docutils literal notranslate"><span class="pre">--encoding</span></code> specifies the encoding of the CSV file as per
 <a class="reference external" href="https://docs.python.org/3/library/codecs.html#standard-encodings">Python’s standard encodings</a>.</p>
-</div>
-</div>
-<div class="section" id="example-usage">
+</section>
+</section>
+<section id="example-usage">
 <h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="plotting">
+<section id="plotting">
 <h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
 <p>Plotting using t-SNE to project to two dimensions.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">visualize_features</span><span class="o">.</span><span class="n">py</span>
@@ -115,8 +116,8 @@ a maximum number of groups to be read from the left (if positive) or to be exclu
     <span class="o">-</span><span class="n">m</span> <span class="n">plot</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="tensorboard-export">
+</section>
+<section id="tensorboard-export">
 <h3>TensorBoard export<a class="headerlink" href="#tensorboard-export" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Create the log-directory:</p></li>
@@ -142,9 +143,9 @@ a maximum number of groups to be read from the left (if positive) or to be exclu
 <li><p>Open the shown URL, probably <a class="reference external" href="http://localhost:6006/">http://localhost:6006/</a></p></li>
 <li><p>Select <code class="docutils literal notranslate"><span class="pre">Projector</span></code> from the drop-down list box in the top-right corner.</p></li>
 </ol>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -207,7 +208,7 @@ a maximum number of groups to be read from the left (if positive) or to be exclu
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
     </div>
   </body>
 </html>

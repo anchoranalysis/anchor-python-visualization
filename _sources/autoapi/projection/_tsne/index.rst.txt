@@ -23,6 +23,15 @@ Classes
 
 
 
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   projection._tsne.MAX_NUMBER_FEATURES_TSNE
+
+
 .. data:: MAX_NUMBER_FEATURES_TSNE
    :annotation: = 50
 
@@ -30,7 +39,7 @@ Classes
 
 .. class:: TSNEProjection
 
-   Bases: :class:`projection.projector.Projector`
+   Bases: :py:obj:`projection.projector.Projector`
 
    Projects to two-dimensions using T-SNE (preceded by a PCA if num(embeddings) > MAX_NUM_FEATURES_TSNE)
 

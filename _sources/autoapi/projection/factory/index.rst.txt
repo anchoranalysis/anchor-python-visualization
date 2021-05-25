@@ -21,6 +21,16 @@ Functions
    projection.factory.create_projector
 
 
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   projection.factory.DEFAULT_IDENTIFIER
+   projection.factory.IDENTIFIERS
+
+
 .. data:: DEFAULT_IDENTIFIER
    :annotation: = t-SNE
 
@@ -31,7 +41,7 @@ Functions
 
    
 
-.. function:: create_projector(identifier: str) -> Optional[Projector]
+.. function:: create_projector(identifier: str) -> Optional[projection.projector.Projector]
 
    Creates a projection method from an identifier.
 
