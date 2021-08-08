@@ -17,6 +17,6 @@ class Projector(ABC):
         """Performs projection, while preserving a data-frame with identical row names.
 
         :param features: data_frame containing only numerical embeddings (as columns) and with labelled row.names
-        :return: a data-frame of embeddings with identical order and row names, but changed columns.
+        :returns: a data-frame of embeddings with identical order and row names, but changed columns.
         """
         pass
