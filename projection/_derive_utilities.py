@@ -9,7 +9,9 @@ import numpy as np
 import pandas as pd
 
 
-def derive_projected(unprojected: pd.DataFrame, projected: np.array, feature_prefix: str) -> pd.DataFrame:
+def derive_projected(
+    unprojected: pd.DataFrame, projected: np.array, feature_prefix: str
+) -> pd.DataFrame:
     """
     Converts a projected numpy array (derived from a data-frame) back into data-frame format with row.names
 
@@ -20,5 +22,7 @@ def derive_projected(unprojected: pd.DataFrame, projected: np.array, feature_pre
     """
     num_columns = np.size(projected, 1)
     return pd.DataFrame(
-        projected, columns=["%s%i" % (feature_prefix, i) for i in range(num_columns)], index=unprojected.index
+        projected,
+        columns=["%s%i" % (feature_prefix, i) for i in range(num_columns)],
+        index=unprojected.index,
     )

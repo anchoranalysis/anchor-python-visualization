@@ -12,7 +12,9 @@ import numpy as np
 import pandas as pd
 
 
-def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_sprite: Tuple[int, int]) -> None:
+def create_sprite_at(
+    image_paths: pd.Series, sprite_path: str, image_size_in_sprite: Tuple[int, int]
+) -> None:
     """Creates an image-sprite in the format expected by TensorBoard.
 
     This image sprite is a tiled (like a checkboard) version of small identically-sized images (patches) in the order::
@@ -30,7 +32,9 @@ def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_spr
     for i in range(len(image_paths)):
         path = image_paths[i]
 
-        print("Add image {} of {} to sprite from {}".format(i + 1, len(image_paths), path))
+        print(
+            "Add image {} of {} to sprite from {}".format(i + 1, len(image_paths), path)
+        )
         images.append(_read_and_scale(path, image_size_in_sprite))
 
     cv2.imwrite(sprite_path, _create_sprite(images))
@@ -41,7 +45,11 @@ def _read_and_scale(path: str, scale_to_size: Tuple[int, int]) -> np.array:
     try:
         return cv2.resize(_read_with_unicode_path(path), scale_to_size)
     except (cv2.error, OSError) as err:
-        print("An error occurred reading-and-scaling, replacing with an empty thumbnail: {}".format(path))
+        print(
+            "An error occurred reading-and-scaling, replacing with an empty thumbnail: {}".format(
+                path
+            )
+        )
         print(err)
         return np.zeros((scale_to_size[0], scale_to_size[1], 3), np.uint8)
 

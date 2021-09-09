@@ -129,18 +129,24 @@ def _main():
     input_features = embeddings.load_features(args)
 
     visualize_scheme = visualize.create_method(
-        args.method,
-        projection.create_projector(args.projection),
-        args.output
+        args.method, projection.create_projector(args.projection), args.output
     )
     visualize_scheme.visualize_data_frame(input_features)
 
 
 def _arg_parse() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Visualize a CSV file with different embeddings.")
+    """Parse arguments."""
+    parser = argparse.ArgumentParser(
+        description="Visualize a CSV file with different embeddings."
+    )
     parser.add_argument("file_path_to_csv", type=str, help="file-path to a csv file")
     _add_method_via_choices(
-        parser, "-m", "--method", visualize.IDENTIFIERS, visualize.DEFAULT_IDENTIFIER, "visualization"
+        parser,
+        "-m",
+        "--method",
+        visualize.IDENTIFIERS,
+        visualize.DEFAULT_IDENTIFIER,
+        "visualization",
     )
     _add_method_via_choices(
         parser,
@@ -150,7 +156,11 @@ def _arg_parse() -> argparse.Namespace:
         projection.DEFAULT_IDENTIFIER,
         "projecting embeddings to smaller dimensionality",
     )
-    parser.add_argument("-o", "--output", help="path to write any output to for a particular visualization method")
+    parser.add_argument(
+        "-o",
+        "--output",
+        help="path to write any output to for a particular visualization method",
+    )
     parser.add_argument(
         "-dp",
         "--image_path",
@@ -197,7 +207,9 @@ def _add_method_via_choices(
     parser.add_argument(
         short_name,
         long_name,
-        help="Method to use for {}. Defaults to '{}'".format(help_message, default_choice),
+        help="Method to use for {}. Defaults to '{}'".format(
+            help_message, default_choice
+        ),
         choices=choices,
         default=default_choice,
     )

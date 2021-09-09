@@ -8,7 +8,9 @@ __version__ = "0.1"
 from typing import Iterable, List
 
 
-def labels_from_identifiers(identifiers: Iterable[str], max_label_index: int) -> Iterable[str]:
+def labels_from_identifiers(
+    identifiers: Iterable[str], max_label_index: int
+) -> Iterable[str]:
     """Derives labels from identifiers, by splitting by directory separators.
 
     :param identifiers: the identifiers
@@ -18,7 +20,9 @@ def labels_from_identifiers(identifiers: Iterable[str], max_label_index: int) ->
     """
 
     def extract_groups(name):
-        return _extract_label_from_groups(_split_names_into_groups(name), max_label_index)
+        return _extract_label_from_groups(
+            _split_names_into_groups(name), max_label_index
+        )
 
     return map(extract_groups, identifiers)
 

@@ -25,7 +25,9 @@ FILENAME_FEATURES = "embeddings.ckpt"
 FILENAME_IMAGE_SPRITE = "sprite.png"
 
 # Max sprite size is apparently 8192 x 8192 pixels, so this is the maximum number of images that can be supported
-MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE = (8192 // IMAGE_SIZE_IN_SPRITE[0]) * (8192 // IMAGE_SIZE_IN_SPRITE[1])
+MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE = (8192 // IMAGE_SIZE_IN_SPRITE[0]) * (
+    8192 // IMAGE_SIZE_IN_SPRITE[1]
+)
 
 
 class TensorBoardExport(VisualizeFeaturesScheme):
@@ -46,7 +48,9 @@ class TensorBoardExport(VisualizeFeaturesScheme):
     https://medium.com/looka-engineering/how-to-visualize-feature-vectors-with-sprites-and-tensorflows-tensorboard-3950ca1fb2c7
     """
 
-    def __init__(self, projector_method: Optional[projection.Projector], output_path: str):
+    def __init__(
+        self, projector_method: Optional[projection.Projector], output_path: str
+    ):
         """Constructor
 
         :param projector_method: optional projection to reduce dimensionality before export
@@ -55,6 +59,7 @@ class TensorBoardExport(VisualizeFeaturesScheme):
         self._projector = projector_method
         self._output_path = _create_dir_or_throw(output_path)
 
+    # Overriding a base class
     def visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None:
 
         print("Exporting tensorboard logs to: {}".format(self._output_path))
@@ -66,19 +71,29 @@ class TensorBoardExport(VisualizeFeaturesScheme):
 
         _write_labels(features.labels, path_metadata)
 
-        _save_embedding_as_checkpoint(self._maybe_project(features.features), path_features)
+        _save_embedding_as_checkpoint(
+            self._maybe_project(features.features), path_features
+        )
 
-        projector_config = _create_projector_config(path_metadata, self._maybe_create_sprite(features.image_paths))
+        projector_config = _create_projector_config(
+            path_metadata, self._maybe_create_sprite(features.image_paths)
+        )
 
         projector.visualize_embeddings(self._output_path, projector_config)
 
-    def _maybe_project(self, df: pd.DataFrame) -> pd.DataFrame:
+    def _maybe_project(self, data_frame: pd.DataFrame) -> pd.DataFrame:
+        """Apply a projection to the data-frame, if a projection is selected."""
         if self._projector is not None:
-            return self._projector.project(df)
+            return self._projector.project(data_frame)
         else:
-            return df
+            return data_frame
 
     def _maybe_create_sprite(self, image_paths: Optional[pd.Series]) -> Optional[str]:
+        """Creates a sprite image with thumbnails for many different images, if selected.
+
+        :param image_paths: if defined, paths to various images that are populated into the sprite in order
+        :returns: the path where the sprite was written, or None if no sprite was written.
+        """
         if image_paths is not None:
             sprite_path = self._resolved_path(FILENAME_IMAGE_SPRITE)
             create_sprite_at(image_paths, sprite_path, IMAGE_SIZE_IN_SPRITE)
@@ -87,16 +102,18 @@ class TensorBoardExport(VisualizeFeaturesScheme):
             return None
 
     def _resolved_path(self, path_relative_to_log_dir: str) -> str:
-        """Resolves a path to the log-dir
+        """Resolves a path to the log-dir.
 
-        :param path_relative_to_log_dir a path expressed relative only to the log dir
-        :return an absolute path
+        :param path_relative_to_log_dir: a path expressed relative only to the log dir
+        :returns: an absolute path
         """
         return os.path.join(self._output_path, path_relative_to_log_dir)
 
 
-def _sample_if_needed(features: embeddings.LabelledFeatures) -> embeddings.LabelledFeatures:
-    """Randomly samples if needed to ensure num_rows(embeddings) <=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE"""
+def _sample_if_needed(
+    features: embeddings.LabelledFeatures,
+) -> embeddings.LabelledFeatures:
+    """Randomly samples if needed to ensure :code:`num_rows(embeddings) <=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE`"""
     if features.image_paths is None:
         # Number of rows irrelevant as no sprite will be created, so exit early unchanged
         return features
@@ -112,8 +129,10 @@ def _sample_if_needed(features: embeddings.LabelledFeatures) -> embeddings.Label
         return features
 
 
-def _create_projector_config(path_metadata: str, path_sprite: Optional[str]) -> projector.ProjectorConfig:
-    """Creates a projector-config as needed to show the embedding in Tensorboard"""
+def _create_projector_config(
+    path_metadata: str, path_sprite: Optional[str]
+) -> projector.ProjectorConfig:
+    """Creates a projector-config as needed to show the embedding in Tensorboard."""
     config = projector.ProjectorConfig()
     embedding = config.embeddings.add()
     embedding.tensor_name = "embedding/.ATTRIBUTES/VARIABLE_VALUE"
@@ -127,7 +146,7 @@ def _create_projector_config(path_metadata: str, path_sprite: Optional[str]) -> 
 
 
 def _save_embedding_as_checkpoint(embedding: pd.DataFrame, path: str) -> None:
-    """Saves the feature embedding as a checkpointed tensor"""
+    """Saves the feature embedding as a checkpointed tensor."""
     weights = tf.Variable(tf.convert_to_tensor(embedding.to_numpy()))
     checkpoint = tf.train.Checkpoint(embedding=weights)
     checkpoint.save(path)
@@ -135,7 +154,9 @@ def _save_embedding_as_checkpoint(embedding: pd.DataFrame, path: str) -> None:
 
 def _write_labels(labels: pd.Series, path: str) -> None:
     """Writes each label on a separate line to a file"""
-    labels.to_csv(path, sep="\t", header=["Label"], index=True, index_label="Identifier")
+    labels.to_csv(
+        path, sep="\t", header=["Label"], index=True, index_label="Identifier"
+    )
 
 
 def _create_dir_or_throw(path: Optional[str]) -> str:

@@ -21,6 +21,7 @@ class TSNEProjection(Projector):
     It produces embeddings TSNE0 and TSNE1.
     """
 
+    # Overriding a base class
     def project(self, features: pd.DataFrame) -> pd.DataFrame:
 
         # If there are many embeddings, then use PCA first before T-SNE as per recommendation in documentation

@@ -40,8 +40,12 @@ def load_features(args: argparse.Namespace) -> LabelledFeatures:
     # Take the first string col as the row names (index)
     return LabelledFeatures(
         features_with_identifiers,
-        _derive_group_label_from_identifiers(features_with_identifiers, args.max_label_index),
-        _maybe_image_paths(features_with_identifiers, args.image_path, args.image_sequence),
+        _derive_group_label_from_identifiers(
+            features_with_identifiers, args.max_label_index
+        ),
+        _maybe_image_paths(
+            features_with_identifiers, args.image_path, args.image_sequence
+        ),
     )
 
 
@@ -51,7 +55,9 @@ def _read_csv(file_path_to_csv: str, encoding: str) -> pd.DataFrame:
 
 
 def _maybe_image_paths(
-    features: pd.DataFrame, image_directory_path: Optional[str], image_directory_sequence: Optional[str]
+    features: pd.DataFrame,
+    image_directory_path: Optional[str],
+    image_directory_sequence: Optional[str],
 ) -> Optional[pd.Series]:
     """Maybe creates a series of image-paths derived from the index names in data/frame (the returned series has
     identical size and order)
@@ -71,14 +77,20 @@ def _maybe_image_paths(
     # If image_dir_path is set, form complete image-paths for each feature-row by using the path
     # (the label in the index) of the data frame to join or substitute
     if image_directory_path:
-        return features.index.to_series().map(lambda path: _join_or_substitute(image_directory_path, path))
+        return features.index.to_series().map(
+            lambda path: _join_or_substitute(image_directory_path, path)
+        )
 
     # If image_dir_sequence is set, form complete image-paths for each feature-row using a six digit sequence to join
     # or substitute
     if image_directory_sequence:
         number_rows = len(features.index)
         sequence = pd.Series(range(0, number_rows))
-        return sequence.map(lambda number: _join_or_substitute(image_directory_sequence, "{:06d}".format(number)))
+        return sequence.map(
+            lambda number: _join_or_substitute(
+                image_directory_sequence, "{:06d}".format(number)
+            )
+        )
 
 
 def _join_or_substitute(image_directory: str, path: str) -> str:
@@ -95,7 +107,9 @@ def _join_or_substitute(image_directory: str, path: str) -> str:
               :code:`PLACEHOLDER_FOR_SUBSTITUTION`.
     """
     if PLACEHOLDER_FOR_SUBSTITUTION in image_directory:
-        return os.path.normpath(image_directory).replace(PLACEHOLDER_FOR_SUBSTITUTION, os.path.normpath(path), 1)
+        return os.path.normpath(image_directory).replace(
+            PLACEHOLDER_FOR_SUBSTITUTION, os.path.normpath(path), 1
+        )
     else:
         return os.path.join(image_directory, path)
 
@@ -115,8 +129,12 @@ def _add_row_names(features: pd.DataFrame, row_names: pd.Series) -> pd.DataFrame
     return features
 
 
-def _derive_group_label_from_identifiers(features: pd.DataFrame, max_label_index: int) -> pd.Series:
+def _derive_group_label_from_identifiers(
+    features: pd.DataFrame, max_label_index: int
+) -> pd.Series:
     """Derives the first group (leftmost group in name) from the names of a data-frame."""
     return pd.Series(
-        list(labels_from_identifiers(features.index.values, max_label_index)), dtype="category", index=features.index
+        list(labels_from_identifiers(features.index.values, max_label_index)),
+        dtype="category",
+        index=features.index,
     )
