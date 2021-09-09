@@ -51,25 +51,25 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#projection._derive_utilities.derive_projected" title="projection._derive_utilities.derive_projected"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_projected</span></code></a>(unprojected: pandas.DataFrame, projected: numpy.array, feature_prefix: str)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#projection._derive_utilities.derive_projected" title="projection._derive_utilities.derive_projected"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derive_projected</span></code></a>(unprojected: pandas.DataFrame, projected: numpy.array, feature_prefix: str) → pandas.DataFrame</p></td>
 <td><p>Converts a projected numpy array (derived from a data-frame) back into data-frame format with row.names</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py function">
 <dt class="sig sig-object py" id="projection._derive_utilities.derive_projected">
-<span class="sig-prename descclassname"><span class="pre">projection._derive_utilities.</span></span><span class="sig-name descname"><span class="pre">derive_projected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unprojected</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.0.dev0+1722.g4dcdec06a4)"><span class="pre">pandas.DataFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">projected</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_prefix</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/projection/_derive_utilities.html#derive_projected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection._derive_utilities.derive_projected" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">projection._derive_utilities.</span></span><span class="sig-name descname"><span class="pre">derive_projected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unprojected</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.0.dev0+629.g59a06fdc14)"><span class="pre">pandas.DataFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">projected</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_prefix</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.0.dev0+629.g59a06fdc14)"><span class="pre">pandas.DataFrame</span></a></span></span><a class="reference internal" href="../../../_modules/projection/_derive_utilities.html#derive_projected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection._derive_utilities.derive_projected" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a projected numpy array (derived from a data-frame) back into data-frame format with row.names</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>unprojected</strong> – the original data-frame from which the projection was derived</p></li>
-<li><p><strong>projected</strong> – the projection derived from <cite>unprojected</cite></p></li>
-<li><p><strong>feature_prefix</strong> – a prefix to use in feature names to become <cite>feature_prefix0</cite>, <cite>feature_prefix1</cite> etc.</p></li>
+<li><p><strong>projected</strong> – the projection derived from <code class="code docutils literal notranslate"><span class="pre">unprojected</span></code></p></li>
+<li><p><strong>feature_prefix</strong> – a prefix to use in feature names e.g. <code class="code docutils literal notranslate"><span class="pre">feature_prefix0</span></code>, <code class="code docutils literal notranslate"><span class="pre">feature_prefix1</span></code> etc.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>returns a data-frame with identical row order and sze to df_orig but with embeddings from projection</p>
+<dd class="field-even"><p>a data-frame with identical row order and size to <code class="code docutils literal notranslate"><span class="pre">df_orig</span></code> but with embeddings from the projection.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -110,7 +110,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -135,7 +135,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

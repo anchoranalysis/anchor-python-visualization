@@ -1,5 +1,5 @@
-:mod:`visualize.factory`
-========================
+:py:mod:`visualize.factory`
+===========================
 
 .. py:module:: visualize.factory
 
@@ -31,17 +31,17 @@ Attributes
    visualize.factory.DEFAULT_IDENTIFIER
 
 
-.. data:: IDENTIFIERS
+.. py:data:: IDENTIFIERS
    :annotation: = ['plot', 'TensorBoard']
 
    
 
-.. data:: DEFAULT_IDENTIFIER
+.. py:data:: DEFAULT_IDENTIFIER
    :annotation: = plot
 
    
 
-.. function:: create_method(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
+.. py:function:: create_method(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
 
    Creates a visualize-embeddings method from an identifier.
 

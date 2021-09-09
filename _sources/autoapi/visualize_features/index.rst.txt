@@ -1,5 +1,5 @@
-:mod:`visualize_features`
-=========================
+:py:mod:`visualize_features`
+============================
 
 .. py:module:: visualize_features
 

@@ -1,5 +1,5 @@
-:mod:`embeddings.exceptions`
-============================
+:py:mod:`embeddings.exceptions`
+===============================
 
 .. py:module:: embeddings.exceptions
 
@@ -12,8 +12,7 @@
 Module Contents
 ---------------
 
-.. exception:: InsufficientRowsException
-
+.. py:exception:: InsufficientRowsException
 
    Bases: :py:obj:`Exception`
 

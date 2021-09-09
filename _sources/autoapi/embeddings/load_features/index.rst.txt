@@ -1,5 +1,5 @@
-:mod:`embeddings.load_features`
-===============================
+:py:mod:`embeddings.load_features`
+==================================
 
 .. py:module:: embeddings.load_features
 
@@ -31,18 +31,18 @@ Attributes
    embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION
 
 
-.. data:: COLUMN_NAME_IDENTIFIER
+.. py:data:: COLUMN_NAME_IDENTIFIER
    :annotation: = identifier
 
    
 
-.. data:: PLACEHOLDER_FOR_SUBSTITUTION
+.. py:data:: PLACEHOLDER_FOR_SUBSTITUTION
    :annotation: = <IMAGE>
 
    
 
-.. function:: load_features(args: argparse.Namespace) -> embeddings.LabelledFeatures
+.. py:function:: load_features(args: argparse.Namespace) -> embeddings.LabelledFeatures
 
-   Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments
+   Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments.
 
 

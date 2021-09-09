@@ -53,14 +53,17 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 
-<div class="viewcode-block" id="create_sprite_at"><a class="viewcode-back" href="../../autoapi/visualize/_image_sprite/index.html#visualize._image_sprite.create_sprite_at">[docs]</a><span class="k">def</span> <span class="nf">create_sprite_at</span><span class="p">(</span><span class="n">image_paths</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">sprite_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">image_size_in_sprite</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Creates an image-sprite in the format expected by TensorBoard</span>
+<div class="viewcode-block" id="create_sprite_at"><a class="viewcode-back" href="../../autoapi/visualize/_image_sprite/index.html#visualize._image_sprite.create_sprite_at">[docs]</a><span class="k">def</span> <span class="nf">create_sprite_at</span><span class="p">(</span>
+    <span class="n">image_paths</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">sprite_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">image_size_in_sprite</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Creates an image-sprite in the format expected by TensorBoard.</span>
 
-<span class="sd">    This image sprite is a tiled (like a checkboard) version of small identically-sized images (patches) in the order:</span>
+<span class="sd">    This image sprite is a tiled (like a checkboard) version of small identically-sized images (patches) in the order::</span>
+
 <span class="sd">      left-&gt;right (first)</span>
 <span class="sd">      top-&gt;down (second).</span>
 
-<span class="sd">    The sprite MUST always be of square dimensionality, so any unused patches are left blank at the end.</span>
+<span class="sd">    The sprite **must** always be of square dimensionality, so any unused patches are left blank at the end.</span>
 
 <span class="sd">    :param image_paths: a series of image-paths for each image that should exist in the sprite (in that order)</span>
 <span class="sd">    :param sprite_path: the path to write the sprite to</span>
@@ -70,7 +73,9 @@
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">)):</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">image_paths</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add image </span><span class="si">{}</span><span class="s2"> of </span><span class="si">{}</span><span class="s2"> to sprite from </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">),</span> <span class="n">path</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Add image </span><span class="si">{}</span><span class="s2"> of </span><span class="si">{}</span><span class="s2"> to sprite from </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">),</span> <span class="n">path</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_read_and_scale</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">image_size_in_sprite</span><span class="p">))</span>
 
     <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">sprite_path</span><span class="p">,</span> <span class="n">_create_sprite</span><span class="p">(</span><span class="n">images</span><span class="p">))</span></div>
@@ -81,7 +86,11 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">_read_with_unicode_path</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">scale_to_size</span><span class="p">)</span>
     <span class="k">except</span> <span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">error</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;An error occurred reading-and-scaling, replacing with an empty thumbnail: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;An error occurred reading-and-scaling, replacing with an empty thumbnail: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">path</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">scale_to_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scale_to_size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
@@ -93,31 +102,31 @@
 <span class="sd">    See https://stackoverflow.com/questions/43185605/how-do-i-read-an-image-from-a-path-with-unicode-characters/43185606</span>
 
 <span class="sd">    :param path: to be opened</span>
-<span class="sd">    :return: an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.</span>
+<span class="sd">    :returns: an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imdecode</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_UNCHANGED</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_create_sprite</span><span class="p">(</span><span class="n">images</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Creates the sprite by tiling into a square image, and adding any padding as needed to complete the square&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Creates the sprite by tiling into a square image, and adding any padding as needed to complete the square.&quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">_convert_grayscale_to_bgr_if_needed</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="c1"># Number of images in width and height</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">_calc_num_images_in_an_axis</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">number_images</span> <span class="o">=</span> <span class="n">_number_images_in_an_axis</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="n">data_padded</span> <span class="o">=</span> <span class="n">_pad_as_needed</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_reshape_into_tiled_square</span><span class="p">(</span><span class="n">data_padded</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">data_padded</span> <span class="o">=</span> <span class="n">_pad_as_needed</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">number_images</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_reshape_into_tiled_square</span><span class="p">(</span><span class="n">data_padded</span><span class="p">,</span> <span class="n">number_images</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_calc_num_images_in_an_axis</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Calculates the number of images to place along one axis of the square (i.e. width or height)&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">_number_images_in_an_axis</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the number of images to place along one axis of the square (i.e. width or height).&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
 
 
 <span class="k">def</span> <span class="nf">_pad_as_needed</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Adds additional empty images (0 pixels) to ensure there is correct number to complete the square sprite image&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Adds additional empty images (0 pixels) to ensure there is correct number to complete the square sprite image.&quot;&quot;&quot;</span>
 
     <span class="c1"># Number of voxels to pad (respectively before and after) in each dimension</span>
     <span class="n">padding</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -133,7 +142,7 @@
 
 
 <span class="k">def</span> <span class="nf">_reshape_into_tiled_square</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Manipulate the shape of the numpy arrays so it corresponds to one large square 3-channel image&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Manipulate the shape of the numpy arrays so it corresponds to one large square 3-channel image.&quot;&quot;&quot;</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 
@@ -152,7 +161,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -178,7 +187,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

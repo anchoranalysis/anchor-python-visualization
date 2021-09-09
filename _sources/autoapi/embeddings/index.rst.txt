@@ -1,11 +1,11 @@
-:mod:`embeddings`
-=================
+:py:mod:`embeddings`
+====================
 
 .. py:module:: embeddings
 
 .. autoapi-nested-parse::
 
-   Methods for loading embeddings and determining labels
+   Methods for loading embeddings and determining labels.
 
 
 
@@ -32,60 +32,26 @@ Classes
 
 
 
-Functions
-~~~~~~~~~
 
-.. autoapisummary::
-
-   embeddings.load_features
-
-
-
-Attributes
-~~~~~~~~~~
-
-.. autoapisummary::
-
-   embeddings.PLACEHOLDER_FOR_SUBSTITUTION
-   embeddings.COLUMN_NAME_IDENTIFIER
-
-
-.. class:: LabelledFeatures(features: pandas.DataFrame, labels: pandas.Series, image_paths: Optional[pandas.Series] = None)
-
+.. py:class:: LabelledFeatures(features: pandas.DataFrame, labels: pandas.Series, image_paths: Optional[pandas.Series] = None)
 
    Maintains separate data-frames for embeddings and labels, but with the same number and order of rows
 
-   .. method:: number_items(self) -> int
+   .. py:method:: number_items(self) -> int
 
-      Returns the number of items (i.e. rows) in the data-frames/series
+      Returns the number of items (i.e. rows) in the data-frames/series.
 
 
-   .. method:: sample_without_replacement(self, sample_size: int) -> LabelledFeatures
+   .. py:method:: sample_without_replacement(self, sample_size: int) -> LabelledFeatures
 
-      Samples without replacement (taking identical rows from each member data-frame/series)
+      Samples without replacement (taking identical rows from each member data-frame/series).
 
       :param sample_size: number of items to sample
-      :raises InsufficientRowsException: if there are fewer rows available than n
+      :raises InsufficientRowsException: if there are fewer rows available than :code:`sample_size`
 
 
 
-.. function:: load_features(args: argparse.Namespace) -> embeddings.LabelledFeatures
-
-   Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments
-
-
-.. data:: PLACEHOLDER_FOR_SUBSTITUTION
-   :annotation: = <IMAGE>
-
-   
-
-.. data:: COLUMN_NAME_IDENTIFIER
-   :annotation: = identifier
-
-   
-
-.. exception:: InsufficientRowsException
-
+.. py:exception:: InsufficientRowsException
 
    Bases: :py:obj:`Exception`
 

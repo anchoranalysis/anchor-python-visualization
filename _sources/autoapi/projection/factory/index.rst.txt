@@ -1,5 +1,5 @@
-:mod:`projection.factory`
-=========================
+:py:mod:`projection.factory`
+============================
 
 .. py:module:: projection.factory
 
@@ -31,17 +31,17 @@ Attributes
    projection.factory.IDENTIFIERS
 
 
-.. data:: DEFAULT_IDENTIFIER
+.. py:data:: DEFAULT_IDENTIFIER
    :annotation: = t-SNE
 
    
 
-.. data:: IDENTIFIERS
+.. py:data:: IDENTIFIERS
    :annotation: = ['t-SNE', 'PCA', 'none']
 
    
 
-.. function:: create_projector(identifier: str) -> Optional[projection.projector.Projector]
+.. py:function:: create_projector(identifier: str) -> Optional[projection.projector.Projector]
 
    Creates a projection method from an identifier.
 

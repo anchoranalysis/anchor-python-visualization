@@ -1,5 +1,5 @@
-:mod:`visualize.visualize_features_scheme`
-==========================================
+:py:mod:`visualize.visualize_features_scheme`
+=============================================
 
 .. py:module:: visualize.visualize_features_scheme
 
@@ -22,13 +22,13 @@ Classes
 
 
 
-.. class:: VisualizeFeaturesScheme
+.. py:class:: VisualizeFeaturesScheme
 
    Bases: :py:obj:`abc.ABC`
 
    An method to visualize a set of feature-values.
 
-   .. method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
+   .. py:method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
 
       Performs some form of visualization of embeddings.
 

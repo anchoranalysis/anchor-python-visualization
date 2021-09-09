@@ -1,7 +1,7 @@
 :orphan:
 
-:mod:`projection._tsne`
-=======================
+:py:mod:`projection._tsne`
+==========================
 
 .. py:module:: projection._tsne
 
@@ -32,12 +32,12 @@ Attributes
    projection._tsne.MAX_NUMBER_FEATURES_TSNE
 
 
-.. data:: MAX_NUMBER_FEATURES_TSNE
+.. py:data:: MAX_NUMBER_FEATURES_TSNE
    :annotation: = 50
 
    
 
-.. class:: TSNEProjection
+.. py:class:: TSNEProjection
 
    Bases: :py:obj:`projection.projector.Projector`
 
@@ -45,12 +45,7 @@ Attributes
 
    It produces embeddings TSNE0 and TSNE1.
 
-   .. method:: project(self, features: pandas.DataFrame) -> pandas.DataFrame
-
-      Performs projection, while preserving a data-frame with identical row names.
-
-      :param features: data_frame containing only numerical embeddings (as columns) and with labelled row.names
-      :return: a data-frame of embeddings with identical order and row names, but changed columns.
+   .. py:method:: project(self, features: pandas.DataFrame) -> pandas.DataFrame
 
 
 

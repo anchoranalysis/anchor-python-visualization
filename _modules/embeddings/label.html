@@ -56,8 +56,13 @@
 <div class="viewcode-block" id="LabelledFeatures"><a class="viewcode-back" href="../../autoapi/embeddings/label/index.html#embeddings.LabelledFeatures">[docs]</a><span class="k">class</span> <span class="nc">LabelledFeatures</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Maintains separate data-frames for embeddings and labels, but with the same number and order of rows&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Constructor</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">features</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span>
+        <span class="n">image_paths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor.</span>
 
 <span class="sd">        :param features: data-frame containing only feature-values (all numeric), and with each row assigned an</span>
 <span class="sd">        identifier</span>
@@ -71,19 +76,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">image_paths</span> <span class="o">=</span> <span class="n">image_paths</span>
 
 <div class="viewcode-block" id="LabelledFeatures.number_items"><a class="viewcode-back" href="../../autoapi/embeddings/label/index.html#embeddings.LabelledFeatures.number_items">[docs]</a>    <span class="k">def</span> <span class="nf">number_items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the number of items (i.e. rows) in the data-frames/series&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Returns the number of items (i.e. rows) in the data-frames/series.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="LabelledFeatures.sample_without_replacement"><a class="viewcode-back" href="../../autoapi/embeddings/label/index.html#embeddings.LabelledFeatures.sample_without_replacement">[docs]</a>    <span class="k">def</span> <span class="nf">sample_without_replacement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;LabelledFeatures&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Samples without replacement (taking identical rows from each member data-frame/series)</span>
+        <span class="sd">&quot;&quot;&quot;Samples without replacement (taking identical rows from each member data-frame/series).</span>
 
 <span class="sd">        :param sample_size: number of items to sample</span>
-<span class="sd">        :raises InsufficientRowsException: if there are fewer rows available than n</span>
+<span class="sd">        :raises InsufficientRowsException: if there are fewer rows available than :code:`sample_size`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">number_rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_items</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">sample_size</span> <span class="o">&gt;</span> <span class="n">number_rows</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">InsufficientRowsException</span><span class="p">(</span>
-                <span class="s2">&quot;Cannot sample </span><span class="si">{}</span><span class="s2"> rows from a data-frame with only </span><span class="si">{}</span><span class="s2"> rows&quot;</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">,</span> <span class="n">number_rows</span>
+                <span class="s2">&quot;Cannot sample </span><span class="si">{}</span><span class="s2"> rows from a data-frame with only </span><span class="si">{}</span><span class="s2"> rows&quot;</span><span class="p">,</span>
+                <span class="n">sample_size</span><span class="p">,</span>
+                <span class="n">number_rows</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="n">sample_size</span> <span class="o">==</span> <span class="n">number_rows</span><span class="p">:</span>
             <span class="c1"># Nothing to do</span>
@@ -91,7 +98,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">indices</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">number_rows</span><span class="p">),</span> <span class="n">sample_size</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">LabelledFeatures</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">,</span> <span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_paths</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span></div></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">,</span> <span class="p">:],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image_paths</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span></div></div>
             <span class="p">)</span>
 </pre></div>
 
@@ -105,7 +114,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -131,7 +140,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

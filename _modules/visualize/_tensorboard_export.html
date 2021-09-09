@@ -66,7 +66,9 @@
 <div class="viewcode-block" id="FILENAME_IMAGE_SPRITE"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.FILENAME_IMAGE_SPRITE">[docs]</a><span class="n">FILENAME_IMAGE_SPRITE</span> <span class="o">=</span> <span class="s2">&quot;sprite.png&quot;</span></div>
 
 <span class="c1"># Max sprite size is apparently 8192 x 8192 pixels, so this is the maximum number of images that can be supported</span>
-<div class="viewcode-block" id="MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE">[docs]</a><span class="n">MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8192</span> <span class="o">//</span> <span class="n">IMAGE_SIZE_IN_SPRITE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="mi">8192</span> <span class="o">//</span> <span class="n">IMAGE_SIZE_IN_SPRITE</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
+<div class="viewcode-block" id="MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE">[docs]</a><span class="n">MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8192</span> <span class="o">//</span> <span class="n">IMAGE_SIZE_IN_SPRITE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span>
+    <span class="mi">8192</span> <span class="o">//</span> <span class="n">IMAGE_SIZE_IN_SPRITE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+<span class="p">)</span>
 
 
 <div class="viewcode-block" id="TensorBoardExport"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.TensorBoardExport">[docs]</a><span class="k">class</span> <span class="nc">TensorBoardExport</span><span class="p">(</span><span class="n">VisualizeFeaturesScheme</span><span class="p">):</span>
@@ -87,7 +89,9 @@
 <span class="sd">    https://medium.com/looka-engineering/how-to-visualize-feature-vectors-with-sprites-and-tensorflows-tensorboard-3950ca1fb2c7</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projector_method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">projection</span><span class="o">.</span><span class="n">Projector</span><span class="p">],</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">projector_method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">projection</span><span class="o">.</span><span class="n">Projector</span><span class="p">],</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor</span>
 
 <span class="sd">        :param projector_method: optional projection to reduce dimensionality before export</span>
@@ -96,6 +100,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_projector</span> <span class="o">=</span> <span class="n">projector_method</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_output_path</span> <span class="o">=</span> <span class="n">_create_dir_or_throw</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
 
+    <span class="c1"># Overriding a base class</span>
 <div class="viewcode-block" id="TensorBoardExport.visualize_data_frame"><a class="viewcode-back" href="../../autoapi/visualize/_tensorboard_export/index.html#visualize._tensorboard_export.TensorBoardExport.visualize_data_frame">[docs]</a>    <span class="k">def</span> <span class="nf">visualize_data_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">LabelledFeatures</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exporting tensorboard logs to: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_path</span><span class="p">))</span>
@@ -107,19 +112,29 @@
 
         <span class="n">_write_labels</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">path_metadata</span><span class="p">)</span>
 
-        <span class="n">_save_embedding_as_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_maybe_project</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">features</span><span class="p">),</span> <span class="n">path_features</span><span class="p">)</span>
+        <span class="n">_save_embedding_as_checkpoint</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_project</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">features</span><span class="p">),</span> <span class="n">path_features</span>
+        <span class="p">)</span>
 
-        <span class="n">projector_config</span> <span class="o">=</span> <span class="n">_create_projector_config</span><span class="p">(</span><span class="n">path_metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_create_sprite</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">image_paths</span><span class="p">))</span>
+        <span class="n">projector_config</span> <span class="o">=</span> <span class="n">_create_projector_config</span><span class="p">(</span>
+            <span class="n">path_metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_create_sprite</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">image_paths</span><span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="n">projector</span><span class="o">.</span><span class="n">visualize_embeddings</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_path</span><span class="p">,</span> <span class="n">projector_config</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_maybe_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_maybe_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_frame</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Apply a projection to the data-frame, if a projection is selected.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projector</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projector</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projector</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">data_frame</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">df</span>
+            <span class="k">return</span> <span class="n">data_frame</span>
 
     <span class="k">def</span> <span class="nf">_maybe_create_sprite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Creates a sprite image with thumbnails for many different images, if selected.</span>
+
+<span class="sd">        :param image_paths: if defined, paths to various images that are populated into the sprite in order</span>
+<span class="sd">        :returns: the path where the sprite was written, or None if no sprite was written.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">image_paths</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">sprite_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolved_path</span><span class="p">(</span><span class="n">FILENAME_IMAGE_SPRITE</span><span class="p">)</span>
             <span class="n">create_sprite_at</span><span class="p">(</span><span class="n">image_paths</span><span class="p">,</span> <span class="n">sprite_path</span><span class="p">,</span> <span class="n">IMAGE_SIZE_IN_SPRITE</span><span class="p">)</span>
@@ -128,16 +143,18 @@
             <span class="k">return</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_resolved_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_relative_to_log_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Resolves a path to the log-dir</span>
+        <span class="sd">&quot;&quot;&quot;Resolves a path to the log-dir.</span>
 
-<span class="sd">        :param path_relative_to_log_dir a path expressed relative only to the log dir</span>
-<span class="sd">        :return an absolute path</span>
+<span class="sd">        :param path_relative_to_log_dir: a path expressed relative only to the log dir</span>
+<span class="sd">        :returns: an absolute path</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_path</span><span class="p">,</span> <span class="n">path_relative_to_log_dir</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">_sample_if_needed</span><span class="p">(</span><span class="n">features</span><span class="p">:</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">LabelledFeatures</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">LabelledFeatures</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Randomly samples if needed to ensure num_rows(embeddings) &lt;=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">_sample_if_needed</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">:</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">LabelledFeatures</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">LabelledFeatures</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Randomly samples if needed to ensure :code:`num_rows(embeddings) &lt;=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE`&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">features</span><span class="o">.</span><span class="n">image_paths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Number of rows irrelevant as no sprite will be created, so exit early unchanged</span>
         <span class="k">return</span> <span class="n">features</span>
@@ -153,8 +170,10 @@
         <span class="k">return</span> <span class="n">features</span>
 
 
-<span class="k">def</span> <span class="nf">_create_projector_config</span><span class="p">(</span><span class="n">path_metadata</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path_sprite</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">projector</span><span class="o">.</span><span class="n">ProjectorConfig</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Creates a projector-config as needed to show the embedding in Tensorboard&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">_create_projector_config</span><span class="p">(</span>
+    <span class="n">path_metadata</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path_sprite</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">projector</span><span class="o">.</span><span class="n">ProjectorConfig</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Creates a projector-config as needed to show the embedding in Tensorboard.&quot;&quot;&quot;</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">projector</span><span class="o">.</span><span class="n">ProjectorConfig</span><span class="p">()</span>
     <span class="n">embedding</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">embeddings</span><span class="o">.</span><span class="n">add</span><span class="p">()</span>
     <span class="n">embedding</span><span class="o">.</span><span class="n">tensor_name</span> <span class="o">=</span> <span class="s2">&quot;embedding/.ATTRIBUTES/VARIABLE_VALUE&quot;</span>
@@ -168,7 +187,7 @@
 
 
 <span class="k">def</span> <span class="nf">_save_embedding_as_checkpoint</span><span class="p">(</span><span class="n">embedding</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Saves the feature embedding as a checkpointed tensor&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Saves the feature embedding as a checkpointed tensor.&quot;&quot;&quot;</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">embedding</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()))</span>
     <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Checkpoint</span><span class="p">(</span><span class="n">embedding</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
     <span class="n">checkpoint</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -176,7 +195,9 @@
 
 <span class="k">def</span> <span class="nf">_write_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Writes each label on a separate line to a file&quot;&quot;&quot;</span>
-    <span class="n">labels</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Label&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s2">&quot;Identifier&quot;</span><span class="p">)</span>
+    <span class="n">labels</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+        <span class="n">path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Label&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index_label</span><span class="o">=</span><span class="s2">&quot;Identifier&quot;</span>
+    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_create_dir_or_throw</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -200,7 +221,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -226,7 +247,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

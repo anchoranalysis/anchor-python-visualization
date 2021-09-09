@@ -1,7 +1,7 @@
 :orphan:
 
-:mod:`visualize._plot_features_projection`
-==========================================
+:py:mod:`visualize._plot_features_projection`
+=============================================
 
 .. py:module:: visualize._plot_features_projection
 
@@ -24,14 +24,13 @@ Classes
 
 
 
-.. class:: PlotFeaturesProjection(projector: projection.Projector)
-
+.. py:class:: PlotFeaturesProjection(projector: projection.Projector)
 
    Bases: :py:obj:`visualize.visualize_features_scheme.VisualizeFeaturesScheme`
 
    Projects the feature space onto two dimensions and plots
 
-   .. method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
+   .. py:method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
 
       Performs some form of visualization of embeddings.
 

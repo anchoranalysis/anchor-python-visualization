@@ -1,11 +1,11 @@
-:mod:`visualize`
-================
+:py:mod:`visualize`
+===================
 
 .. py:module:: visualize
 
 .. autoapi-nested-parse::
 
-   Different schemes for visualizing embeddings or other types of data
+   Different schemes for visualizing embeddings or other types of data.
 
 
 
@@ -49,7 +49,7 @@ Attributes
    visualize.DEFAULT_IDENTIFIER
 
 
-.. function:: create_method(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
+.. py:function:: create_method(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
 
    Creates a visualize-embeddings method from an identifier.
 
@@ -59,23 +59,23 @@ Attributes
    :returns: a newly created instance corresponding to the identifier.
 
 
-.. data:: IDENTIFIERS
+.. py:data:: IDENTIFIERS
    :annotation: = ['plot', 'TensorBoard']
 
    
 
-.. data:: DEFAULT_IDENTIFIER
+.. py:data:: DEFAULT_IDENTIFIER
    :annotation: = plot
 
    
 
-.. class:: VisualizeFeaturesScheme
+.. py:class:: VisualizeFeaturesScheme
 
    Bases: :py:obj:`abc.ABC`
 
    An method to visualize a set of feature-values.
 
-   .. method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
+   .. py:method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
 
       Performs some form of visualization of embeddings.
 

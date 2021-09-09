@@ -1,7 +1,7 @@
 :orphan:
 
-:mod:`visualize._image_sprite`
-==============================
+:py:mod:`visualize._image_sprite`
+=================================
 
 .. py:module:: visualize._image_sprite
 
@@ -24,15 +24,16 @@ Functions
 
 
 
-.. function:: create_sprite_at(image_paths: pandas.Series, sprite_path: str, image_size_in_sprite: Tuple[int, int]) -> None
+.. py:function:: create_sprite_at(image_paths: pandas.Series, sprite_path: str, image_size_in_sprite: Tuple[int, int]) -> None
 
-   Creates an image-sprite in the format expected by TensorBoard
+   Creates an image-sprite in the format expected by TensorBoard.
 
-   This image sprite is a tiled (like a checkboard) version of small identically-sized images (patches) in the order:
+   This image sprite is a tiled (like a checkboard) version of small identically-sized images (patches) in the order::
+
      left->right (first)
      top->down (second).
 
-   The sprite MUST always be of square dimensionality, so any unused patches are left blank at the end.
+   The sprite **must** always be of square dimensionality, so any unused patches are left blank at the end.
 
    :param image_paths: a series of image-paths for each image that should exist in the sprite (in that order)
    :param sprite_path: the path to write the sprite to

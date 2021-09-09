@@ -40,7 +40,7 @@
             
   <section id="module-embeddings">
 <span id="embeddings"></span><h1><a class="reference internal" href="#module-embeddings" title="embeddings"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a><a class="headerlink" href="#module-embeddings" title="Permalink to this headline">¶</a></h1>
-<p>Methods for loading embeddings and determining labels</p>
+<p>Methods for loading embeddings and determining labels.</p>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -66,78 +66,31 @@
 </tr>
 </tbody>
 </table>
-</section>
-<section id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="load_features/index.html#module-embeddings.load_features" title="embeddings.load_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_features</span></code></a></p></td>
-<td><p>Loading and labelling embeddings.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#embeddings.PLACEHOLDER_FOR_SUBSTITUTION" title="embeddings.PLACEHOLDER_FOR_SUBSTITUTION"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PLACEHOLDER_FOR_SUBSTITUTION</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#embeddings.COLUMN_NAME_IDENTIFIER" title="embeddings.COLUMN_NAME_IDENTIFIER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COLUMN_NAME_IDENTIFIER</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
 <dl class="py class">
 <dt class="sig sig-object py" id="embeddings.LabelledFeatures">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">LabelledFeatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.0.dev0+1722.g4dcdec06a4)"><span class="pre">pandas.DataFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v1.3.0.dev0+1722.g4dcdec06a4)"><span class="pre">pandas.Series</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_paths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v1.3.0.dev0+1722.g4dcdec06a4)"><span class="pre">pandas.Series</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/embeddings/label.html#LabelledFeatures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings.LabelledFeatures" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">LabelledFeatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.0.dev0+629.g59a06fdc14)"><span class="pre">pandas.DataFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v1.4.0.dev0+629.g59a06fdc14)"><span class="pre">pandas.Series</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_paths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v1.4.0.dev0+629.g59a06fdc14)"><span class="pre">pandas.Series</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/embeddings/label.html#LabelledFeatures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings.LabelledFeatures" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maintains separate data-frames for embeddings and labels, but with the same number and order of rows</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="embeddings.LabelledFeatures.number_items">
-<span class="sig-name descname"><span class="pre">number_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><a class="headerlink" href="#embeddings.LabelledFeatures.number_items" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the number of items (i.e. rows) in the data-frames/series</p>
+<span class="sig-name descname"><span class="pre">number_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#embeddings.LabelledFeatures.number_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of items (i.e. rows) in the data-frames/series.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="embeddings.LabelledFeatures.sample_without_replacement">
-<span class="sig-name descname"><span class="pre">sample_without_replacement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#embeddings.LabelledFeatures" title="embeddings.LabelledFeatures"><span class="pre">LabelledFeatures</span></a><a class="headerlink" href="#embeddings.LabelledFeatures.sample_without_replacement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Samples without replacement (taking identical rows from each member data-frame/series)</p>
+<span class="sig-name descname"><span class="pre">sample_without_replacement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#embeddings.LabelledFeatures" title="embeddings.LabelledFeatures"><span class="pre">LabelledFeatures</span></a></span></span><a class="headerlink" href="#embeddings.LabelledFeatures.sample_without_replacement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Samples without replacement (taking identical rows from each member data-frame/series).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>sample_size</strong> – number of items to sample</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="#embeddings.InsufficientRowsException" title="embeddings.InsufficientRowsException"><strong>InsufficientRowsException</strong></a> – if there are fewer rows available than n</p>
+<dd class="field-even"><p><a class="reference internal" href="#embeddings.InsufficientRowsException" title="embeddings.InsufficientRowsException"><strong>InsufficientRowsException</strong></a> – if there are fewer rows available than <code class="code docutils literal notranslate"><span class="pre">sample_size</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="embeddings.load_features">
-<span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">load_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Namespace" title="(in Python v3.9)"><span class="pre">argparse.Namespace</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#embeddings.LabelledFeatures" title="embeddings.LabelledFeatures"><span class="pre">embeddings.LabelledFeatures</span></a><a class="headerlink" href="#embeddings.load_features" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="embeddings.PLACEHOLDER_FOR_SUBSTITUTION">
-<span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">PLACEHOLDER_FOR_SUBSTITUTION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;IMAGE&gt;</span></em><a class="reference internal" href="../../_modules/embeddings/load_features.html#PLACEHOLDER_FOR_SUBSTITUTION"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings.PLACEHOLDER_FOR_SUBSTITUTION" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="embeddings.COLUMN_NAME_IDENTIFIER">
-<span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">COLUMN_NAME_IDENTIFIER</span></span><em class="property"> <span class="pre">=</span> <span class="pre">identifier</span></em><a class="reference internal" href="../../_modules/embeddings/load_features.html#COLUMN_NAME_IDENTIFIER"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings.COLUMN_NAME_IDENTIFIER" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="embeddings.InsufficientRowsException">
@@ -162,17 +115,12 @@
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#package-contents">Package Contents</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-<li><a class="reference internal" href="#functions">Functions</a></li>
-<li><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
 <li><a class="reference internal" href="#embeddings.LabelledFeatures">LabelledFeatures</a><ul>
 <li><a class="reference internal" href="#embeddings.LabelledFeatures.number_items">number_items</a></li>
 <li><a class="reference internal" href="#embeddings.LabelledFeatures.sample_without_replacement">sample_without_replacement</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#embeddings.load_features">load_features</a></li>
-<li><a class="reference internal" href="#embeddings.PLACEHOLDER_FOR_SUBSTITUTION">PLACEHOLDER_FOR_SUBSTITUTION</a></li>
-<li><a class="reference internal" href="#embeddings.COLUMN_NAME_IDENTIFIER">COLUMN_NAME_IDENTIFIER</a></li>
 <li><a class="reference internal" href="#embeddings.InsufficientRowsException">InsufficientRowsException</a></li>
 </ul>
 </li>
@@ -193,7 +141,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -218,7 +166,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

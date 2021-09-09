@@ -1,7 +1,7 @@
 :orphan:
 
-:mod:`visualize._tensorboard_export`
-====================================
+:py:mod:`visualize._tensorboard_export`
+=======================================
 
 .. py:module:: visualize._tensorboard_export
 
@@ -36,33 +36,32 @@ Attributes
    visualize._tensorboard_export.MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE
 
 
-.. data:: IMAGE_SIZE_IN_SPRITE
+.. py:data:: IMAGE_SIZE_IN_SPRITE
    :annotation: = [64, 64]
 
    
 
-.. data:: FILENAME_METADATA
+.. py:data:: FILENAME_METADATA
    :annotation: = metadata.tsv
 
    
 
-.. data:: FILENAME_FEATURES
+.. py:data:: FILENAME_FEATURES
    :annotation: = embeddings.ckpt
 
    
 
-.. data:: FILENAME_IMAGE_SPRITE
+.. py:data:: FILENAME_IMAGE_SPRITE
    :annotation: = sprite.png
 
    
 
-.. data:: MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE
+.. py:data:: MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE
    
 
    
 
-.. class:: TensorBoardExport(projector_method: Optional[projection.Projector], output_path: str)
-
+.. py:class:: TensorBoardExport(projector_method: Optional[projection.Projector], output_path: str)
 
    Bases: :py:obj:`visualize.visualize_features_scheme.VisualizeFeaturesScheme`
 
@@ -82,7 +81,7 @@ Attributes
    Thanks to a medium.com post by Andrew B. Martin for the inspiration
    https://medium.com/looka-engineering/how-to-visualize-feature-vectors-with-sprites-and-tensorflows-tensorboard-3950ca1fb2c7
 
-   .. method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
+   .. py:method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
 
       Performs some form of visualization of embeddings.
 

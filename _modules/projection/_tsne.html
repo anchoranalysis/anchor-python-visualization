@@ -62,6 +62,7 @@
 <span class="sd">    It produces embeddings TSNE0 and TSNE1.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="c1"># Overriding a base class</span>
 <div class="viewcode-block" id="TSNEProjection.project"><a class="viewcode-back" href="../../autoapi/projection/_tsne/index.html#projection._tsne.TSNEProjection.project">[docs]</a>    <span class="k">def</span> <span class="nf">project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 
         <span class="c1"># If there are many embeddings, then use PCA first before T-SNE as per recommendation in documentation</span>
@@ -86,7 +87,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -112,7 +113,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

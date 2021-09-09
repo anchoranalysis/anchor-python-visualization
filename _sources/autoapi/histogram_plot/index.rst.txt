@@ -1,5 +1,5 @@
-:mod:`histogram_plot`
-=====================
+:py:mod:`histogram_plot`
+========================
 
 .. py:module:: histogram_plot
 

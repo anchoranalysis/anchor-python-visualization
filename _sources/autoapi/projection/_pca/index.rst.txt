@@ -1,7 +1,7 @@
 :orphan:
 
-:mod:`projection._pca`
-======================
+:py:mod:`projection._pca`
+=========================
 
 .. py:module:: projection._pca
 
@@ -24,14 +24,18 @@ Classes
 
 
 
-.. class:: PCAProjection(number_components: int = 2)
-
+.. py:class:: PCAProjection(number_components: int = 2)
 
    Bases: :py:obj:`projection.projector.Projector`
 
    Projects using PCA to a lower dimensional feature-space. Produces embeddings PCA0, PCA1, PCA2 etc.
 
-   .. method:: project(self, features: pandas.DataFrame) -> pandas.DataFrame
+   .. py:method:: project(self, features: pandas.DataFrame) -> pandas.DataFrame
+
+      Performs projection, while preserving a data-frame with identical row names.
+
+      :param features: data_frame containing only numerical embeddings (as columns) and with labelled row.names
+      :returns: a data-frame of embeddings with identical order and row names, but changed columns.
 
 
 

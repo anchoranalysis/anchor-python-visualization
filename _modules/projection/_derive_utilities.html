@@ -50,18 +50,22 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 
-<div class="viewcode-block" id="derive_projected"><a class="viewcode-back" href="../../autoapi/projection/_derive_utilities/index.html#projection._derive_utilities.derive_projected">[docs]</a><span class="k">def</span> <span class="nf">derive_projected</span><span class="p">(</span><span class="n">unprojected</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">projected</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">feature_prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="derive_projected"><a class="viewcode-back" href="../../autoapi/projection/_derive_utilities/index.html#projection._derive_utilities.derive_projected">[docs]</a><span class="k">def</span> <span class="nf">derive_projected</span><span class="p">(</span>
+    <span class="n">unprojected</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">projected</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">feature_prefix</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts a projected numpy array (derived from a data-frame) back into data-frame format with row.names</span>
 
 <span class="sd">    :param unprojected: the original data-frame from which the projection was derived</span>
-<span class="sd">    :param projected: the projection derived from `unprojected`</span>
-<span class="sd">    :param feature_prefix: a prefix to use in feature names to become `feature_prefix0`, `feature_prefix1` etc.</span>
-<span class="sd">    :return: returns a data-frame with identical row order and sze to df_orig but with embeddings from projection</span>
+<span class="sd">    :param projected: the projection derived from :code:`unprojected`</span>
+<span class="sd">    :param feature_prefix: a prefix to use in feature names e.g. :code:`feature_prefix0`, :code:`feature_prefix1` etc.</span>
+<span class="sd">    :returns: a data-frame with identical row order and size to :code:`df_orig` but with embeddings from the projection.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">num_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">projected</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">num_columns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">projected</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-        <span class="n">projected</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="si">%s%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">feature_prefix</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_cols</span><span class="p">)],</span> <span class="n">index</span><span class="o">=</span><span class="n">unprojected</span><span class="o">.</span><span class="n">index</span></div>
+        <span class="n">projected</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="si">%s%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">feature_prefix</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_columns</span><span class="p">)],</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">unprojected</span><span class="o">.</span><span class="n">index</span><span class="p">,</span></div>
     <span class="p">)</span>
 </pre></div>
 
@@ -75,7 +79,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -101,7 +105,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>
