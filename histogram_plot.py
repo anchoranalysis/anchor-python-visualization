@@ -12,7 +12,7 @@ Example Usage
 
 ::
 
-    histogram_plot.py D:\somedirectory\features.csv
+    histogram_plot.py --file_path_to_csv D:\somedirectory\features.csv
 
 """
 
