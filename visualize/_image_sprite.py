@@ -12,14 +12,17 @@ import numpy as np
 import pandas as pd
 
 
-def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_sprite: Tuple[int, int]) -> None:
-    """Creates an image-sprite in the format expected by TensorBoard
+def create_sprite_at(
+    image_paths: pd.Series, sprite_path: str, image_size_in_sprite: Tuple[int, int]
+) -> None:
+    """Creates an image-sprite in the format expected by TensorBoard.
 
-    This image sprite is a tiled (like a checkboard) version of small identically-sized images (patches) in the order:
+    This image sprite is a tiled (like a checkboard) version of small identically-sized images (patches) in the order::
+
       left->right (first)
       top->down (second).
 
-    The sprite MUST always be of square dimensionality, so any unused patches are left blank at the end.
+    The sprite **must** always be of square dimensionality, so any unused patches are left blank at the end.
 
     :param image_paths: a series of image-paths for each image that should exist in the sprite (in that order)
     :param sprite_path: the path to write the sprite to
@@ -29,7 +32,9 @@ def create_sprite_at(image_paths: pd.Series, sprite_path: str, image_size_in_spr
     for i in range(len(image_paths)):
         path = image_paths[i]
 
-        print("Add image {} of {} to sprite from {}".format(i + 1, len(image_paths), path))
+        print(
+            "Add image {} of {} to sprite from {}".format(i + 1, len(image_paths), path)
+        )
         images.append(_read_and_scale(path, image_size_in_sprite))
 
     cv2.imwrite(sprite_path, _create_sprite(images))
@@ -40,7 +45,11 @@ def _read_and_scale(path: str, scale_to_size: Tuple[int, int]) -> np.array:
     try:
         return cv2.resize(_read_with_unicode_path(path), scale_to_size)
     except (cv2.error, OSError) as err:
-        print("An error occurred reading-and-scaling, replacing with an empty thumbnail: {}".format(path))
+        print(
+            "An error occurred reading-and-scaling, replacing with an empty thumbnail: {}".format(
+                path
+            )
+        )
         print(err)
         return np.zeros((scale_to_size[0], scale_to_size[1], 3), np.uint8)
 
@@ -52,31 +61,31 @@ def _read_with_unicode_path(path: str) -> str:
     See https://stackoverflow.com/questions/43185605/how-do-i-read-an-image-from-a-path-with-unicode-characters/43185606
 
     :param path: to be opened
-    :return: an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.
+    :returns: an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.
     """
     return cv2.imdecode(np.fromfile(path, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
 
 
 def _create_sprite(images: List[np.array]) -> np.array:
-    """Creates the sprite by tiling into a square image, and adding any padding as needed to complete the square"""
+    """Creates the sprite by tiling into a square image, and adding any padding as needed to complete the square."""
     data = np.array(images)
 
     data = _convert_grayscale_to_bgr_if_needed(data)
 
     # Number of images in width and height
-    n = _calc_num_images_in_an_axis(data)
+    number_images = _number_images_in_an_axis(data)
 
-    data_padded = _pad_as_needed(data, n)
-    return _reshape_into_tiled_square(data_padded, n)
+    data_padded = _pad_as_needed(data, number_images)
+    return _reshape_into_tiled_square(data_padded, number_images)
 
 
-def _calc_num_images_in_an_axis(data: np.array) -> int:
-    """Calculates the number of images to place along one axis of the square (i.e. width or height)"""
+def _number_images_in_an_axis(data: np.array) -> int:
+    """Calculates the number of images to place along one axis of the square (i.e. width or height)."""
     return int(np.ceil(np.sqrt(data.shape[0])))
 
 
 def _pad_as_needed(data: np.array, n: int) -> np.array:
-    """Adds additional empty images (0 pixels) to ensure there is correct number to complete the square sprite image"""
+    """Adds additional empty images (0 pixels) to ensure there is correct number to complete the square sprite image."""
 
     # Number of voxels to pad (respectively before and after) in each dimension
     padding = ((0, n ** 2 - data.shape[0]), (0, 0), (0, 0), (0, 0))
@@ -92,7 +101,7 @@ def _convert_grayscale_to_bgr_if_needed(data: np.array) -> np.array:
 
 
 def _reshape_into_tiled_square(data: np.array, n: int):
-    """Manipulate the shape of the numpy arrays so it corresponds to one large square 3-channel image"""
+    """Manipulate the shape of the numpy arrays so it corresponds to one large square 3-channel image."""
 
     data = data.reshape((n, n) + data.shape[1:])
 

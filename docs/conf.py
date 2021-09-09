@@ -44,7 +44,13 @@ extensions = [
 # See https://sphinx-autoapi.readthedocs.io/en/latest/reference/config.html#advanced-options
 autoapi_type = "python"
 autoapi_dirs = ["../"]
-autoapi_options = ["members", "undoc-members", "show-inheritance", "show-module-summary", "imported-members"]
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "imported-members",
+]
 autoapi_ignore = ["*docs/*", "*test/*"]
 
 intersphinx_mapping = {

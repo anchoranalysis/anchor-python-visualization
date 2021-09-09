@@ -17,7 +17,9 @@ DEFAULT_IDENTIFIER = "plot"
 
 
 def create_method(
-    identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]
+    identifier: Optional[str],
+    projector: Optional[projection.Projector],
+    output_path: Optional[str],
 ) -> VisualizeFeaturesScheme:
     """
     Creates a visualize-embeddings method from an identifier.

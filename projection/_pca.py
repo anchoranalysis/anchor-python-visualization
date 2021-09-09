@@ -22,12 +22,15 @@ class PCAProjection(Projector):
         """
         self.number_components = number_components
 
+    # Overriding a base class
     def project(self, features: pd.DataFrame) -> pd.DataFrame:
 
         pca = decomposition.PCA(n_components=self.number_components)
         projection = pca.fit_transform(features)
 
-        print("Total Explained variation: {}".format(pca.explained_variance_ratio_.sum()))
+        print(
+            "Total Explained variation: {}".format(pca.explained_variance_ratio_.sum())
+        )
 
         # Convert back into a data-frame, assigning feature-names for each component
         return derive_projected(features, projection, "PCA")

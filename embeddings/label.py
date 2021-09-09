@@ -15,8 +15,13 @@ import pandas as pd
 class LabelledFeatures:
     """Maintains separate data-frames for embeddings and labels, but with the same number and order of rows"""
 
-    def __init__(self, features: pd.DataFrame, labels: pd.Series, image_paths: Optional[pd.Series] = None):
-        """Constructor
+    def __init__(
+        self,
+        features: pd.DataFrame,
+        labels: pd.Series,
+        image_paths: Optional[pd.Series] = None,
+    ):
+        """Constructor.
 
         :param features: data-frame containing only feature-values (all numeric), and with each row assigned an
         identifier
@@ -30,19 +35,21 @@ class LabelledFeatures:
         self.image_paths = image_paths
 
     def number_items(self) -> int:
-        """Returns the number of items (i.e. rows) in the data-frames/series"""
+        """Returns the number of items (i.e. rows) in the data-frames/series."""
         return len(self.features.index)
 
     def sample_without_replacement(self, sample_size: int) -> "LabelledFeatures":
-        """Samples without replacement (taking identical rows from each member data-frame/series)
+        """Samples without replacement (taking identical rows from each member data-frame/series).
 
         :param sample_size: number of items to sample
-        :raises InsufficientRowsException: if there are fewer rows available than n
+        :raises InsufficientRowsException: if there are fewer rows available than :code:`sample_size`
         """
         number_rows = self.number_items()
         if sample_size > number_rows:
             raise InsufficientRowsException(
-                "Cannot sample {} rows from a data-frame with only {} rows", sample_size, number_rows
+                "Cannot sample {} rows from a data-frame with only {} rows",
+                sample_size,
+                number_rows,
             )
         elif sample_size == number_rows:
             # Nothing to do
@@ -50,5 +57,7 @@ class LabelledFeatures:
         else:
             indices = random.sample(range(number_rows), sample_size)
             return LabelledFeatures(
-                self.features.iloc[indices, :], self.labels.iloc[indices], self.image_paths.iloc[indices]
+                self.features.iloc[indices, :],
+                self.labels.iloc[indices],
+                self.image_paths.iloc[indices],
             )
