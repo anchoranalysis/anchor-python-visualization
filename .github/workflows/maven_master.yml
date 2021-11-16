@@ -28,11 +28,10 @@ jobs:
         sudo apt install pandoc
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install sphinx sphinx-autoapi
+        pip install pytest coverage pytest-cov tox sphinx sphinx-autoapi
     - name: Build sphinx documentation
       run: |
-        cd docs
-        make html
+        tox -e docs
         
         # Add a .nojekyll file so the directories prefixed with an underscore from sphinx e.g. _static are transferred correctly.
         echo "" > _build/html/.nojekyll
@@ -66,11 +65,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        pip install coverage pytest
+        pip install pytest coverage pytest-cov tox sphinx sphinx-autoapi
     - name: Test with pytest and make coverage
       run: |
-        coverage run -m pytest
-        coverage xml
+        tox
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
