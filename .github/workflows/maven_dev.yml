@@ -57,7 +57,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        pip install pytest coverage pytest-cov
+        pip install pytest coverage pytest-cov tox
     - name: Test with pytest and make coverage
       run: |
         tox
