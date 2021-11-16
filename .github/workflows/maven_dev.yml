@@ -61,8 +61,6 @@ jobs:
     - name: Test with pytest and make coverage
       run: |
         tox
-        #coverage run -m pytest
-        #coverage xml
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
