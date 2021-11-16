@@ -12,12 +12,11 @@
 #
 # import os
 # import sys
-# sys.path.insert(0, 'C:\\Users\\owen\\code\\anchor\\anchor-python-visualization')
 
 
 # -- Project information -----------------------------------------------------
 
-project = "anchor-python-visualization"
+project = "anchor_python_visualization"
 copyright = "2021, Owen Feehan"
 author = "Owen Feehan"
 

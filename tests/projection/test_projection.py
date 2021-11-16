@@ -1,4 +1,4 @@
-from projection import create_projector, IDENTIFIERS, Projector
+from anchor-python-visualization.projection import create_projector, IDENTIFIERS, Projector
 import pandas as pd
 import numpy as np
 
