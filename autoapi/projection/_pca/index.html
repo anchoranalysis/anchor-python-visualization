@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>projection._pca &#8212; anchor-python-visualization 0.1 documentation</title>
+    <title>projection._pca &#8212; anchor_python_visualization 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -28,7 +28,7 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">anchor_python_visualization 0.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">projection._pca</span></code></a></li> 
       </ul>
     </div>  
@@ -58,12 +58,12 @@
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="projection._pca.PCAProjection">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">projection._pca.</span></span><span class="sig-name descname"><span class="pre">PCAProjection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_components</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/projection/_pca.html#PCAProjection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection._pca.PCAProjection" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">projection._pca.</span></span><span class="sig-name descname"><span class="pre">PCAProjection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/projection/_pca.html#PCAProjection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection._pca.PCAProjection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../projector/index.html#projection.projector.Projector" title="projection.projector.Projector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">projection.projector.Projector</span></code></a></p>
 <p>Projects using PCA to a lower dimensional feature-space. Produces embeddings PCA0, PCA1, PCA2 etc.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="projection._pca.PCAProjection.project">
-<span class="sig-name descname"><span class="pre">project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.0.dev0+629.g59a06fdc14)"><span class="pre">pandas.DataFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.0.dev0+629.g59a06fdc14)"><span class="pre">pandas.DataFrame</span></a></span></span><a class="reference internal" href="../../../_modules/projection/_pca.html#PCAProjection.project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection._pca.PCAProjection.project" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.0.dev0+1132.g700be617eb)"><span class="pre">pandas.DataFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.0.dev0+1132.g700be617eb)"><span class="pre">pandas.DataFrame</span></a></span></span><a class="reference internal" href="../../../_modules/projection/_pca.html#PCAProjection.project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection._pca.PCAProjection.project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs projection, while preserving a data-frame with identical row names.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -135,13 +135,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">anchor-python-visualization 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">anchor_python_visualization 0.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">projection._pca</span></code></a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Owen Feehan.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.0.
     </div>
   </body>
 </html>

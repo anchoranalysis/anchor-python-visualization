@@ -32,6 +32,23 @@ Classes
 
 
 
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   embeddings.load_features
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   embeddings.PLACEHOLDER_FOR_SUBSTITUTION
+   embeddings.COLUMN_NAME_IDENTIFIER
+
 
 .. py:class:: LabelledFeatures(features: pandas.DataFrame, labels: pandas.Series, image_paths: Optional[pandas.Series] = None)
 
@@ -50,6 +67,21 @@ Classes
       :raises InsufficientRowsException: if there are fewer rows available than :code:`sample_size`
 
 
+
+.. py:function:: load_features(args: argparse.Namespace) -> embeddings.LabelledFeatures
+
+   Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments.
+
+
+.. py:data:: PLACEHOLDER_FOR_SUBSTITUTION
+   :annotation: = <IMAGE>
+
+   
+
+.. py:data:: COLUMN_NAME_IDENTIFIER
+   :annotation: = identifier
+
+   
 
 .. py:exception:: InsufficientRowsException
 

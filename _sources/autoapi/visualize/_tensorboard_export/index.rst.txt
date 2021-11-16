@@ -83,9 +83,5 @@ Attributes
 
    .. py:method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
 
-      Performs some form of visualization of embeddings.
-
-      :param features: embeddings in a data-frame with associated labels.
-
 
 
