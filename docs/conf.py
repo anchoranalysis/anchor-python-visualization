@@ -42,7 +42,7 @@ extensions = [
 
 # See https://sphinx-autoapi.readthedocs.io/en/latest/reference/config.html#advanced-options
 autoapi_type = "python"
-autoapi_dirs = ["../"]
+autoapi_dirs = ["../src"]
 autoapi_options = [
     "members",
     "undoc-members",
@@ -50,7 +50,7 @@ autoapi_options = [
     "show-module-summary",
     "imported-members",
 ]
-autoapi_ignore = ["*docs/*", "*test/*"]
+autoapi_ignore = ["*docs/*", "*test/*", "build/*"]
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
@@ -73,7 +73,7 @@ language = "en"
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store","**/build", "**/docs"]
 
 
 # -- Options for HTML output -------------------------------------------------
