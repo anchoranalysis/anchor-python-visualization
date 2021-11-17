@@ -107,10 +107,15 @@ a maximum number of groups to be read from the left (if positive) or to be exclu
 </section>
 <section id="example-usage">
 <h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">¶</a></h2>
+<p>Install the package in this repository, by:</p>
+<ul class="simple">
+<li><p><cite>pip install .</cite> (in the root of the checked out repository) or</p></li>
+<li><p><cite>pip install git+https://github.com/anchoranalysis/anchor-python-visualization.git</cite></p></li>
+</ul>
 <section id="plotting">
 <h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
 <p>Plotting using t-SNE to project to two dimensions.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">visualize_features</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">anchor_python_visualization</span><span class="o">.</span><span class="n">visualize_features</span>
     <span class="n">D</span><span class="p">:</span>\<span class="n">someDirectory</span>\<span class="n">features</span><span class="o">.</span><span class="n">csv</span>
     <span class="o">-</span><span class="n">p</span> <span class="n">t</span><span class="o">-</span><span class="n">SNE</span>
     <span class="o">-</span><span class="n">m</span> <span class="n">plot</span>
@@ -122,7 +127,7 @@ a maximum number of groups to be read from the left (if positive) or to be exclu
 <ol class="arabic simple">
 <li><p>Create the log-directory:</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>python visualize_features.py
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>python -m anchor_python_visualization.visualize_features
     D:\someDirectory\features.csv
     -p none
     -m TensorBoard
