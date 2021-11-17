@@ -64,6 +64,11 @@ a maximum number of groups to be read from the left (if positive) or to be exclu
 Example Usage
 -------------
 
+Install the package in this repository, by:
+
+* `pip install .` (in the root of the checked out repository) or
+* `pip install git+https://github.com/anchoranalysis/anchor-python-visualization.git`
+
 Plotting
 --------
 
@@ -71,7 +76,7 @@ Plotting using t-SNE to project to two dimensions.
 
 ::
 
-    python visualize_features.py
+    python -m anchor_python_visualization.visualize_features
         D:\someDirectory\features.csv
         -p t-SNE
         -m plot
@@ -83,7 +88,7 @@ TensorBoard export
 
 ::
 
-    python visualize_features.py
+    python -m anchor_python_visualization.visualize_features
         D:\someDirectory\features.csv
         -p none
         -m TensorBoard
