@@ -10,9 +10,14 @@ Input Arguments
 Example Usage
 -------------
 
+Install the package in this repository, by:
+
+* `pip install .` (in the root of the checked out repository) or
+* `pip install git+https://github.com/anchoranalysis/anchor-python-visualization.git`
+
 ::
 
-    histogram_plot.py --file_path_to_csv D:\somedirectory\features.csv
+    python -m anchor_python_visualization.histogram_plot --file_path_to_csv D:\somedirectory\features.csv
 
 """
 
