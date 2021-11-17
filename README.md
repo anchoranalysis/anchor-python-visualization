@@ -2,9 +2,22 @@
 
 Scripts in Python for visualizing plots / images etc.
 
+They are installed collectively as a package `anchor_python_visualization`.
+
 ## Usage
 
-Each `.py` script in the top-level directory is designed to be used as a command-line application.
+Each `.py` script in the top-level directory of [src/anchor_python_visualization](https://github.com/anchoranalysis/anchor-python-visualization/tree/master/src/anchor_python_visualization) is designed to be used as a command-line application.
+
+Please first install the package, by:
+
+* `pip install .` (in the root of the checked out repository) or
+* `pip install git+https://github.com/anchoranalysis/anchor-python-visualization.git`
+
+A script can then be called from the command-line with the `-m` argument, ala:
+
+```bash
+python -m anchor_python_visualization.script_top_level_name --somearg
+```
 
 See:
 
