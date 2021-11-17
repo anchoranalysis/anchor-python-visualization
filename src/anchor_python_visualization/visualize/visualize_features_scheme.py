@@ -7,7 +7,7 @@ __version__ = "0.1"
 
 from abc import ABC
 
-import embeddings
+from anchor_python_visualization import embeddings
 
 
 class VisualizeFeaturesScheme(ABC):

@@ -13,7 +13,7 @@ from ._labels import labels_from_identifiers
 import numpy as np
 import pandas as pd
 
-from embeddings import LabelledFeatures
+from .label import LabelledFeatures
 
 # Name for index column
 COLUMN_NAME_IDENTIFIER = "identifier"

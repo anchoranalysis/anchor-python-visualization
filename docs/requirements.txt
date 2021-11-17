@@ -1,8 +1,7 @@
 # Requirements file for ReadTheDocs, check .readthedocs.yml.
 # To build the module reference correctly, make sure every external package
 # under `install_requires` in `setup.cfg` is also listed here!
-sphinx-autoapi>=1.5.1
-sphinx>=3.2.1
+git+https://github.com/anchoranalysis/anchor-python-sphinx.git#egg=anchor_python_sphinx
 pandas>=1.1
 tensorflow>=2.1.0
 plotly>=4.5.4

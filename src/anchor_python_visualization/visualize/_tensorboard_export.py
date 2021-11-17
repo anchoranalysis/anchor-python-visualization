@@ -12,8 +12,8 @@ import pandas as pd
 import tensorflow as tf
 from tensorboard.plugins import projector
 
-import embeddings
-import projection
+from anchor_python_visualization import embeddings
+from anchor_python_visualization import projection
 from ._image_sprite import create_sprite_at
 from .visualize_features_scheme import VisualizeFeaturesScheme
 

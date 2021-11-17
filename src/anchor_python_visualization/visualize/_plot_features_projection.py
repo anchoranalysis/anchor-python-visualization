@@ -10,8 +10,8 @@ from typing import Optional
 import pandas as pd
 import plotly.express as px
 
-import embeddings
-import projection
+from anchor_python_visualization import projection
+from anchor_python_visualization import embeddings
 from .visualize_features_scheme import VisualizeFeaturesScheme
 
 

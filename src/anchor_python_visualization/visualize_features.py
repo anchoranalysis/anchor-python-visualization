@@ -122,8 +122,7 @@ __version__ = "0.1"
 
 import argparse
 import visualize
-import projection
-import embeddings
+from anchor_python_visualization import projection, embeddings
 from typing import List
 
 
