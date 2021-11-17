@@ -7,7 +7,7 @@ __version__ = "0.1"
 
 from typing import Optional
 
-import projection
+from anchor_python_visualization import projection
 from ._plot_features_projection import PlotFeaturesProjection
 from ._tensorboard_export import TensorBoardExport
 from .visualize_features_scheme import VisualizeFeaturesScheme
