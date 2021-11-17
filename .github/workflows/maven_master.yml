@@ -27,7 +27,7 @@ jobs:
       run: |
         sudo apt install pandoc
         python -m pip install --upgrade pip
-        pip install pytest coverage pytest-cov tox sphinx sphinx-autoapi
+        pip install flake8 black pytest coverage pytest-cov tox sphinx sphinx-autoapi
     - name: Check black formatting
       run: |
         black --check .
