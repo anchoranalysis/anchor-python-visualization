@@ -30,7 +30,7 @@ Visualization methods
    `--output-path` or `-o`
 
 Optionally, image thumbnails can be associated with each embedding for `TensorBoard` export with `--image_sequence`
-or `--image_path` containing paths where the string :const:`~embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION`\
+or `--image_path` containing paths where the string :const:`~embeddings.PLACEHOLDER_FOR_SUBSTITUTION`\
 is substituted respectively:
 
  * with an index from an incrementing six digit integer with leading zeros, corresponding to row order, or,
@@ -45,7 +45,7 @@ The CSV file should have:
    * embeddings as columns.
    * data-items as rows.
    * include headers as the first row.
-   * one column called :const:`~embeddings.load_features.COLUMN_NAME_IDENTIFIER` with unique identifiers for each
+   * one column called :const:`~embeddings.COLUMN_NAME_IDENTIFIER` with unique identifiers for each
      embedding.
 
 Otherwise:
