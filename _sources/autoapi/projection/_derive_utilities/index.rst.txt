@@ -11,26 +11,3 @@
 
 
 
-Module Contents
----------------
-
-
-Functions
-~~~~~~~~~
-
-.. autoapisummary::
-
-   projection._derive_utilities.derive_projected
-
-
-
-.. py:function:: derive_projected(unprojected: pandas.DataFrame, projected: numpy.array, feature_prefix: str) -> pandas.DataFrame
-
-   Converts a projected numpy array (derived from a data-frame) back into data-frame format with row.names
-
-   :param unprojected: the original data-frame from which the projection was derived
-   :param projected: the projection derived from :code:`unprojected`
-   :param feature_prefix: a prefix to use in feature names e.g. :code:`feature_prefix0`, :code:`feature_prefix1` etc.
-   :returns: a data-frame with identical row order and size to :code:`df_orig` but with embeddings from the projection.
-
-

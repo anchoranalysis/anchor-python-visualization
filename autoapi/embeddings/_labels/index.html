@@ -41,39 +41,6 @@
   <section id="module-embeddings._labels">
 <span id="embeddings-labels"></span><h1><a class="reference internal" href="#module-embeddings._labels" title="embeddings._labels"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings._labels</span></code></a><a class="headerlink" href="#module-embeddings._labels" title="Permalink to this headline">¶</a></h1>
 <p>Labels associated with rows of embeddings, that need not be unique. Useful for showing membership of groups.</p>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
-<section id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#embeddings._labels.labels_from_identifiers" title="embeddings._labels.labels_from_identifiers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">labels_from_identifiers</span></code></a>(identifiers: Iterable[str], max_label_index: int) → Iterable[str]</p></td>
-<td><p>Derives labels from identifiers, by splitting by directory separators.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py function">
-<dt class="sig sig-object py" id="embeddings._labels.labels_from_identifiers">
-<span class="sig-prename descclassname"><span class="pre">embeddings._labels.</span></span><span class="sig-name descname"><span class="pre">labels_from_identifiers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifiers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_label_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/embeddings/_labels.html#labels_from_identifiers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings._labels.labels_from_identifiers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Derives labels from identifiers, by splitting by directory separators.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>identifiers</strong> – the identifiers</p></li>
-<li><p><strong>max_label_index</strong> – maximum amount of groups to in include in label leftwards (if positive), or to exclude</p></li>
-</ul>
-</dd>
-</dl>
-<p>rightwards (if negative)
-:returns: the labels, respectively corresponding to each identifier</p>
-</dd></dl>
-
-</section>
-</section>
 </section>
 
 
@@ -83,20 +50,6 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../../../index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings._labels</span></code></a><ul>
-<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#embeddings._labels.labels_from_identifiers">labels_from_identifiers</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

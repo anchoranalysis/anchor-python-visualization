@@ -41,64 +41,6 @@
   <section id="module-projection._tsne">
 <span id="projection-tsne"></span><h1><a class="reference internal" href="#module-projection._tsne" title="projection._tsne"><code class="xref py py-mod docutils literal notranslate"><span class="pre">projection._tsne</span></code></a><a class="headerlink" href="#module-projection._tsne" title="Permalink to this headline">¶</a></h1>
 <p>T-SNE projection.</p>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#projection._tsne.TSNEProjection" title="projection._tsne.TSNEProjection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TSNEProjection</span></code></a></p></td>
-<td><p>Projects to two-dimensions using T-SNE (preceded by a PCA if num(embeddings) &gt; MAX_NUM_FEATURES_TSNE)</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#projection._tsne.MAX_NUMBER_FEATURES_TSNE" title="projection._tsne.MAX_NUMBER_FEATURES_TSNE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MAX_NUMBER_FEATURES_TSNE</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py data">
-<dt class="sig sig-object py" id="projection._tsne.MAX_NUMBER_FEATURES_TSNE">
-<span class="sig-prename descclassname"><span class="pre">projection._tsne.</span></span><span class="sig-name descname"><span class="pre">MAX_NUMBER_FEATURES_TSNE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">50</span></em><a class="reference internal" href="../../../_modules/projection/_tsne.html#MAX_NUMBER_FEATURES_TSNE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection._tsne.MAX_NUMBER_FEATURES_TSNE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="projection._tsne.TSNEProjection">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">projection._tsne.</span></span><span class="sig-name descname"><span class="pre">TSNEProjection</span></span><a class="reference internal" href="../../../_modules/projection/_tsne.html#TSNEProjection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection._tsne.TSNEProjection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../projector/index.html#projection.projector.Projector" title="projection.projector.Projector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">projection.projector.Projector</span></code></a></p>
-<p>Projects to two-dimensions using T-SNE (preceded by a PCA if num(embeddings) &gt; MAX_NUM_FEATURES_TSNE)</p>
-<p>It produces embeddings TSNE0 and TSNE1.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="projection._tsne.TSNEProjection.project">
-<span class="sig-name descname"><span class="pre">project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.0.dev0+1132.g700be617eb)"><span class="pre">pandas.DataFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.0.dev0+1132.g700be617eb)"><span class="pre">pandas.DataFrame</span></a></span></span><a class="reference internal" href="../../../_modules/projection/_tsne.html#TSNEProjection.project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#projection._tsne.TSNEProjection.project" title="Permalink to this definition">¶</a></dt>
-<dd><p>Performs projection, while preserving a data-frame with identical row names.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>features</strong> – data_frame containing only numerical embeddings (as columns) and with labelled row.names</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a data-frame of embeddings with identical order and row names, but changed columns.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-</section>
 </section>
 
 
@@ -108,25 +50,6 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../../../index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">projection._tsne</span></code></a><ul>
-<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-<li><a class="reference internal" href="#attributes">Attributes</a><ul>
-<li><a class="reference internal" href="#projection._tsne.MAX_NUMBER_FEATURES_TSNE">MAX_NUMBER_FEATURES_TSNE</a></li>
-<li><a class="reference internal" href="#projection._tsne.TSNEProjection">TSNEProjection</a><ul>
-<li><a class="reference internal" href="#projection._tsne.TSNEProjection.project">project</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">

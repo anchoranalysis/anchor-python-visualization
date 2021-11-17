@@ -9,16 +9,6 @@
 
 
 
-Submodules
-----------
-.. toctree::
-   :titlesonly:
-   :maxdepth: 1
-
-   factory/index.rst
-   visualize_features_scheme/index.rst
-
-
 Package Contents
 ----------------
 
@@ -49,7 +39,7 @@ Attributes
    visualize.DEFAULT_IDENTIFIER
 
 
-.. py:function:: create_method(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
+.. py:function:: create_method(identifier: Optional[str], projector: Optional[anchor_python_visualization.projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
 
    Creates a visualize-embeddings method from an identifier.
 
@@ -75,7 +65,7 @@ Attributes
 
    An method to visualize a set of feature-values.
 
-   .. py:method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
+   .. py:method:: visualize_data_frame(self, features: anchor_python_visualization.embeddings.LabelledFeatures) -> None
 
       Performs some form of visualization of embeddings.
 

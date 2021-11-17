@@ -1,3 +1,5 @@
+:orphan:
+
 :py:mod:`visualize.factory`
 ===========================
 
@@ -41,7 +43,7 @@ Attributes
 
    
 
-.. py:function:: create_method(identifier: Optional[str], projector: Optional[projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
+.. py:function:: create_method(identifier: Optional[str], projector: Optional[anchor_python_visualization.projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
 
    Creates a visualize-embeddings method from an identifier.
 

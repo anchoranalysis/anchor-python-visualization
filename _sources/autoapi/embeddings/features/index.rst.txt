@@ -1,7 +1,9 @@
-:py:mod:`embeddings.load_features`
-==================================
+:orphan:
 
-.. py:module:: embeddings.load_features
+:py:mod:`embeddings.features`
+=============================
+
+.. py:module:: embeddings.features
 
 .. autoapi-nested-parse::
 
@@ -18,7 +20,7 @@ Functions
 
 .. autoapisummary::
 
-   embeddings.load_features.load_features
+   embeddings.features.load_features
 
 
 
@@ -27,8 +29,8 @@ Attributes
 
 .. autoapisummary::
 
-   embeddings.load_features.COLUMN_NAME_IDENTIFIER
-   embeddings.load_features.PLACEHOLDER_FOR_SUBSTITUTION
+   embeddings.features.COLUMN_NAME_IDENTIFIER
+   embeddings.features.PLACEHOLDER_FOR_SUBSTITUTION
 
 
 .. py:data:: COLUMN_NAME_IDENTIFIER
@@ -41,7 +43,7 @@ Attributes
 
    
 
-.. py:function:: load_features(args: argparse.Namespace) -> embeddings.LabelledFeatures
+.. py:function:: load_features(args: argparse.Namespace) -> embeddings.label.LabelledFeatures
 
    Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments.
 

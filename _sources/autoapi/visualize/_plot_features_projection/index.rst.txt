@@ -11,30 +11,3 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   visualize._plot_features_projection.PlotFeaturesProjection
-
-
-
-
-.. py:class:: PlotFeaturesProjection(projector: projection.Projector)
-
-   Bases: :py:obj:`visualize.visualize_features_scheme.VisualizeFeaturesScheme`
-
-   Projects the feature space onto two dimensions and plots
-
-   .. py:method:: visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None
-
-      Performs some form of visualization of embeddings.
-
-      :param features: embeddings in a data-frame with associated labels.
-
-
-

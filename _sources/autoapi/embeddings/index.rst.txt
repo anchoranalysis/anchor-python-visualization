@@ -9,17 +9,6 @@
 
 
 
-Submodules
-----------
-.. toctree::
-   :titlesonly:
-   :maxdepth: 1
-
-   exceptions/index.rst
-   label/index.rst
-   load_features/index.rst
-
-
 Package Contents
 ----------------
 
@@ -68,7 +57,7 @@ Attributes
 
 
 
-.. py:function:: load_features(args: argparse.Namespace) -> embeddings.LabelledFeatures
+.. py:function:: load_features(args: argparse.Namespace) -> embeddings.label.LabelledFeatures
 
    Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments.
 

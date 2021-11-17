@@ -41,16 +41,6 @@
   <section id="module-embeddings">
 <span id="embeddings"></span><h1><a class="reference internal" href="#module-embeddings" title="embeddings"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a><a class="headerlink" href="#module-embeddings" title="Permalink to this headline">¶</a></h1>
 <p>Methods for loading embeddings and determining labels.</p>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="exceptions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.exceptions</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="label/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.label</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="load_features/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings.load_features</span></code></a></li>
-</ul>
-</div>
-</section>
 <section id="package-contents">
 <h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline">¶</a></h2>
 <section id="classes">
@@ -75,8 +65,8 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="load_features/index.html#module-embeddings.load_features" title="embeddings.load_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_features</span></code></a></p></td>
-<td><p>Loading and labelling embeddings.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#embeddings.load_features" title="embeddings.load_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_features</span></code></a>(args: argparse.Namespace) → embeddings.label.LabelledFeatures</p></td>
+<td><p>Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments.</p></td>
 </tr>
 </tbody>
 </table>
@@ -125,18 +115,18 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="embeddings.load_features">
-<span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">load_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Namespace" title="(in Python v3.10)"><span class="pre">argparse.Namespace</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#embeddings.LabelledFeatures" title="embeddings.LabelledFeatures"><span class="pre">embeddings.LabelledFeatures</span></a></span></span><a class="headerlink" href="#embeddings.load_features" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">load_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Namespace" title="(in Python v3.10)"><span class="pre">argparse.Namespace</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="label/index.html#embeddings.label.LabelledFeatures" title="embeddings.label.LabelledFeatures"><span class="pre">embeddings.label.LabelledFeatures</span></a></span></span><a class="reference internal" href="../../_modules/embeddings/features.html#load_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings.load_features" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="embeddings.PLACEHOLDER_FOR_SUBSTITUTION">
-<span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">PLACEHOLDER_FOR_SUBSTITUTION</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">&lt;IMAGE&gt;</span></em><a class="reference internal" href="../../_modules/embeddings/load_features.html#PLACEHOLDER_FOR_SUBSTITUTION"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings.PLACEHOLDER_FOR_SUBSTITUTION" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">PLACEHOLDER_FOR_SUBSTITUTION</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">&lt;IMAGE&gt;</span></em><a class="reference internal" href="../../_modules/embeddings/features.html#PLACEHOLDER_FOR_SUBSTITUTION"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings.PLACEHOLDER_FOR_SUBSTITUTION" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="embeddings.COLUMN_NAME_IDENTIFIER">
-<span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">COLUMN_NAME_IDENTIFIER</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">identifier</span></em><a class="reference internal" href="../../_modules/embeddings/load_features.html#COLUMN_NAME_IDENTIFIER"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings.COLUMN_NAME_IDENTIFIER" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">embeddings.</span></span><span class="sig-name descname"><span class="pre">COLUMN_NAME_IDENTIFIER</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">identifier</span></em><a class="reference internal" href="../../_modules/embeddings/features.html#COLUMN_NAME_IDENTIFIER"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#embeddings.COLUMN_NAME_IDENTIFIER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
@@ -160,7 +150,6 @@
   <h3><a href="../../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a></li>
