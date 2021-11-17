@@ -19,7 +19,12 @@ A script can then be called from the command-line with the `-m` argument, ala:
 python -m anchor_python_visualization.script_top_level_name --somearg
 ```
 
-See:
+## Scripts
+
+* [visualize_features](https://www.anchoranalysis.org/anchor-python-visualization/autoapi/visualize_features/index.html) ([source](https://github.com/anchoranalysis/anchor-python-visualization/blob/master/src/anchor_python_visualization/visualize_features.py)) - visualizes embeddings in a CSV file in different ways (including exporting to TensorBoard).
+* [histogram_plot](https://www.anchoranalysis.org/anchor-python-visualization/autoapi/histogram_plot/index.html) ([source](https://github.com/anchoranalysis/anchor-python-visualization/blob/master/src/anchor_python_visualization/histogram_plot.py)) - plots a histogram from a CSV file.
+
+## Further documentation
 
 * the automatically-generated [API documentation](https://www.anchoranalysis.org/anchor-python-visualization/).
 * the comments on the top of each file for more information.
