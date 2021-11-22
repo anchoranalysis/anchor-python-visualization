@@ -68,11 +68,40 @@
              
   <section id="welcome-to-anchor-python-visualization-s-documentation">
 <h1>Welcome to anchor-python-visualization’s documentation!<a class="headerlink" href="#welcome-to-anchor-python-visualization-s-documentation" title="Permalink to this headline"></a></h1>
+</section>
+<section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h1>
+<p>Scripts in Python for visualizing plots / images etc.</p>
+<p>They are installed collectively as a package <cite>anchor_python_visualization</cite>.</p>
+</section>
+<section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h1>
+<p>Each <cite>.py</cite> script in the top-level directory of <a class="reference external" href="https://github.com/anchoranalysis/anchor-python-visualization/tree/master/src/anchor_python_visualization">src/anchor_python_visualization</a> is designed as a command-line application.</p>
+<p>Please first install the package, by:</p>
+<ul class="simple">
+<li><p><cite>pip install .</cite> (in the root of the checked out repository) or</p></li>
+<li><p><cite>pip install git+https://github.com/anchoranalysis/anchor-python-visualization.git</cite></p></li>
+</ul>
+<p>A script can then be called from the command-line with the <cite>-m</cite> argument, ala:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">anchor_python_visualization</span><span class="o">.</span><span class="n">script_top_level_name</span> <span class="o">--</span><span class="n">somearg</span>
+</pre></div>
+</div>
+</section>
+<section id="top-level-scripts">
+<h1>Top-Level Scripts<a class="headerlink" href="#top-level-scripts" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="autoapi/histogram_plot/index.html#input-arguments"><span class="std std-ref">histogram_plot</span></a> - plots a histogram from a CSV file (<a class="reference external" href="https://github.com/anchoranalysis/anchor-python-visualization/blob/master/src/anchor_python_visualization/histogram_plot.py">source</a>).</p></li>
+<li><p><a class="reference internal" href="autoapi/visualize_features/index.html#introduction"><span class="std std-ref">visualize_features</span></a> - visualizes embeddings in a CSV file by plotting or TensorBoard (<a class="reference external" href="https://github.com/anchoranalysis/anchor-python-visualization/blob/master/src/anchor_python_visualization/visualize_features.py">source</a>).</p></li>
+</ul>
+</section>
+<section id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="autoapi/visualize_features/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualize_features</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/visualize_features/index.html#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="autoapi/visualize_features/index.html#input-arguments">Input Arguments</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="autoapi/visualize_features/index.html#projection-methods">Projection methods</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoapi/visualize_features/index.html#visualization-methods">Visualization methods</a></li>
@@ -91,6 +120,15 @@
 <li class="toctree-l3"><a class="reference internal" href="autoapi/histogram_plot/index.html#example-usage">Example Usage</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="autoapi/embeddings/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoapi/embeddings/index.html#package-contents">Package Contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/embeddings/index.html#classes">Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/embeddings/index.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoapi/embeddings/index.html#attributes">Attributes</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="autoapi/visualize/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">visualize</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="autoapi/visualize/index.html#package-contents">Package Contents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="autoapi/visualize/index.html#classes">Classes</a></li>
@@ -105,15 +143,6 @@
 <li class="toctree-l4"><a class="reference internal" href="autoapi/projection/index.html#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoapi/projection/index.html#functions">Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoapi/projection/index.html#attributes">Attributes</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="autoapi/embeddings/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">embeddings</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="autoapi/embeddings/index.html#package-contents">Package Contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autoapi/embeddings/index.html#classes">Classes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoapi/embeddings/index.html#functions">Functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoapi/embeddings/index.html#attributes">Attributes</a></li>
 </ul>
 </li>
 </ul>

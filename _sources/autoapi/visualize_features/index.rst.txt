@@ -5,7 +5,11 @@
 
 .. autoapi-nested-parse::
 
-   A script for visualizing embeddings in a CSV file.
+   Visualizes embeddings in a CSV file by plotting or TensorBoard.
+
+   ------------
+   Introduction
+   ------------
 
    The script:
 

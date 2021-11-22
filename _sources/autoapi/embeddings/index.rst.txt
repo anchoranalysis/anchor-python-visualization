@@ -63,14 +63,16 @@ Attributes
 
 
 .. py:data:: PLACEHOLDER_FOR_SUBSTITUTION
-   :annotation: = <IMAGE>
+   :annotation: :str = <IMAGE>
 
-   
+   Optional placeholder used in image_dir argument
+
 
 .. py:data:: COLUMN_NAME_IDENTIFIER
-   :annotation: = identifier
+   :annotation: :str = identifier
 
-   
+   Name for index column
+
 
 .. py:exception:: InsufficientRowsException
 

@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   A script for plotting a histogram from a CSV file that has `intensity` and `count` in two columns.
+   Plots a histogram from a CSV file that has `intensity` and `count` in two columns.
 
    ---------------
    Input Arguments
