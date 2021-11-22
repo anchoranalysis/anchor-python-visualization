@@ -36,12 +36,14 @@ Attributes
 .. py:data:: IDENTIFIERS
    :annotation: = ['plot', 'TensorBoard']
 
-   
+   Unique strings to use as command-line-arguments to select a :class:`VisualizeFeaturesScheme`.
+
 
 .. py:data:: DEFAULT_IDENTIFIER
    :annotation: = plot
 
-   
+   The default choice to use in :const:`IDENTIFIERS`.
+
 
 .. py:function:: create_method(identifier: Optional[str], projector: Optional[anchor_python_visualization.projection.Projector], output_path: Optional[str]) -> visualize.visualize_features_scheme.VisualizeFeaturesScheme
 

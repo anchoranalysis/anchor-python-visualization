@@ -29,19 +29,21 @@ Attributes
 
 .. autoapisummary::
 
-   projection.factory.DEFAULT_IDENTIFIER
    projection.factory.IDENTIFIERS
+   projection.factory.DEFAULT_IDENTIFIER
+
+
+.. py:data:: IDENTIFIERS
+   :annotation: = ['t-SNE', 'PCA', 'none']
+
+   Unique strings to use as command-line-arguments to select a :class:`Projector`.
 
 
 .. py:data:: DEFAULT_IDENTIFIER
    :annotation: = t-SNE
 
-   
+   The default choice to use in :const:`IDENTIFIERS`.
 
-.. py:data:: IDENTIFIERS
-   :annotation: = ['t-SNE', 'PCA', 'none']
-
-   
 
 .. py:function:: create_projector(identifier: str) -> Optional[projection.projector.Projector]
 

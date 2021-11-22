@@ -80,7 +80,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#visualize.VisualizeFeaturesScheme" title="visualize.VisualizeFeaturesScheme"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VisualizeFeaturesScheme</span></code></a></p></td>
-<td><p>An method to visualize a set of feature-values.</p></td>
+<td><p>A method to visualize a set of feature-values.</p></td>
 </tr>
 </tbody>
 </table>
@@ -108,10 +108,10 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#visualize.IDENTIFIERS" title="visualize.IDENTIFIERS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IDENTIFIERS</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Unique strings to use as command-line-arguments to select a <a class="reference internal" href="#visualize.VisualizeFeaturesScheme" title="visualize.VisualizeFeaturesScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">VisualizeFeaturesScheme</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#visualize.DEFAULT_IDENTIFIER" title="visualize.DEFAULT_IDENTIFIER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DEFAULT_IDENTIFIER</span></code></a></p></td>
-<td><p></p></td>
+<td><p>The default choice to use in <a class="reference internal" href="#visualize.IDENTIFIERS" title="visualize.IDENTIFIERS"><code class="xref py py-const docutils literal notranslate"><span class="pre">IDENTIFIERS</span></code></a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -136,22 +136,24 @@
 <dl class="py data">
 <dt class="sig sig-object py" id="visualize.IDENTIFIERS">
 <span class="sig-prename descclassname"><span class="pre">visualize.</span></span><span class="sig-name descname"><span class="pre">IDENTIFIERS</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">['plot',</span> <span class="pre">'TensorBoard']</span></em><a class="reference internal" href="../../_modules/visualize/factory.html#IDENTIFIERS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visualize.IDENTIFIERS" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Unique strings to use as command-line-arguments to select a <a class="reference internal" href="#visualize.VisualizeFeaturesScheme" title="visualize.VisualizeFeaturesScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">VisualizeFeaturesScheme</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="visualize.DEFAULT_IDENTIFIER">
 <span class="sig-prename descclassname"><span class="pre">visualize.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_IDENTIFIER</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">plot</span></em><a class="reference internal" href="../../_modules/visualize/factory.html#DEFAULT_IDENTIFIER"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visualize.DEFAULT_IDENTIFIER" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The default choice to use in <a class="reference internal" href="#visualize.IDENTIFIERS" title="visualize.IDENTIFIERS"><code class="xref py py-const docutils literal notranslate"><span class="pre">IDENTIFIERS</span></code></a>.</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="visualize.VisualizeFeaturesScheme">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">visualize.</span></span><span class="sig-name descname"><span class="pre">VisualizeFeaturesScheme</span></span><a class="reference internal" href="../../_modules/visualize/visualize_features_scheme.html#VisualizeFeaturesScheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visualize.VisualizeFeaturesScheme" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
-<p>An method to visualize a set of feature-values.</p>
+<p>A method to visualize a set of feature-values.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="visualize.VisualizeFeaturesScheme.visualize_data_frame">
 <span class="sig-name descname"><span class="pre">visualize_data_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">anchor_python_visualization.embeddings.LabelledFeatures</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#visualize.VisualizeFeaturesScheme.visualize_data_frame" title="Permalink to this definition"></a></dt>
-<dd><p>Performs some form of visualization of embeddings.</p>
+<dd><p>Visualizes the embeddings in some manner.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>features</strong> – embeddings in a data-frame with associated labels.</p>

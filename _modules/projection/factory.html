@@ -79,8 +79,13 @@
 <span class="kn">from</span> <span class="nn">._tsne</span> <span class="kn">import</span> <span class="n">TSNEProjection</span>
 <span class="kn">from</span> <span class="nn">.projector</span> <span class="kn">import</span> <span class="n">Projector</span>
 
-<div class="viewcode-block" id="DEFAULT_IDENTIFIER"><a class="viewcode-back" href="../../autoapi/projection/index.html#projection.factory.DEFAULT_IDENTIFIER">[docs]</a><span class="n">DEFAULT_IDENTIFIER</span> <span class="o">=</span> <span class="s2">&quot;t-SNE&quot;</span></div>
+
 <div class="viewcode-block" id="IDENTIFIERS"><a class="viewcode-back" href="../../autoapi/projection/index.html#projection.factory.IDENTIFIERS">[docs]</a><span class="n">IDENTIFIERS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;t-SNE&quot;</span><span class="p">,</span> <span class="s2">&quot;PCA&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">]</span></div>
+<span class="sd">&quot;&quot;&quot;Unique strings to use as command-line-arguments to select a :class:`Projector`.&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="DEFAULT_IDENTIFIER"><a class="viewcode-back" href="../../autoapi/projection/index.html#projection.factory.DEFAULT_IDENTIFIER">[docs]</a><span class="n">DEFAULT_IDENTIFIER</span> <span class="o">=</span> <span class="s2">&quot;t-SNE&quot;</span></div>
+<span class="sd">&quot;&quot;&quot;The default choice to use in :const:`IDENTIFIERS`.&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="create_projector"><a class="viewcode-back" href="../../autoapi/projection/index.html#projection.factory.create_projector">[docs]</a><span class="k">def</span> <span class="nf">create_projector</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Projector</span><span class="p">]:</span>

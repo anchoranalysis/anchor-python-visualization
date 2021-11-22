@@ -36,13 +36,13 @@ Attributes
 .. py:data:: COLUMN_NAME_IDENTIFIER
    :annotation: :str = identifier
 
-   Name for index column
+   Name for index column.
 
 
 .. py:data:: PLACEHOLDER_FOR_SUBSTITUTION
    :annotation: :str = <IMAGE>
 
-   Optional placeholder used in image_dir argument
+   Optional placeholder used in image_dir argument.
 
 
 .. py:function:: load_features(args: argparse.Namespace) -> embeddings.label.LabelledFeatures

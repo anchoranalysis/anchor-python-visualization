@@ -52,22 +52,24 @@ Attributes
 .. py:data:: IDENTIFIERS
    :annotation: = ['plot', 'TensorBoard']
 
-   
+   Unique strings to use as command-line-arguments to select a :class:`VisualizeFeaturesScheme`.
+
 
 .. py:data:: DEFAULT_IDENTIFIER
    :annotation: = plot
 
-   
+   The default choice to use in :const:`IDENTIFIERS`.
+
 
 .. py:class:: VisualizeFeaturesScheme
 
    Bases: :py:obj:`abc.ABC`
 
-   An method to visualize a set of feature-values.
+   A method to visualize a set of feature-values.
 
    .. py:method:: visualize_data_frame(self, features: anchor_python_visualization.embeddings.LabelledFeatures) -> None
 
-      Performs some form of visualization of embeddings.
+      Visualizes the embeddings in some manner.
 
       :param features: embeddings in a data-frame with associated labels.
 
