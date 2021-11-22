@@ -11,11 +11,10 @@ from anchor_python_visualization import embeddings
 
 
 class VisualizeFeaturesScheme(ABC):
-    """An method to visualize a set of feature-values."""
+    """A method to visualize a set of feature-values."""
 
     def visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None:
-        """
-        Performs some form of visualization of embeddings.
+        """Visualizes the embeddings in some manner.
 
         :param features: embeddings in a data-frame with associated labels.
         """

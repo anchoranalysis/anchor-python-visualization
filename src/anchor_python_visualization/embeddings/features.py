@@ -17,10 +17,10 @@ from .label import LabelledFeatures
 
 
 COLUMN_NAME_IDENTIFIER: str = "identifier"
-"""Name for index column"""
+"""Name for index column."""
 
 PLACEHOLDER_FOR_SUBSTITUTION: str = "<IMAGE>"
-"""Optional placeholder used in image_dir argument"""
+"""Optional placeholder used in image_dir argument."""
 
 
 def load_features(args: argparse.Namespace) -> LabelledFeatures:
