@@ -15,11 +15,12 @@ import pandas as pd
 
 from .label import LabelledFeatures
 
-# Name for index column
-COLUMN_NAME_IDENTIFIER = "identifier"
 
-# Optional placeholder used in image_dir argument
-PLACEHOLDER_FOR_SUBSTITUTION = "<IMAGE>"
+COLUMN_NAME_IDENTIFIER: str = "identifier"
+"""Name for index column"""
+
+PLACEHOLDER_FOR_SUBSTITUTION: str = "<IMAGE>"
+"""Optional placeholder used in image_dir argument"""
 
 
 def load_features(args: argparse.Namespace) -> LabelledFeatures:

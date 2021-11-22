@@ -1,4 +1,8 @@
-r"""A script for visualizing embeddings in a CSV file.
+r"""Visualizes embeddings in a CSV file by plotting or TensorBoard.
+
+------------
+Introduction
+------------
 
 The script:
 

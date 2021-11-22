@@ -1,4 +1,4 @@
-r"""A script for plotting a histogram from a CSV file that has `intensity` and `count` in two columns.
+r"""Plots a histogram from a CSV file that has `intensity` and `count` in two columns.
 
 ---------------
 Input Arguments
