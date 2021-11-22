@@ -12,8 +12,13 @@ from ._plot_features_projection import PlotFeaturesProjection
 from ._tensorboard_export import TensorBoardExport
 from .visualize_features_scheme import VisualizeFeaturesScheme
 
+
 IDENTIFIERS = ["plot", "TensorBoard"]
+"""Unique strings to use as command-line-arguments to select a :class:`VisualizeFeaturesScheme`."""
+
+
 DEFAULT_IDENTIFIER = "plot"
+"""The default choice to use in :const:`IDENTIFIERS`."""
 
 
 def create_method(

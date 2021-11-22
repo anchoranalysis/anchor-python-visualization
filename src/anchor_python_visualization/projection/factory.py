@@ -11,8 +11,13 @@ from ._pca import PCAProjection
 from ._tsne import TSNEProjection
 from .projector import Projector
 
-DEFAULT_IDENTIFIER = "t-SNE"
+
 IDENTIFIERS = ["t-SNE", "PCA", "none"]
+"""Unique strings to use as command-line-arguments to select a :class:`Projector`."""
+
+
+DEFAULT_IDENTIFIER = "t-SNE"
+"""The default choice to use in :const:`IDENTIFIERS`."""
 
 
 def create_projector(identifier: str) -> Optional[Projector]:
