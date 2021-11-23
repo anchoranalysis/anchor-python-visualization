@@ -9,6 +9,7 @@ import argparse
 import os
 from typing import Optional
 from ._labels import labels_from_identifiers
+from ._identifiers import select_or_create_identifiers
 
 import numpy as np
 import pandas as pd
@@ -34,7 +35,7 @@ def load_features(args: argparse.Namespace) -> LabelledFeatures:
     string_columns = features.select_dtypes(include=["object"])
 
     # Extract or create identifiers for the data-frame
-    identifiers = _select_or_create_identifiers(string_columns)
+    identifiers = select_or_create_identifiers(string_columns, numeric_columns)
 
     features_with_identifiers = _add_row_names(numeric_columns.copy(), identifiers)
 
@@ -113,14 +114,6 @@ def _join_or_substitute(image_directory: str, path: str) -> str:
         )
     else:
         return os.path.join(image_directory, path)
-
-
-def _select_or_create_identifiers(string_columns) -> pd.Series:
-    """Selects the first (left-most) string column as the identifiers or otherwise creates a range of numbers."""
-    if len(string_columns.columns) > 0:
-        return string_columns.iloc[:, 0]
-    else:
-        return pd.Series(range(len(string_columns.columns)))
 
 
 def _add_row_names(features: pd.DataFrame, row_names: pd.Series) -> pd.DataFrame:

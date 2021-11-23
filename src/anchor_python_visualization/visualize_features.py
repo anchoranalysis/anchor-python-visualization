@@ -125,12 +125,11 @@ __version__ = "0.1"
 
 
 import argparse
-import visualize
-from anchor_python_visualization import projection, embeddings
+from anchor_python_visualization import projection, embeddings, visualize
 from typing import List
 
 
-def _main():
+def main():
     """Entry point."""
     args = _arg_parse()
 
@@ -224,4 +223,4 @@ def _add_method_via_choices(
 
 
 if __name__ == "__main__":
-    _main()
+    main()
