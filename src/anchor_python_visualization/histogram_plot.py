@@ -32,7 +32,7 @@ import pandas as pd
 import seaborn as sns
 
 
-def _main():
+def main():
     """Entry point."""
     args = _arg_parse()
 
@@ -71,4 +71,4 @@ def _show_hist(keys: pd.Series, counts: pd.Series, number_bins: int) -> None:
 
 
 if __name__ == "__main__":
-    _main()
+    main()

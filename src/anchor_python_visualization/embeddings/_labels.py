@@ -13,10 +13,10 @@ def labels_from_identifiers(
 ) -> Iterable[str]:
     """Derives labels from identifiers, by splitting by directory separators.
 
-    :param identifiers: the identifiers
+    :param identifiers: the identifiers.
     :param max_label_index:  maximum amount of groups to in include in label leftwards (if positive), or to exclude
-    rightwards (if negative)
-    :returns: the labels, respectively corresponding to each identifier
+    rightwards (if negative).
+    :returns: the labels, respectively corresponding to each identifier.
     """
 
     def extract_groups(name):
