@@ -28,3 +28,21 @@
 
 
 
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   histogram_plot.main
+
+
+
+.. py:function:: main()
+
+   Entry point.
+
+

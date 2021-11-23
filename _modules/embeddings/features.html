@@ -77,6 +77,7 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">._labels</span> <span class="kn">import</span> <span class="n">labels_from_identifiers</span>
+<span class="kn">from</span> <span class="nn">._identifiers</span> <span class="kn">import</span> <span class="n">select_or_create_identifiers</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -102,7 +103,7 @@
     <span class="n">string_columns</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span>
 
     <span class="c1"># Extract or create identifiers for the data-frame</span>
-    <span class="n">identifiers</span> <span class="o">=</span> <span class="n">_select_or_create_identifiers</span><span class="p">(</span><span class="n">string_columns</span><span class="p">)</span>
+    <span class="n">identifiers</span> <span class="o">=</span> <span class="n">select_or_create_identifiers</span><span class="p">(</span><span class="n">string_columns</span><span class="p">,</span> <span class="n">numeric_columns</span><span class="p">)</span>
 
     <span class="n">features_with_identifiers</span> <span class="o">=</span> <span class="n">_add_row_names</span><span class="p">(</span><span class="n">numeric_columns</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">identifiers</span><span class="p">)</span>
 
@@ -181,14 +182,6 @@
         <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">image_directory</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_select_or_create_identifiers</span><span class="p">(</span><span class="n">string_columns</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Selects the first (left-most) string column as the identifiers or otherwise creates a range of numbers.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_columns</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">string_columns</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string_columns</span><span class="o">.</span><span class="n">columns</span><span class="p">)))</span>
 
 
 <span class="k">def</span> <span class="nf">_add_row_names</span><span class="p">(</span><span class="n">features</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">row_names</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>

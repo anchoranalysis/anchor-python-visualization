@@ -34,9 +34,9 @@ Attributes
 
 
 .. py:data:: IDENTIFIERS
-   :annotation: = ['plot', 'TensorBoard']
+   :annotation: = ['plot', 'tensorboard']
 
-   Unique strings to use as command-line-arguments to select a :class:`VisualizeFeaturesScheme`.
+   Unique strings to use as command-line-arguments to select a :class:`VisualizeFeaturesScheme`. All are lower-case.
 
 
 .. py:data:: DEFAULT_IDENTIFIER
@@ -49,7 +49,7 @@ Attributes
 
    Creates a visualize-embeddings method from an identifier.
 
-   :param identifier: string that is one of :const:`IDENTIFIERS`.
+   :param identifier: string that is one of :const:`IDENTIFIERS`, case-insensitive.
    :param projector: method for performing projection into smaller dimensionality.
    :param output_path: a path for writing any relevant output.
    :returns: a newly created instance corresponding to the identifier.

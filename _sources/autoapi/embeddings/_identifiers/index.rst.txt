@@ -1,0 +1,13 @@
+:orphan:
+
+:py:mod:`embeddings._identifiers`
+=================================
+
+.. py:module:: embeddings._identifiers
+
+.. autoapi-nested-parse::
+
+   Selects or create unique identifiers for the data-frame.
+
+
+

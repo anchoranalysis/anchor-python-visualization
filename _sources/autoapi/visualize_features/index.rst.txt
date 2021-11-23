@@ -125,3 +125,21 @@
 
 
 
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   visualize_features.main
+
+
+
+.. py:function:: main()
+
+   Entry point.
+
+
