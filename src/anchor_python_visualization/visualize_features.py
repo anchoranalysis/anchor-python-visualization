@@ -219,6 +219,7 @@ def _add_method_via_choices(
         ),
         choices=choices,
         default=default_choice,
+        type=str.casefold,
     )
 
 
