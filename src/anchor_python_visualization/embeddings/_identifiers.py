@@ -12,11 +12,17 @@ def select_or_create_identifiers(
     - The left-most numeric column (if each value is unique)
     - A range of numbers from 0..number(rows)
 
-    Selects the first (left-most) string column as the identifiers or otherwise creates a range of numbers.
+    Selects the first (left-most) string column as the identifiers or otherwise creates a range of
+    numbers.
 
     The identifiers are always returned as strings.
 
-    :returns: a data-frame with one column, which are unique (string) identifiers.
+    Args:
+        string_columns: columns that contain strings, as a data-frame.
+        numeric_columns: columns that contain numeric-values, as a data-frame.
+
+    Returns:
+        a data-frame with one column, which are unique (string) identifiers.
     """
     if _is_first_column_unique(string_columns):
         return string_columns.iloc[:, 0]
@@ -35,8 +41,11 @@ def _create_numeric_sequence(number_rows: int) -> pd.Series:
 def _is_first_column_unique(columns: pd.DataFrame) -> bool:
     """Determines if the first column exists and is unique.
 
-    :param columns: a data-frame containing zero or more columns.
-    :returns: true if the first column exists, and each value in the column is unique.
+    Args:
+        columns: a data-frame containing zero or more columns.
+
+    Returns:
+        True if the first column exists, and each value in the column is unique.
     """
     return len(columns.columns) > 0 and _has_unique_values(columns.iloc[:, 0])
 
