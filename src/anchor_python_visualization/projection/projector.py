@@ -16,7 +16,11 @@ class Projector(ABC):
     def project(self, features: pd.DataFrame) -> pd.DataFrame:
         """Performs projection, while preserving a data-frame with identical row names.
 
-        :param features: data_frame containing only numerical embeddings (as columns) and with labelled row.names
-        :returns: a data-frame of embeddings with identical order and row names, but changed columns.
+        Args:
+            features: data_frame containing only numerical embeddings (as columns) and with labelled
+            row.names
+
+        Returns:
+            a data-frame of embeddings with identical order and row names, but changed columns.
         """
         pass

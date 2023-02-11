@@ -1,5 +1,6 @@
 """Creates a data-frame with particular types of columns."""
 from enum import Enum
+
 import pandas as pd
 
 

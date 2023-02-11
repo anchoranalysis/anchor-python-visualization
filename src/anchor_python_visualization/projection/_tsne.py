@@ -26,12 +26,12 @@ PERPLEXITY_TSNE = 30
 class TSNEProjection(Projector):
     """Projects to two-dimensions using T-SNE
 
-     This is preceded by a PCA projection when ``num(embeddings) > MAX_NUM_FEATURES_TSNE``.
+    This is preceded by a PCA projection when ``num(embeddings) > MAX_NUM_FEATURES_TSNE``.
 
     It produces embeddings TSNE0 and TSNE1.
     """
 
-    # Overriding a base class
+    # Overriding a method in a base class
     def project(self, features: pd.DataFrame) -> pd.DataFrame:
 
         # If there are many embeddings, then use PCA first before T-SNE as per recommendation in

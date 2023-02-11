@@ -16,6 +16,7 @@ class VisualizeFeaturesScheme(ABC):
     def visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None:
         """Visualizes the embeddings in some manner.
 
-        :param features: embeddings in a data-frame with associated labels.
+        Args:
+            features: embeddings in a data-frame with associated labels.
         """
         pass

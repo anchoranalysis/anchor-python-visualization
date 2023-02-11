@@ -11,9 +11,11 @@ from ._pca import PCAProjection
 from ._tsne import TSNEProjection
 from .projector import Projector
 
-
 IDENTIFIERS = ["t-sne", "pca", "none"]
-"""Unique strings to use as command-line-arguments to select a :class:`Projector`. All are lower-case."""
+"""Unique strings to use as command-line-arguments to select a :class:`Projector`.
+
+All are lower-case.
+"""
 
 
 DEFAULT_IDENTIFIER = "t-sne"
@@ -23,8 +25,11 @@ DEFAULT_IDENTIFIER = "t-sne"
 def create_projector(identifier: str) -> Optional[Projector]:
     """Creates a projection method from an identifier.
 
-    :param identifier: string that is one of :const:`IDENTIFIERS`, case-insensitive.
-    :returns: a newly created projection method, or none at all.
+    Args:
+        identifier: string that is one of :const:`IDENTIFIERS`, case-insensitive.
+
+    Returns:
+        a newly created projection method, or none at all.
     """
     identifier = identifier.casefold()
     if identifier == IDENTIFIERS[0]:

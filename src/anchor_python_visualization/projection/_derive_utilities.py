@@ -10,15 +10,21 @@ import pandas as pd
 
 
 def derive_projected(
-    unprojected: pd.DataFrame, projected: np.array, feature_prefix: str
+    unprojected: pd.DataFrame, projected: np.ndarray, feature_prefix: str
 ) -> pd.DataFrame:
-    """
-    Converts a projected numpy array (derived from a data-frame) back into data-frame format with row.names
+    """Converts a projected numpy array back into data-frame format with row.names.
 
-    :param unprojected: the original data-frame from which the projection was derived
-    :param projected: the projection derived from :code:`unprojected`
-    :param feature_prefix: a prefix to use in feature names e.g. :code:`feature_prefix0`, :code:`feature_prefix1` etc.
-    :returns: a data-frame with identical row order and size to :code:`df_orig` but with embeddings from the projection.
+    The projected array is derived from a data-frame.
+
+    Args:
+        unprojected: the original data-frame from which the projection was derived
+        projected: the projection derived from :code:`unprojected`
+        feature_prefix: a prefix to use in feature names e.g. :code:`feature_prefix0`,
+            :code:`feature_prefix1` etc.
+
+    Returns:
+        a data-frame with identical row order and size to :code:`df_orig` but with embeddings from
+        the projection.
     """
     num_columns = np.size(projected, 1)
     return pd.DataFrame(

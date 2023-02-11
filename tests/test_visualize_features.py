@@ -1,11 +1,12 @@
 """Tests :mod:`visualize_features`."""
-import pathlib
 import os
-from unittest import mock
-from anchor_python_visualization import visualize_features
-from anchor_python_utilities import file, fixture
+import pathlib
 from typing import List
+from unittest import mock
 
+from anchor_python_utilities import file, fixture
+
+from anchor_python_visualization import visualize_features
 
 _EXPECTED_TENSORBOARD_FILES: List[str] = [
     "checkpoint",

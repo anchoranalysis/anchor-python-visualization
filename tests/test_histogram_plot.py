@@ -1,7 +1,9 @@
 """Tests :mod:`histogram_plot`."""
 from unittest import mock
-from anchor_python_visualization import histogram_plot
+
 from anchor_python_utilities import file, fixture
+
+from anchor_python_visualization import histogram_plot
 
 
 @mock.patch("matplotlib.pyplot.show")

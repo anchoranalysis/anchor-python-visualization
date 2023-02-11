@@ -1,11 +1,8 @@
-from anchor_python_visualization.projection import (
-    create_projector,
-    IDENTIFIERS,
-    Projector,
-)
-import pandas as pd
 import numpy as np
+import pandas as pd
 
+from anchor_python_visualization.projection import (IDENTIFIERS, Projector,
+                                                    create_projector)
 
 _DATA_FRAME_SIZE = (100, 4)
 
