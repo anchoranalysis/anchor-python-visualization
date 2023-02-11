@@ -17,16 +17,19 @@ def create_sprite_at(
 ) -> None:
     """Creates an image-sprite in the format expected by TensorBoard.
 
-    This image sprite is a tiled (like a checkboard) version of small identically-sized images (patches) in the order::
+    This image sprite is a tiled (like a checkboard) version of small identically-sized images
+    (patches) in the order::
 
       left->right (first)
       top->down (second).
 
-    The sprite **must** always be of square dimensionality, so any unused patches are left blank at the end.
+    The sprite **must** always be of square dimensionality, so any unused patches are left blank at
+    the end.
 
-    :param image_paths: a series of image-paths for each image that should exist in the sprite (in that order)
-    :param sprite_path: the path to write the sprite to
-    :param image_size_in_sprite: the size of each image inside the sprite
+    Args:
+        image_paths: a series of ordered image-paths for each image that should exist in the sprite.
+        sprite_path: the path to write the sprite to
+        image_size_in_sprite: the size of each image inside the sprite
     """
     images = []
     for i in range(len(image_paths)):
@@ -40,7 +43,7 @@ def create_sprite_at(
     cv2.imwrite(sprite_path, _create_sprite(images))
 
 
-def _read_and_scale(path: str, scale_to_size: Tuple[int, int]) -> np.array:
+def _read_and_scale(path: str, scale_to_size: Tuple[int, int]) -> np.ndarray:
     """Reads an image at a path and scales to a particular size"""
     try:
         return cv2.resize(_read_with_unicode_path(path), scale_to_size)
@@ -55,19 +58,27 @@ def _read_and_scale(path: str, scale_to_size: Tuple[int, int]) -> np.array:
 
 
 def _read_with_unicode_path(path: str) -> str:
-    """
-    OpenCV has a problem reading paths which have non-trivial encoding (e.g. unicode). This is a workaround.
+    """Reads an image contains a path even if it is unicode.
+
+    OpenCV has a problem reading paths which have non-trivial encoding (e.g. unicode). So a
+    workaround is required.
 
     See https://stackoverflow.com/questions/43185605/how-do-i-read-an-image-from-a-path-with-unicode-characters/43185606
 
-    :param path: to be opened
-    :returns: an opened image (assuming it is uint8). It will be in BGR format if it is a three channel image.
+    Args:
+        path: path to image file to be opened.
+
+    Returns:
+        an opened image (assuming it is uint8). It will be in BGR format when three channels.
     """
     return cv2.imdecode(np.fromfile(path, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
 
 
-def _create_sprite(images: List[np.array]) -> np.array:
-    """Creates the sprite by tiling into a square image, and adding any padding as needed to complete the square."""
+def _create_sprite(images: List[np.ndarray]) -> np.ndarray:
+    """Creates the sprite by tiling into a square image.
+
+    Any padding is added as needed to complete the square.
+    """
     data = np.array(images)
 
     data = _convert_grayscale_to_bgr_if_needed(data)
@@ -79,20 +90,26 @@ def _create_sprite(images: List[np.array]) -> np.array:
     return _reshape_into_tiled_square(data_padded, number_images)
 
 
-def _number_images_in_an_axis(data: np.array) -> int:
-    """Calculates the number of images to place along one axis of the square (i.e. width or height)."""
+def _number_images_in_an_axis(data: np.ndarray) -> int:
+    """Calculates the number of images to place along one axis of the square.
+
+    i.e. width or height.
+    """
     return int(np.ceil(np.sqrt(data.shape[0])))
 
 
-def _pad_as_needed(data: np.array, n: int) -> np.array:
-    """Adds additional empty images (0 pixels) to ensure there is correct number to complete the square sprite image."""
+def _pad_as_needed(data: np.ndarray, n: int) -> np.ndarray:
+    """Adds additional empty pixels to ensure a sufficient number to complete the square image.
+
+    The padding occurs with 0-values.
+    """
 
     # Number of voxels to pad (respectively before and after) in each dimension
-    padding = ((0, n ** 2 - data.shape[0]), (0, 0), (0, 0), (0, 0))
+    padding = ((0, n**2 - data.shape[0]), (0, 0), (0, 0), (0, 0))
     return np.pad(data, padding, mode="constant", constant_values=0)
 
 
-def _convert_grayscale_to_bgr_if_needed(data: np.array) -> np.array:
+def _convert_grayscale_to_bgr_if_needed(data: np.ndarray) -> np.ndarray:
     """If data is grayscale then convert it into BGR"""
     if len(data.shape) == 3:
         return np.tile(data[..., np.newaxis], (1, 1, 1, 3))
@@ -100,8 +117,8 @@ def _convert_grayscale_to_bgr_if_needed(data: np.array) -> np.array:
         return data
 
 
-def _reshape_into_tiled_square(data: np.array, n: int):
-    """Manipulate the shape of the numpy arrays so it corresponds to one large square 3-channel image."""
+def _reshape_into_tiled_square(data: np.ndarray, n: int) -> np.ndarray:
+    """Manipulate shape of the numpy arrays so it becomes one large square 3-channel image."""
 
     data = data.reshape((n, n) + data.shape[1:])
 

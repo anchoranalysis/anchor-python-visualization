@@ -1,8 +1,16 @@
 """Methods for loading embeddings and determining labels."""
-from .label import LabelledFeatures  # noqa: F401
-from .features import (  # noqa: F401
-    load_features,
-    PLACEHOLDER_FOR_SUBSTITUTION,
+from anchor_python_visualization.embeddings.exceptions import InsufficientRowsException
+from anchor_python_visualization.embeddings.features import (
     COLUMN_NAME_IDENTIFIER,
+    PLACEHOLDER_FOR_SUBSTITUTION,
+    load_features,
 )
-from .exceptions import InsufficientRowsException  # noqa: F401
+from anchor_python_visualization.embeddings.label import LabelledFeatures
+
+__all__ = [
+    "InsufficientRowsException",
+    "COLUMN_NAME_IDENTIFIER",
+    "PLACEHOLDER_FOR_SUBSTITUTION",
+    "load_features",
+    "LabelledFeatures",
+]

@@ -1,11 +1,12 @@
 """Tests :mod:`visualize_features`."""
-import pathlib
 import os
-from unittest import mock
-from anchor_python_visualization import visualize_features
-from _utilities import path_same_directory, call_with_arguments
+import pathlib
 from typing import List
+from unittest import mock
 
+from anchor_python_utilities import file, fixture
+
+from anchor_python_visualization import visualize_features
 
 _EXPECTED_TENSORBOARD_FILES: List[str] = [
     "checkpoint",
@@ -47,12 +48,12 @@ def _call_wth_features(arguments_additional: List[str]) -> None:
 
     :param arguments_additional: command-line arguments in addition the filename to include in the call.
     """
-    filename = path_same_directory(__file__, "resources/features.csv")
-    call_with_arguments(visualize_features, [filename, *arguments_additional])
+    filename = file.path_same_directory(__file__, "resources/features.csv")
+    fixture.call_with_arguments(visualize_features, [filename, *arguments_additional])
 
 
 def _assert_tensorboard_files_exist(tmp_path: pathlib.Path) -> None:
     """Asserts particular files have been created as expected for TensorBoard output."""
-    for file in _EXPECTED_TENSORBOARD_FILES:
-        path = pathlib.Path(os.path.join(tmp_path, file))
+    for tensorboard_file in _EXPECTED_TENSORBOARD_FILES:
+        path = pathlib.Path(os.path.join(tmp_path, tensorboard_file))
         assert path.is_file()

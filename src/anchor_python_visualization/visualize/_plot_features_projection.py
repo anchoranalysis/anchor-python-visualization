@@ -10,8 +10,8 @@ from typing import Optional
 import pandas as pd
 import plotly.express as px
 
-from anchor_python_visualization import projection
-from anchor_python_visualization import embeddings
+from anchor_python_visualization import embeddings, projection
+
 from .visualize_features_scheme import VisualizeFeaturesScheme
 
 
@@ -21,7 +21,8 @@ class PlotFeaturesProjection(VisualizeFeaturesScheme):
     def __init__(self, projector: projection.Projector):
         """Constructor
 
-        :param projector: how the projection is performed
+        Args:
+            projector: how the projection is performed.
         """
         if projector is None:
             raise ValueError(
@@ -30,19 +31,20 @@ class PlotFeaturesProjection(VisualizeFeaturesScheme):
 
         self._projector = projector
 
-    # Overriding a base class
+    # Overriding a method in a base class
     def visualize_data_frame(self, features: embeddings.LabelledFeatures) -> None:
 
         df_projected = self._projector.project(features.features)
 
-        _plot_first_two_dims_projection(df_projected, features.labels)
+        _plot_first_two_dimensions_projection(df_projected, features.labels)
 
 
-def _plot_first_two_dims_projection(
+def _plot_first_two_dimensions_projection(
     df: pd.DataFrame, labels: Optional[pd.Series] = None
 ) -> None:
 
-    # Makes the identifiers a normal column (to see the identifier when hovering over a point in plotly)
+    # Makes the identifiers a normal column
+    # (to see the identifier when hovering over a point in plotly)
     df["identifier"] = df.index
 
     if labels is not None:

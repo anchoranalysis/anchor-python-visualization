@@ -12,8 +12,8 @@ import pandas as pd
 import tensorflow as tf
 from tensorboard.plugins import projector
 
-from anchor_python_visualization import embeddings
-from anchor_python_visualization import projection
+from anchor_python_visualization import embeddings, projection
+
 from ._image_sprite import create_sprite_at
 from .visualize_features_scheme import VisualizeFeaturesScheme
 
@@ -24,22 +24,25 @@ FILENAME_METADATA = "metadata.tsv"
 FILENAME_FEATURES = "embeddings.ckpt"
 FILENAME_IMAGE_SPRITE = "sprite.png"
 
-# Max sprite size is apparently 8192 x 8192 pixels, so this is the maximum number of images that can be supported
+# Max sprite size is apparently 8192 x 8192 pixels, so this is the maximum number of images that can
+# be supported
 MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE = (8192 // IMAGE_SIZE_IN_SPRITE[0]) * (
     8192 // IMAGE_SIZE_IN_SPRITE[1]
 )
 
 
 class TensorBoardExport(VisualizeFeaturesScheme):
-    """Exports embeddings (and optional image sprites) in a format so that TensorBoard can be used for visualization"
+    """Exports embeddings in a format so that TensorBoard can be used for visualization.
 
-    If an image-path is associated with each item, a large tiled image (a sprite) is created with small scaled
-    (thumnnail-like) versions of each image. TensorBoard can read this image to show the thumbnails alongside
-    data-points.
+    Optionally, image-sprites can be associated with each feature row to be visualized.
 
-    If the embeddings have more rows than MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE then a random-sample (without replacement)
-    is taken to reduce the number the embeddings to MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE. Note this introduces
-    non-deterministic behaviour.
+    If an image-path is associated with each item, a large tiled image (a sprite) is created with
+    small scaled (thumnnail-like) versions of each image. TensorBoard can read this image to show
+    the thumbnails alongside data-points.
+
+    If the embeddings have more rows than MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE then a random-sample
+    (without replacement) is taken to reduce the number the embeddings to
+    MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE. Note this introduces non-deterministic behaviour.
 
     Thanks to the TensorBoard tutorial
     https://www.tensorflow.org/tensorboard/tensorboard_projector_plugin
@@ -53,8 +56,9 @@ class TensorBoardExport(VisualizeFeaturesScheme):
     ):
         """Constructor
 
-        :param projector_method: optional projection to reduce dimensionality before export
-        :param output_path: where to write the "log-dir" for tensorboard
+        Args:
+            projector_method: optional projection to reduce dimensionality before export
+            output_path: where to write the "log-dir" for tensorboard
         """
         self._projector = projector_method
         self._output_path = _create_dir_or_throw(output_path)
@@ -91,8 +95,11 @@ class TensorBoardExport(VisualizeFeaturesScheme):
     def _maybe_create_sprite(self, image_paths: Optional[pd.Series]) -> Optional[str]:
         """Creates a sprite image with thumbnails for many different images, if selected.
 
-        :param image_paths: if defined, paths to various images that are populated into the sprite in order
-        :returns: the path where the sprite was written, or None if no sprite was written.
+        Args:
+            image_paths: paths to various images that are populated into the sprite in order
+
+        Returns:
+            the path where the sprite was written, or None if no sprite was written.
         """
         if image_paths is not None:
             sprite_path = self._resolved_path(FILENAME_IMAGE_SPRITE)
@@ -104,8 +111,11 @@ class TensorBoardExport(VisualizeFeaturesScheme):
     def _resolved_path(self, path_relative_to_log_dir: str) -> str:
         """Resolves a path to the log-dir.
 
-        :param path_relative_to_log_dir: a path expressed relative only to the log dir
-        :returns: an absolute path
+        Args:
+            path_relative_to_log_dir: a path expressed relative only to the log directory.
+
+        Returns:
+            an absolute path.
         """
         return os.path.join(self._output_path, path_relative_to_log_dir)
 
@@ -113,7 +123,10 @@ class TensorBoardExport(VisualizeFeaturesScheme):
 def _sample_if_needed(
     features: embeddings.LabelledFeatures,
 ) -> embeddings.LabelledFeatures:
-    """Randomly samples if needed to ensure :code:`num_rows(embeddings) <=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE`"""
+    """Randomly samples if needed.
+
+    This occurs to ensure :code:`num_rows(embeddings) <=MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE`.
+    """
     if features.image_paths is None:
         # Number of rows irrelevant as no sprite will be created, so exit early unchanged
         return features
@@ -121,8 +134,8 @@ def _sample_if_needed(
     num_rows = features.number_items()
     if num_rows > MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE:
         print(
-            "Sampling {} rows from a total of {} rows in the feature-table as this is the maximum allowed in the"
-            " image-sprite".format(MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE, num_rows)
+            f"Sampling {MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE} rows from a total of {num_rows} rows"
+            "in the feature-table as this is the maximum image-sprite"
         )
         return features.sample_without_replacement(MAX_NUMBER_IMAGES_ALLOWED_IN_SPRITE)
     else:

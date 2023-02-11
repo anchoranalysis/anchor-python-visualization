@@ -7,6 +7,6 @@ __version__ = "0.1"
 
 
 class InsufficientRowsException(Exception):
-    """Raised when there are too few rows in the data-frame for a particular operation."""
+    """When there are too few rows in a data-frame to perform an operation."""
 
     pass

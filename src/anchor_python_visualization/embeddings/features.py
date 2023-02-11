@@ -8,14 +8,13 @@ __version__ = "0.1"
 import argparse
 import os
 from typing import Optional
-from ._labels import labels_from_identifiers
-from ._identifiers import select_or_create_identifiers
 
 import numpy as np
 import pandas as pd
 
+from ._identifiers import select_or_create_identifiers
+from ._labels import labels_from_identifiers
 from .label import LabelledFeatures
-
 
 COLUMN_NAME_IDENTIFIER: str = "identifier"
 """Name for index column."""
@@ -25,7 +24,16 @@ PLACEHOLDER_FOR_SUBSTITUTION: str = "<IMAGE>"
 
 
 def load_features(args: argparse.Namespace) -> LabelledFeatures:
-    """Loads the embeddings from a CSV file, determines identifiers and labels - all according to the arguments."""
+    """Loads the embeddings from a CSV file and determines identifiers and labels.
+
+     This determination occurs according to command-line arguments.
+
+    Args:
+        args: the command-line arguments.
+
+    Returns:
+        newly-created instance of features after having being loaded.
+    """
 
     # Read all columns, text and number
     features = _read_csv(args.file_path_to_csv, encoding=args.encoding)
@@ -52,7 +60,7 @@ def load_features(args: argparse.Namespace) -> LabelledFeatures:
 
 
 def _read_csv(file_path_to_csv: str, encoding: str) -> pd.DataFrame:
-    """Reads the CSV from the file-system."""
+    """Reads the CSV from the file-system with a particular encoding."""
     return pd.read_csv(file_path_to_csv, index_col=None, header=0, encoding=encoding)
 
 
@@ -61,16 +69,19 @@ def _maybe_image_paths(
     image_directory_path: Optional[str],
     image_directory_sequence: Optional[str],
 ) -> Optional[pd.Series]:
-    """Maybe creates a series of image-paths derived from the index names in data/frame (the returned series has
-    identical size and order)
+    """Maybe creates a series of image-paths derived from the index names in data/frame.
 
     No paths are created if image_directory_path is None, and instead None is returned.
 
-    :param features: data-frame the images prefer to
-    :param image_directory_path: iff present, the index name of df (a relative path) for each feature row is
-    appended/substituted to form a complete path to an image
-    :param image_directory_sequence: iff present, a six-digit integer sequence for each feature row is
-    appended/substituted to form a complete path to an image
+    Args:
+      features: data-frame the images refer to.
+      image_directory_path: iff present, the index name of data-frame (a relative path) for each
+        feature row is appended/substituted to form a complete path to an image.
+      image_directory_sequence: iff present, a six-digit integer sequence for each feature row is
+        appended/substituted to form a complete path to an image.
+
+    Returns:
+        a series with an identical number of rows in identical order, or None.
     """
     # If neither image_dir argument is set exit
     if (image_directory_path is None) and (image_directory_sequence is None):
@@ -83,8 +94,8 @@ def _maybe_image_paths(
             lambda path: _join_or_substitute(image_directory_path, path)
         )
 
-    # If image_dir_sequence is set, form complete image-paths for each feature-row using a six digit sequence to join
-    # or substitute
+    # If image_dir_sequence is set, form complete image-paths for each feature-row using a six digit
+    # sequence to join or substitute
     if image_directory_sequence:
         number_rows = len(features.index)
         sequence = pd.Series(range(0, number_rows))
@@ -96,17 +107,21 @@ def _maybe_image_paths(
 
 
 def _join_or_substitute(image_directory: str, path: str) -> str:
-    """
-    Derives paths to images by either joining path to image_dir or substituting path into image_dir (if it contains
-    `PLACEHOLDER_FOR_SUBSTITUTION`)
+    """Derives paths to images by either joining path to image_dir or substituting path into it.
+
+    The sibustition occurs if the path contains a sub-string `PLACEHOLDER_FOR_SUBSTITUTION`.
 
     Both paths are normed so that directory-seperators match the execution environment.
 
-    :param image_directory: either the absolute path to a directory OR a such a path with a placeholder
-                            :code:`PLACEHOLDER_FOR_SUBSTITUTION` which can be substituted.
-    :param path: the relative-path to an image.
-    :returns: either the relative-path joined to image_dir or the relative-path substituted into image_dir in place of
-              :code:`PLACEHOLDER_FOR_SUBSTITUTION`.
+    Args:
+        image_directory: either the absolute path to a directory OR a such a path with a placeholder
+            :code:`PLACEHOLDER_FOR_SUBSTITUTION` which can be substituted.
+        path: the relative-path to an image.
+
+    Returns:
+        either the relative-path joined to image_dir or the relative-path substituted into image_dir
+            in place of :code:`PLACEHOLDER_FOR_SUBSTITUTION`.
+
     """
     if PLACEHOLDER_FOR_SUBSTITUTION in image_directory:
         return os.path.normpath(image_directory).replace(
