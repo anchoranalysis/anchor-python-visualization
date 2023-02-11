@@ -88,7 +88,7 @@ def _pad_as_needed(data: np.array, n: int) -> np.array:
     """Adds additional empty images (0 pixels) to ensure there is correct number to complete the square sprite image."""
 
     # Number of voxels to pad (respectively before and after) in each dimension
-    padding = ((0, n ** 2 - data.shape[0]), (0, 0), (0, 0), (0, 0))
+    padding = ((0, n**2 - data.shape[0]), (0, 0), (0, 0), (0, 0))
     return np.pad(data, padding, mode="constant", constant_values=0)
 
 
