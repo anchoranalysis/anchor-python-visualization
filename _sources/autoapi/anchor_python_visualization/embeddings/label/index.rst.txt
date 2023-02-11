@@ -1,0 +1,68 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.embeddings.label`
+======================================================
+
+.. py:module:: anchor_python_visualization.embeddings.label
+
+.. autoapi-nested-parse::
+
+   Routines for loading embeddings from CSV and adding identifiers and labels.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.embeddings.label.LabelledFeatures
+
+
+
+
+.. py:class:: LabelledFeatures
+
+   Maintains separate data-frames for embeddings and labels, but linked in order and count.
+
+   Both data-frames must have the same number of rows, ordred identically.
+
+   .. py:attribute:: features
+      :type: pandas.DataFrame
+
+      Data-frame containing only feature-values (numeric) with each row assigned an identifier.
+
+   .. py:attribute:: labels
+      :type: pandas.Series
+
+      Series with labels for each item in ``df_features``.
+
+      The series must have the same size and order as ``embeddings``.
+
+   .. py:attribute:: image_paths
+      :type: Optional[pandas.Series]
+
+      Optional series with a path to an image for each item.
+
+      The series must have the same size and order as ``embeddings``.
+
+   .. py:method:: number_items() -> int
+
+      Returns the number of items (i.e. rows) in the data-frames/series.
+
+
+   .. py:method:: sample_without_replacement(sample_size: int) -> LabelledFeatures
+
+      Samples without replacement (taking identical rows from each member data-frame/series).
+
+      :param sample_size: number of items to sample
+
+      :returns: a newly created :class:`LabelledFeatures` containing the sample.
+
+      :raises InsufficientRowsException: if there are fewer rows available than :code:`sample_size`.
+
+
+

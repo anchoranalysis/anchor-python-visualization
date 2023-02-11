@@ -1,0 +1,50 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.histogram_plot`
+====================================================
+
+.. py:module:: anchor_python_visualization.histogram_plot
+
+.. autoapi-nested-parse::
+
+   Plots a histogram from a CSV file that has `intensity` and `count` in two columns.
+
+   ---------------
+   Input Arguments
+   ---------------
+
+   * `--file_path_to_csv` a path to the CSV file.
+
+   -------------
+   Example Usage
+   -------------
+
+   Install the package in this repository, by:
+
+   * `pip install .` (in the root of the checked out repository) or
+   * `pip install git+https://github.com/anchoranalysis/anchor-python-visualization.git`
+
+   ::
+
+       python -m anchor_python_visualization.histogram_plot --file_path_to_csv D:\somedirectory\features.csv
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.histogram_plot.main
+
+
+
+.. py:function:: main()
+
+   Entry point.
+
+

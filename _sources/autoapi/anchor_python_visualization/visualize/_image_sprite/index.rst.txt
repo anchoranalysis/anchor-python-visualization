@@ -1,0 +1,13 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.visualize._image_sprite`
+=============================================================
+
+.. py:module:: anchor_python_visualization.visualize._image_sprite
+
+.. autoapi-nested-parse::
+
+   Creating an image-sprite suitable for TensorBoard from a list of image-paths.
+
+
+

@@ -1,0 +1,79 @@
+:py:mod:`anchor_python_visualization.projection`
+================================================
+
+.. py:module:: anchor_python_visualization.projection
+
+.. autoapi-nested-parse::
+
+   Methods for projecting a feature space to lower dimensionality.
+
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.projection.Projector
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.projection.create_projector
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.projection.DEFAULT_IDENTIFIER
+   anchor_python_visualization.projection.IDENTIFIERS
+
+
+.. py:data:: DEFAULT_IDENTIFIER
+   :value: 't-sne'
+
+   The default choice to use in :const:`IDENTIFIERS`.
+
+.. py:data:: IDENTIFIERS
+   :value: ['t-sne', 'pca', 'none']
+
+   Unique strings to use as command-line-arguments to select a :class:`Projector`.
+
+   All are lower-case.
+
+.. py:function:: create_projector(identifier: str) -> Optional[anchor_python_visualization.projection.projector.Projector]
+
+   Creates a projection method from an identifier.
+
+   :param identifier: string that is one of :const:`IDENTIFIERS`, case-insensitive.
+
+   :returns: a newly created projection method, or none at all.
+
+
+.. py:class:: Projector
+
+   Bases: :py:obj:`abc.ABC`
+
+   Projects the feature-space to lower dimensionality.
+
+   .. py:method:: project(features: pandas.DataFrame) -> pandas.DataFrame
+
+      Performs projection, while preserving a data-frame with identical row names.
+
+      :param features: data_frame containing only numerical embeddings (as columns) and with labelled
+      :param row.names:
+
+      :returns: a data-frame of embeddings with identical order and row names, but changed columns.
+
+
+

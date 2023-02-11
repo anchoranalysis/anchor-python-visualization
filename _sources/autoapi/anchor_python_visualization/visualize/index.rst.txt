@@ -1,0 +1,78 @@
+:py:mod:`anchor_python_visualization.visualize`
+===============================================
+
+.. py:module:: anchor_python_visualization.visualize
+
+.. autoapi-nested-parse::
+
+   Different schemes for visualizing embeddings or other types of data.
+
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.visualize.VisualizeFeaturesScheme
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.visualize.create_method
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.visualize.DEFAULT_IDENTIFIER
+   anchor_python_visualization.visualize.IDENTIFIERS
+
+
+.. py:data:: DEFAULT_IDENTIFIER
+   :value: 'plot'
+
+   The default choice to use in :const:`IDENTIFIERS`.
+
+.. py:data:: IDENTIFIERS
+   :value: ['plot', 'tensorboard']
+
+   Unique strings to use as command-line-arguments to select a :class:`VisualizeFeaturesScheme`.
+
+   All are lower-case.
+
+.. py:function:: create_method(identifier: Optional[str], projector: Optional[anchor_python_visualization.projection.Projector], output_path: Optional[str]) -> anchor_python_visualization.visualize.visualize_features_scheme.VisualizeFeaturesScheme
+
+   Creates a visualize-embeddings method from an identifier.
+
+   :param identifier: string that is one of :const:`IDENTIFIERS`, case-insensitive.
+   :param projector: method for performing projection into smaller dimensionality.
+   :param output_path: a path for writing any relevant output.
+
+   :returns: a newly created instance corresponding to the identifier.
+
+
+.. py:class:: VisualizeFeaturesScheme
+
+   Bases: :py:obj:`abc.ABC`
+
+   A method to visualize a set of feature-values.
+
+   .. py:method:: visualize_data_frame(features: anchor_python_visualization.embeddings.LabelledFeatures) -> None
+
+      Visualizes the embeddings in some manner.
+
+      :param features: embeddings in a data-frame with associated labels.
+
+
+

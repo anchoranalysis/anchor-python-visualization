@@ -1,0 +1,13 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.visualize._plot_features_projection`
+=========================================================================
+
+.. py:module:: anchor_python_visualization.visualize._plot_features_projection
+
+.. autoapi-nested-parse::
+
+   A scheme for visualizing embeddings involving a projection into an embedding and plotting
+
+
+

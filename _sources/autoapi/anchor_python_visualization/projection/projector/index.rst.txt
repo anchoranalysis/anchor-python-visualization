@@ -1,0 +1,43 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.projection.projector`
+==========================================================
+
+.. py:module:: anchor_python_visualization.projection.projector
+
+.. autoapi-nested-parse::
+
+   Abstract base class for projection method.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.projection.projector.Projector
+
+
+
+
+.. py:class:: Projector
+
+   Bases: :py:obj:`abc.ABC`
+
+   Projects the feature-space to lower dimensionality.
+
+   .. py:method:: project(features: pandas.DataFrame) -> pandas.DataFrame
+
+      Performs projection, while preserving a data-frame with identical row names.
+
+      :param features: data_frame containing only numerical embeddings (as columns) and with labelled
+      :param row.names:
+
+      :returns: a data-frame of embeddings with identical order and row names, but changed columns.
+
+
+

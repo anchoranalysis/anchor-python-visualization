@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>anchor_python_visualization.visualize_features &mdash; anchor_python_visualization  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            anchor_python_visualization
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">anchor_python_visualization</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">anchor_python_visualization.visualize_features</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/anchor_python_visualization/visualize_features/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-anchor_python_visualization.visualize_features">
+<span id="anchor-python-visualization-visualize-features"></span><h1><a class="reference internal" href="#module-anchor_python_visualization.visualize_features" title="anchor_python_visualization.visualize_features"><code class="xref py py-mod docutils literal notranslate"><span class="pre">anchor_python_visualization.visualize_features</span></code></a><a class="headerlink" href="#module-anchor_python_visualization.visualize_features" title="Permalink to this heading"></a></h1>
+<p>Visualizes embeddings in a CSV file by plotting or TensorBoard.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>The script:</p>
+<ol class="arabic simple">
+<li><p>Creates embeddings, by projecting the embeddings into a lower dimensional space.</p></li>
+<li><p>Visualizes the embeddings.</p></li>
+</ol>
+<p>Both steps offer a choice of methods.</p>
+</section>
+<section id="input-arguments">
+<h2>Input Arguments<a class="headerlink" href="#input-arguments" title="Permalink to this heading"></a></h2>
+<section id="projection-methods">
+<h3>Projection methods<a class="headerlink" href="#projection-methods" title="Permalink to this heading"></a></h3>
+<p><cite>-p</cite> or <cite>–projection</cite></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-SNE</a> <strong>(default)</strong></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">PCA</a></p></li>
+<li><p><cite>none</cite> - unchanged dimensionality for the embeddings.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="visualization-methods">
+<h3>Visualization methods<a class="headerlink" href="#visualization-methods" title="Permalink to this heading"></a></h3>
+<p><cite>-m</cite> or <cite>–method</cite></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>plot</cite> - interactive 2D plot of embeddings via <a class="reference external" href="https://plotly.com/">ploty</a> <strong>(default)</strong></p></li>
+<li><p><cite>TensorBoard</cite> - exports a <em>log directory</em> to <a class="reference external" href="https://www.tensorflow.org/tensorboard">TensorBoard</a> at
+<cite>–output-path</cite> or <cite>-o</cite></p></li>
+</ul>
+</div></blockquote>
+<p>Optionally, image thumbnails can be associated with each embedding for <cite>TensorBoard</cite> export with <cite>–image_sequence</cite>
+or <cite>–image_path</cite> containing paths where the string <code class="xref py py-const docutils literal notranslate"><span class="pre">PLACEHOLDER_FOR_SUBSTITUTION</span></code>is substituted respectively:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>with an index from an incrementing six digit integer with leading zeros, corresponding to row order, or,</p></li>
+<li><p>the unique identifier for the embedding.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="structure-of-the-csv-file">
+<h3>Structure of the CSV File<a class="headerlink" href="#structure-of-the-csv-file" title="Permalink to this heading"></a></h3>
+<p>The CSV file should have:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>embeddings as columns.</p></li>
+<li><p>data-items as rows.</p></li>
+<li><p>include headers as the first row.</p></li>
+<li><p>one column called <code class="xref py py-const docutils literal notranslate"><span class="pre">COLUMN_NAME_IDENTIFIER</span></code> with unique identifiers for each
+embedding.</p></li>
+</ul>
+</div></blockquote>
+<p>Otherwise:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the <em>numeric</em> columns are treated as feature-values</p></li>
+<li><p>the <em>non-numeric</em> columns can be combined into a label via the <cite>–max_label_index</cite> argument, combining a number of
+these columns from the left or the right.</p></li>
+</ul>
+</div></blockquote>
+<p>Note the label is split into separate groups by a slash (forward or backwards), and <cite>–max_label_index</cite> specifies
+a maximum number of groups to be read from the left (if positive) or to be excluded from the right (if negative).</p>
+<p><code class="docutils literal notranslate"><span class="pre">--encoding</span></code> specifies the encoding of the CSV file as per
+<a class="reference external" href="https://docs.python.org/3/library/codecs.html#standard-encodings">Python’s standard encodings</a>.</p>
+</section>
+</section>
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this heading"></a></h2>
+<p>Install the package in this repository, by:</p>
+<ul class="simple">
+<li><p><cite>pip install .</cite> (in the root of the checked out repository) or</p></li>
+<li><p><cite>pip install git+https://github.com/anchoranalysis/anchor-python-visualization.git</cite></p></li>
+</ul>
+<section id="plotting">
+<h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this heading"></a></h3>
+<p>Plotting using t-SNE to project to two dimensions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">anchor_python_visualization</span><span class="o">.</span><span class="n">visualize_features</span>
+    <span class="n">D</span><span class="p">:</span>\<span class="n">someDirectory</span>\<span class="n">features</span><span class="o">.</span><span class="n">csv</span>
+    <span class="o">-</span><span class="n">p</span> <span class="n">t</span><span class="o">-</span><span class="n">SNE</span>
+    <span class="o">-</span><span class="n">m</span> <span class="n">plot</span>
+</pre></div>
+</div>
+</section>
+<section id="tensorboard-export">
+<h3>TensorBoard export<a class="headerlink" href="#tensorboard-export" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Create the log-directory:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>python -m anchor_python_visualization.visualize_features
+    D:\someDirectory\features.csv
+    -p none
+    -m TensorBoard
+    --output D:\someDirectory\tensorboard_logs
+    --image_sequence D:\someDirectory\thumbnails\thumbnails_&lt;IMAGE&gt;.png
+    -–max_label_index -1
+</pre></div>
+</div>
+<p>The penultimate parameter is optional, and includes thumbnails.</p>
+<p>The ultimate parameter directs the group label to, ignores the “last” port of string i.e. after the final slash.</p>
+<ol class="arabic simple" start="2">
+<li><p>Open the log-directory in <a class="reference external" href="https://www.tensorflow.org/tensorboard">TensorBoard</a>.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensorboard</span> <span class="o">--</span><span class="n">logdir</span> <span class="n">D</span><span class="p">:</span>\<span class="n">someDirectory</span>\<span class="n">tensorboard_logs</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Open the shown URL, probably <a class="reference external" href="http://localhost:6006/">http://localhost:6006/</a></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Projector</span></code> from the drop-down list box in the top-right corner.</p></li>
+</ol>
+</section>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#anchor_python_visualization.visualize_features.main" title="anchor_python_visualization.visualize_features.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>()</p></td>
+<td><p>Entry point.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="anchor_python_visualization.visualize_features.main">
+<span class="sig-prename descclassname"><span class="pre">anchor_python_visualization.visualize_features.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/anchor_python_visualization/visualize_features.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#anchor_python_visualization.visualize_features.main" title="Permalink to this definition"></a></dt>
+<dd><p>Entry point.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Owen Feehan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.projection.factory`
+========================================================
+
+.. py:module:: anchor_python_visualization.projection.factory
+
+.. autoapi-nested-parse::
+
+   Creates instances of :class:`~projection.Projector`.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.projection.factory.create_projector
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.projection.factory.IDENTIFIERS
+   anchor_python_visualization.projection.factory.DEFAULT_IDENTIFIER
+
+
+.. py:data:: IDENTIFIERS
+   :value: ['t-sne', 'pca', 'none']
+
+   Unique strings to use as command-line-arguments to select a :class:`Projector`.
+
+   All are lower-case.
+
+.. py:data:: DEFAULT_IDENTIFIER
+   :value: 't-sne'
+
+   The default choice to use in :const:`IDENTIFIERS`.
+
+.. py:function:: create_projector(identifier: str) -> Optional[anchor_python_visualization.projection.projector.Projector]
+
+   Creates a projection method from an identifier.
+
+   :param identifier: string that is one of :const:`IDENTIFIERS`, case-insensitive.
+
+   :returns: a newly created projection method, or none at all.
+
+

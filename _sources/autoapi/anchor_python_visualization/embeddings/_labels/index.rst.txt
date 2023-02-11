@@ -1,0 +1,13 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.embeddings._labels`
+========================================================
+
+.. py:module:: anchor_python_visualization.embeddings._labels
+
+.. autoapi-nested-parse::
+
+   Labels associated with rows of embeddings, that need not be unique. Useful for showing membership of groups.
+
+
+

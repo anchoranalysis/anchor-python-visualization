@@ -1,0 +1,13 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.embeddings._identifiers`
+=============================================================
+
+.. py:module:: anchor_python_visualization.embeddings._identifiers
+
+.. autoapi-nested-parse::
+
+   Selects or create unique identifiers for the data-frame.
+
+
+

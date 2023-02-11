@@ -1,0 +1,13 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.projection._tsne`
+======================================================
+
+.. py:module:: anchor_python_visualization.projection._tsne
+
+.. autoapi-nested-parse::
+
+   T-SNE projection.
+
+
+

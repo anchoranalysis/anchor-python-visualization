@@ -1,0 +1,40 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.visualize.visualize_features_scheme`
+=========================================================================
+
+.. py:module:: anchor_python_visualization.visualize.visualize_features_scheme
+
+.. autoapi-nested-parse::
+
+   Abstract base class for a scheme for visualizing embeddings
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.visualize.visualize_features_scheme.VisualizeFeaturesScheme
+
+
+
+
+.. py:class:: VisualizeFeaturesScheme
+
+   Bases: :py:obj:`abc.ABC`
+
+   A method to visualize a set of feature-values.
+
+   .. py:method:: visualize_data_frame(features: anchor_python_visualization.embeddings.LabelledFeatures) -> None
+
+      Visualizes the embeddings in some manner.
+
+      :param features: embeddings in a data-frame with associated labels.
+
+
+

@@ -1,0 +1,13 @@
+:orphan:
+
+:py:mod:`anchor_python_visualization.projection._pca`
+=====================================================
+
+.. py:module:: anchor_python_visualization.projection._pca
+
+.. autoapi-nested-parse::
+
+   PCA projection.
+
+
+

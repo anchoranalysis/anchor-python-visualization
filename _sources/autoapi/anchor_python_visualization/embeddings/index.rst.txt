@@ -1,0 +1,113 @@
+:py:mod:`anchor_python_visualization.embeddings`
+================================================
+
+.. py:module:: anchor_python_visualization.embeddings
+
+.. autoapi-nested-parse::
+
+   Methods for loading embeddings and determining labels.
+
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.embeddings.LabelledFeatures
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.embeddings.load_features
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   anchor_python_visualization.embeddings.COLUMN_NAME_IDENTIFIER
+   anchor_python_visualization.embeddings.PLACEHOLDER_FOR_SUBSTITUTION
+
+
+.. py:exception:: InsufficientRowsException
+
+   Bases: :py:obj:`Exception`
+
+   When there are too few rows in a data-frame to perform an operation.
+
+
+.. py:data:: COLUMN_NAME_IDENTIFIER
+   :type: str
+   :value: 'identifier'
+
+   Name for index column.
+
+.. py:data:: PLACEHOLDER_FOR_SUBSTITUTION
+   :type: str
+   :value: '<IMAGE>'
+
+   Optional placeholder used in image_dir argument.
+
+.. py:function:: load_features(args: argparse.Namespace) -> anchor_python_visualization.embeddings.label.LabelledFeatures
+
+   Loads the embeddings from a CSV file and determines identifiers and labels.
+
+    This determination occurs according to command-line arguments.
+
+   :param args: the command-line arguments.
+
+   :returns: newly-created instance of features after having being loaded.
+
+
+.. py:class:: LabelledFeatures
+
+   Maintains separate data-frames for embeddings and labels, but linked in order and count.
+
+   Both data-frames must have the same number of rows, ordred identically.
+
+   .. py:attribute:: features
+      :type: pandas.DataFrame
+
+      Data-frame containing only feature-values (numeric) with each row assigned an identifier.
+
+   .. py:attribute:: labels
+      :type: pandas.Series
+
+      Series with labels for each item in ``df_features``.
+
+      The series must have the same size and order as ``embeddings``.
+
+   .. py:attribute:: image_paths
+      :type: Optional[pandas.Series]
+
+      Optional series with a path to an image for each item.
+
+      The series must have the same size and order as ``embeddings``.
+
+   .. py:method:: number_items() -> int
+
+      Returns the number of items (i.e. rows) in the data-frames/series.
+
+
+   .. py:method:: sample_without_replacement(sample_size: int) -> LabelledFeatures
+
+      Samples without replacement (taking identical rows from each member data-frame/series).
+
+      :param sample_size: number of items to sample
+
+      :returns: a newly created :class:`LabelledFeatures` containing the sample.
+
+      :raises InsufficientRowsException: if there are fewer rows available than :code:`sample_size`.
+
+
+
