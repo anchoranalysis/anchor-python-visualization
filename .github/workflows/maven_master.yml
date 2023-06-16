@@ -1,6 +1,7 @@
 name: Python CI for Development branch
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - dev
