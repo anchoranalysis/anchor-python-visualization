@@ -8,9 +8,7 @@ on:
 jobs:
 
   build:
-       uses: anchoranalysis/anchor-python-cicd/.github/workflows/maven_master.yml@main
+    uses: anchoranalysis/anchor-python-cicd/.github/workflows/maven_master.yml@main
     with:
       library-name: anchor-python-visualization
     secrets: inherit
-
-      
