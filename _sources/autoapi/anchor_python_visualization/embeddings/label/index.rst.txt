@@ -26,6 +26,7 @@ Classes
 
 .. py:class:: LabelledFeatures
 
+
    Maintains separate data-frames for embeddings and labels, but linked in order and count.
 
    Both data-frames must have the same number of rows, ordred identically.

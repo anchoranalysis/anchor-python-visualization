@@ -16,6 +16,7 @@ Module Contents
 
 .. py:exception:: InsufficientRowsException
 
+
    Bases: :py:obj:`Exception`
 
    When there are too few rows in a data-frame to perform an operation.

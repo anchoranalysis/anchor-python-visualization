@@ -41,6 +41,7 @@ Attributes
 
 .. py:exception:: InsufficientRowsException
 
+
    Bases: :py:obj:`Exception`
 
    When there are too few rows in a data-frame to perform an operation.
@@ -70,6 +71,7 @@ Attributes
 
 
 .. py:class:: LabelledFeatures
+
 
    Maintains separate data-frames for embeddings and labels, but linked in order and count.
 

@@ -26,6 +26,7 @@ Classes
 
 .. py:class:: Projector
 
+
    Bases: :py:obj:`abc.ABC`
 
    Projects the feature-space to lower dimensionality.
