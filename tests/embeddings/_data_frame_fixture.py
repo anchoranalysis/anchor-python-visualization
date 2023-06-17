@@ -23,9 +23,12 @@ class ColumnType(Enum):
 def create_data_frame(number_rows: int, *args: ColumnType) -> pd.DataFrame:
     """Create a data-frame, with columns of specified types.
 
-    :param number_rows: the number of rows in the data-frame.
-    :param args: the respective type for each column.
-    :returns: the data-frame.
+    Args:
+        number_rows: the number of rows in the data-frame.
+        args: the respective type for each column.
+
+    Returns:
+        the data-frame.
     """
     dictionary = {
         f"column{key}": create_column(number_rows, value)
@@ -37,9 +40,12 @@ def create_data_frame(number_rows: int, *args: ColumnType) -> pd.DataFrame:
 def create_column(number_rows: int, column_type: ColumnType) -> pd.Series:
     """Creates a column with either duplicated values or not, and either of string or int type.
 
-    :param number_rows: the number of rows in the data-frame.
-    :param column_type: the type of the column.
-    :returns: the data-frame.
+    Args:
+        number_rows: the number of rows in the data-frame.
+        column_type: the type of the column.
+
+    Returns:
+        the data-frame.
     """
     if column_type == ColumnType.UNIQUE_STRING:
         return pd.Series(range(number_rows)).astype(str)
