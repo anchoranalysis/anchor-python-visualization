@@ -5,9 +5,7 @@ import pandas as pd
 from _data_frame_fixture import ColumnType, create_column, create_data_frame
 
 from anchor_python_visualization.embeddings._identifiers import (
-    _create_numeric_sequence,
-    select_or_create_identifiers,
-)
+    _create_numeric_sequence, select_or_create_identifiers)
 
 _NUMBER_ROWS: int = 7
 """The number of rows created in each data-frame."""

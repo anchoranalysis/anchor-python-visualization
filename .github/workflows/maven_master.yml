@@ -1,4 +1,4 @@
-name: Python CI for Development branch
+name: Python CI for Master branch
 
 on:
   workflow_dispatch:
