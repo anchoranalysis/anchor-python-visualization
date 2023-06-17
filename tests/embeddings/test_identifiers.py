@@ -48,10 +48,11 @@ def _test_assert(
 ) -> None:
     """Performs the test by creating data-frames with string and int columns and checking the resulting identifiers
 
-    :param expected_type: what we expect the identifiers to look like (converted to str type if necessary). If None,
-                          then we expect a numeric sequence.
-    :param string_column_types: column types to use in the data-frame for **string**-columns.
-    :param int_column_types: column types to use in the data-frame for **int**-columns.
+    Args:
+        expected_type: what we expect the identifiers to look like (converted to str type if necessary). If None,
+            then we expect a numeric sequence.
+        string_column_types: column types to use in the data-frame for **string**-columns.
+        int_column_types: column types to use in the data-frame for **int**-columns.
     """
     identifiers = select_or_create_identifiers(
         create_data_frame(_NUMBER_ROWS, *string_column_types),

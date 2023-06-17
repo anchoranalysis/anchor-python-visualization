@@ -1,15 +1,15 @@
-name: Python CI for Development branch
+name: Python CI for Master branch
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - dev
+      - master
 
 jobs:
 
   build:
-    uses: anchoranalysis/anchor-python-cicd/.github/workflows/maven_dev.yml@main
+    uses: anchoranalysis/anchor-python-cicd/.github/workflows/push_master.yml@main
     with:
       library-name: anchor-python-visualization
     secrets: inherit
